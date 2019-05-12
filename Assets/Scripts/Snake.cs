@@ -5,16 +5,16 @@ using UnityEngine;
 public class Snake : MonoBehaviour
 {
 
+    //Movement vars
     public float speed;
-
     public bool canMove;
-
     DraggedDirection currentDirection;
     DraggedDirection oldDirection;
     Rigidbody rigidbody;
 
     Vector3 startSwipePos;
     Vector3 endSwipePos;
+    float timeSwipeHeld;
 
     //Other snake segments
     int segments;
@@ -32,6 +32,7 @@ public class Snake : MonoBehaviour
     {
         timeBetweenPositions = 0.275f;
         positionRecordTime = 0.0f;
+        timeSwipeHeld = 0.0f;
 
         prevPositions = new List<Vector3>();
         otherSegments = new List<GameObject>();
@@ -58,9 +59,41 @@ public class Snake : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow)) currentDirection = DraggedDirection.Up;
         if (Input.GetKeyDown(KeyCode.DownArrow)) currentDirection = DraggedDirection.Down;
 
+        //-----------------------------------------------------------------------------------
+        //Detect Touch Input here!
+        //-----------------------------------------------------------------------------------
         if (Input.touchCount > 0)
         {
-            startSwipePos = Input.GetTouch(0).position;
+            Touch touch = Input.GetTouch(0);
+
+            // Handle finger movements based on TouchPhase
+            switch (touch.phase)
+            {
+                //When a touch has first been detected, change the message and record the starting position
+                case TouchPhase.Began:
+                    // Record initial touch position.
+                    startSwipePos = touch.position;
+                    
+                    break;
+
+                //Determine if the touch is a moving touch
+                case TouchPhase.Moved:
+                    // Determine direction by comparing the current touch position with the initial one
+                    timeSwipeHeld += Time.deltaTime;
+
+
+                    break;
+
+                case TouchPhase.Ended:
+                    // Report that the touch has ended when it ends
+                    endSwipePos = touch.position;
+                    if (timeSwipeHeld > 0.1f)
+                    {
+                        ChangeDirection();
+                        timeSwipeHeld = 0.0f;
+                    }
+                    break;
+            }
         }
 
             switch (currentDirection)
@@ -84,7 +117,7 @@ public class Snake : MonoBehaviour
 
         for (int i = 0; i < otherSegments.Count; i++)
         {
-            otherSegments[i].transform.position = prevPositions[prevPositions.Count - (1 + i)];
+            otherSegments[i].transform.position = prevPositions[prevPositions.Count - (1 + i)]; //Error here
         }
 
         RecordPositions();
@@ -139,17 +172,15 @@ public class Snake : MonoBehaviour
     }
 
     
-    private void OnMouseDown()
-    {
-        startSwipePos = Input.mousePosition;
-    }
+    //private void OnMouseDown()
+    //{
+    //    startSwipePos = Input.mousePosition;
+    //    ChangeDirection();
+    //}
 
-    
-    private void OnMouseUp()
+    void ChangeDirection()
     {
-        endSwipePos = Input.mousePosition;
-        
-        Vector3 dragVectorDirection = (endSwipePos -  startSwipePos).normalized;
+        Vector3 dragVectorDirection = (endSwipePos - startSwipePos).normalized;
         Debug.Log("norm + " + dragVectorDirection);
 
         //Swap directions here. If it's a new direction then align to the grid!
@@ -160,6 +191,13 @@ public class Snake : MonoBehaviour
 
         if (currentDirection != oldDirection) transform.position = AlignToGrid(transform.position);
     }
+    
+    //private void OnMouseUp() //For PC testing. Disable on release.
+    //{
+    //    endSwipePos = Input.mousePosition;
+
+    //    ChangeDirection();
+    //}
 
     private enum DraggedDirection
     {
@@ -195,4 +233,8 @@ public class Snake : MonoBehaviour
         //return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
     }
     
+    public void Pause()
+    {
+        canMove = !canMove;
+    }
 }

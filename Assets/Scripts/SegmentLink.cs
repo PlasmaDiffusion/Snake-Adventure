@@ -18,6 +18,9 @@ public class SegmentLink : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(targetObject && targetObject2)
+        {
+
        Vector3 difference = targetObject2.transform.position - targetObject.transform.position;
        Vector3 direction = difference / difference.magnitude;
         
@@ -25,6 +28,8 @@ public class SegmentLink : MonoBehaviour
         transform.rotation = Quaternion.Euler(Mathf.Rad2Deg*direction);
         transform.localScale = new Vector3(0.25f, 0.25f, 0.25f) + difference;
 
-        //Debug.Log(difference);
+            //Debug.Log(difference);
+
+        }
     }
 }

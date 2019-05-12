@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-
+using UnityEngine.SceneManagement;
 
 public class DeathHandler : MonoBehaviour
 {
@@ -51,10 +51,10 @@ public class DeathHandler : MonoBehaviour
         player.GetComponent<DeathCheck>().Respawn();
     }
 
-    // Update is called once per frame
-    void EndGame()
+    //End the game here along with highscores, rewards, etc.
+    public void EndGame()
     {
-        
+        SceneManager.LoadScene(0);
     }
 
     public void ShowRewardedAd()
