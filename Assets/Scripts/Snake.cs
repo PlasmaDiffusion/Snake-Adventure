@@ -7,6 +7,7 @@ public class Snake : MonoBehaviour
 
     public float speed;
 
+    public bool canMove;
 
     DraggedDirection currentDirection;
     DraggedDirection oldDirection;
@@ -38,11 +39,20 @@ public class Snake : MonoBehaviour
 
         rigidbody = GetComponent<Rigidbody>();
         currentDirection = DraggedDirection.Up;
+
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Can't move if game is paused, game over, etc.
+        if (!canMove)
+        {
+            rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftArrow)) currentDirection = DraggedDirection.Left;
         if (Input.GetKeyDown(KeyCode.RightArrow)) currentDirection = DraggedDirection.Right;
         if (Input.GetKeyDown(KeyCode.UpArrow)) currentDirection = DraggedDirection.Up;

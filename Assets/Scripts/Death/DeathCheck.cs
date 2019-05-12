@@ -12,6 +12,7 @@ public class DeathCheck : MonoBehaviour
     Color regColor;
 
     bool colliding;
+    bool died;
 
     //Time it takes to die
     float collisionTimeLimit;
@@ -37,17 +38,34 @@ public class DeathCheck : MonoBehaviour
             UpdateColour();
         }
 
+        if (gameObject.transform.position.y < -10.0f)
+        {
+            Die();
+        }
+
+    }
+
+    //Pop up the game over screen and make the snake stop moving.
+    void Die()
+    {
+        if (died) return;
+        deathMenu.SetActive(true);
+        gameObject.GetComponent<Snake>().canMove = false;
+
+        died = true;
+    }
+
+    public void Respawn()
+    {
+        died = false;
+        gameObject.GetComponent<Snake>().canMove = true;
     }
 
     //You can only collide for so long until ya die.
     public void CheckForDeath()
     {
         collisionTimeInSegment += Time.deltaTime;
-        if (collisionTimeInSegment > collisionTimeLimit)
-        {
-            deathMenu.SetActive(true);
-            //gameObject.GetComponent<Snake>().die
-        }
+        if (collisionTimeInSegment > collisionTimeLimit) Die();
 
         UpdateColour();
 

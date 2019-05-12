@@ -9,6 +9,7 @@ public class DeathHandler : MonoBehaviour
     bool watchedAd;
     bool payedCoins;
 
+    public GameObject player;
     public GameObject adButton;
     public GameObject coinButton;
     public GameObject continueText;
@@ -18,12 +19,11 @@ public class DeathHandler : MonoBehaviour
     {
         watchedAd = false;
         payedCoins = false;
-
-        //Die();
+        
     }
-
+    
     //Call Die() to prompt a game over menu. 
-    void Die()
+    void OnEnable()
     {
         gameObject.SetActive(true);
 
@@ -48,6 +48,7 @@ public class DeathHandler : MonoBehaviour
     void Revive()
     {
         gameObject.SetActive(false);
+        player.GetComponent<DeathCheck>().Respawn();
     }
 
     // Update is called once per frame
