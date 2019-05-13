@@ -6,18 +6,30 @@ public class SnakeGate : MonoBehaviour
 {
     int requirement;
     bool open;
+    bool entered;
 
     TextMesh requirementText;
     TextMesh requirementText2;
 
+    public int minFoodRequired = 5;
+    public int maxFoodRequired = 10;
+
     // Start is called before the first frame update
     void Start()
     {
-        requirement = 10;
+        //Determine how much food is required to open this door. Also count the food in the level to ensure it's possible.
+        int amountOfPossibleFood = CountSnakeFood();
+                                                                          //If amount possible < max, dont exceed amount possible
+        requirement = Random.Range(minFoodRequired, (amountOfPossibleFood < maxFoodRequired) ? amountOfPossibleFood : maxFoodRequired);
         open = false;
+        entered = false;
 
         requirementText = transform.GetChild(0).GetComponent<TextMesh>();
         requirementText2 = transform.GetChild(1).GetComponent<TextMesh>();
+
+        //Update gate text
+        requirementText.text = requirement.ToString();
+        requirementText2.text = requirement.ToString();
     }
 
     //Called whenever snake food is destroyed
@@ -33,6 +45,8 @@ public class SnakeGate : MonoBehaviour
         {
             //Now the door shall open!
             GetComponent<BoxCollider>().isTrigger = true;
+            open = true;
+            Debug.Log("Opened");
         }
 
         //Hide the 3d text when it's open.
@@ -47,9 +61,23 @@ public class SnakeGate : MonoBehaviour
     //Player is about to finish this "level", and the game will generate another one.
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player" && open)
+        if (other.name == "Player" && open && !entered)
         {
-            //Spawn in more level here. Despawn the older level.
+            Debug.Log("Entered");
+            //Spawn in more level here. Despawn the oldest level, but not the one being exited.
+            entered = true;
+            LevelSpawner spawner = GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>();
+            spawner.EndLevel();
+
         }
+        else if (other.tag == "Wall") //Alternatively if a level is spawned in, despawn any walls that would  be in the way of the door.
+        {
+            Destroy(other.gameObject);
+        }
+
+        Debug.Log(other.tag);
+
     }
+    
+    int CountSnakeFood() {return transform.GetComponentsInChildren<SnakeFood>().Length;}
 }

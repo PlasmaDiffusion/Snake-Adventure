@@ -5,10 +5,12 @@ using UnityEngine;
 public class SnakeFood : MonoBehaviour
 {
 
+    public static int objCount;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        objCount++;
     }
 
     // Update is called once per frame
@@ -26,11 +28,17 @@ public class SnakeFood : MonoBehaviour
             snake.AddSegment();
             snake.cam.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
 
+
             //Notify the gate this was collected
-            GameObject.Find("Gate").GetComponent<SnakeGate>().LowerGate();
+            transform.parent.Find("Gate").GetComponent<SnakeGate>().LowerGate();
             Destroy(gameObject);
 
 
         }
+    }
+
+    private void OnDestroy()
+    {
+        objCount--;
     }
 }

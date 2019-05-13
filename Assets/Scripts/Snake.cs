@@ -168,7 +168,9 @@ public class Snake : MonoBehaviour
             sl.targetObject2 = gameObject;
         }
 
-
+        //Force prevPositions to update
+        positionRecordTime = 99.0f;
+        RecordPositions();
     }
 
     
