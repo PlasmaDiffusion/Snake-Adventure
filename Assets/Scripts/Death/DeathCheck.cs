@@ -8,6 +8,8 @@ public class DeathCheck : MonoBehaviour
     //Menu to active upon death
     public GameObject deathMenu;
 
+    public static float deathY;
+
     Renderer rend;
     Color regColor;
 
@@ -27,6 +29,7 @@ public class DeathCheck : MonoBehaviour
         collisionTimeInSegment = 0.0f;
 
         colliding = false;
+        deathY = -10.0f;
     }
 
     //If you're touching nothing you'll gain your time back
@@ -38,7 +41,7 @@ public class DeathCheck : MonoBehaviour
             UpdateColour();
         }
 
-        if (gameObject.transform.position.y < -10.0f)
+        if (gameObject.transform.position.y < deathY)
         {
             Die();
         }
@@ -82,6 +85,6 @@ public class DeathCheck : MonoBehaviour
     void UpdateColour()
     {
         //Tint yellow to show near death
-        rend.material.color += new Color((collisionTimeInSegment / collisionTimeLimit) * Time.deltaTime, 0.0f, 0.0f);
+        rend.material.color = new Color((collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b);
     }
 }

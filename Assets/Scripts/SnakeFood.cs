@@ -23,6 +23,9 @@ public class SnakeFood : MonoBehaviour
     {
         if (other.name == "Player")
         {
+            GlobalStats.score++;
+            GlobalStats.hud.UpdateHUD();
+
             //Add a snake segment
             Snake snake = other.GetComponent<Snake>();
             snake.AddSegment();

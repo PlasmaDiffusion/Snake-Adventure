@@ -30,12 +30,16 @@ public class SnakeGate : MonoBehaviour
         //Update gate text
         requirementText.text = requirement.ToString();
         requirementText2.text = requirement.ToString();
+
+        GlobalStats.requiredFood = requirement;
+        if (GlobalStats.hud)GlobalStats.hud.UpdateHUD();
     }
 
     //Called whenever snake food is destroyed
     public void LowerGate()
     {
         requirement--;
+        GlobalStats.requiredFood = requirement;
 
         //Update gate text
         requirementText.text = requirement.ToString();
@@ -47,7 +51,14 @@ public class SnakeGate : MonoBehaviour
             GetComponent<BoxCollider>().isTrigger = true;
             open = true;
             Debug.Log("Opened");
+            GetComponent<Renderer>().material.color = new Color(0.2f, 0.0f, 0.6f, 0.5f);
+
+            if(transform.parent.name != "StartingLevel")
+            GlobalStats.score += 10;
+
         }
+
+        GlobalStats.hud.UpdateHUD();
 
         //Hide the 3d text when it's open.
         if (requirement < 1)

@@ -50,7 +50,9 @@ public class LevelSpawner : MonoBehaviour
         //In a rare case there might be no levels left in a pool.
         CheckIfPoolIsEmpty();
 
-    }
+
+
+        }
 
     //Easy, normal or hard levels?
     List<GameObject> DetermineLevelPool()
@@ -59,8 +61,8 @@ public class LevelSpawner : MonoBehaviour
         //Determine the difficulty to lean towards
         int difficultyBias = 1;
 
-        if (level > 8) difficultyBias = 2;
-        else if (level > 20) difficultyBias = 3;
+        if (level > 5) difficultyBias = 2;
+        else if (level > 15) difficultyBias = 3;
 
         //1 in 3 chance for difficulty to be 1 level higher
         if (Random.Range(0, 2) == 2)
@@ -101,7 +103,9 @@ public class LevelSpawner : MonoBehaviour
         //Move the new level
         transform.position += properties.size;
 
-        newLevel.transform.position = transform.position;
+        //New level goes a little bit down
+        DeathCheck.deathY--;
+        newLevel.transform.position = transform.position + new Vector3(0.0f, DeathCheck.deathY + 10, 0.0f);
 
         //Remove the given level from the pool. We don't want duplicates.
         levelList.RemoveAt(levelIndex);

@@ -45,7 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easyLevels:
   - {fileID: 7600987074500663363, guid: 6f0a231def6e87b4ba82789d6a1dc9ac, type: 3}
+  - {fileID: 4113410586932868684, guid: d82dcf4f3dba4f24dae90a0bf4ee105d, type: 3}
   mediumLevels:
-  - {fileID: 7600987074500663363, guid: 6f0a231def6e87b4ba82789d6a1dc9ac, type: 3}
+  - {fileID: 4113410586932868684, guid: d82dcf4f3dba4f24dae90a0bf4ee105d, type: 3}
   hardLevels:
   - {fileID: 7600987074500663363, guid: 6f0a231def6e87b4ba82789d6a1dc9ac, type: 3}

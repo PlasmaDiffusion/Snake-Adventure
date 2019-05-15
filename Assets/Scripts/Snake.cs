@@ -16,6 +16,10 @@ public class Snake : MonoBehaviour
     Vector3 endSwipePos;
     float timeSwipeHeld;
 
+    //Var for rotating
+    Quaternion targetRotation;
+    float timeRotating;
+
     //Other snake segments
     int segments;
     float positionRecordTime;
@@ -42,6 +46,7 @@ public class Snake : MonoBehaviour
         currentDirection = DraggedDirection.Up;
 
         canMove = true;
+        timeRotating = 1.0f;
     }
 
     // Update is called once per frame
@@ -101,17 +106,31 @@ public class Snake : MonoBehaviour
                
             case DraggedDirection.Up:
                 rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, speed* Time.deltaTime));
+                targetRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+                timeRotating = 0.0f;
                 break;
             case DraggedDirection.Down:
                 rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
+                targetRotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
+                timeRotating = 0.0f;
                 break;
             case DraggedDirection.Left:
                 rigidbody.velocity = (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+                targetRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                timeRotating = 0.0f;
                 break;
             case DraggedDirection.Right:
                 rigidbody.velocity = (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+                targetRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                timeRotating = 0.0f;
                 break;
         }
+
+        //Camera moves with player except for the y
+        cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, transform.position.z);
+        
+
+        LerpToDirection();
 
         //Segment updating
 
@@ -238,5 +257,15 @@ public class Snake : MonoBehaviour
     public void Pause()
     {
         canMove = !canMove;
+    }
+
+    void LerpToDirection()
+    {
+        if (timeRotating < 1.0f)
+        {
+            timeRotating += Time.deltaTime * 4.0f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, timeRotating);
+            
+        }
     }
 }
