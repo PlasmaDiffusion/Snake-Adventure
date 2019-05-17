@@ -43,13 +43,14 @@ public class DeathCheck : MonoBehaviour
 
         if (gameObject.transform.position.y < deathY)
         {
+            Debug.Log("Dying because under y level " + deathY.ToString());
             Die();
         }
 
     }
 
     //Pop up the game over screen and make the snake stop moving.
-    void Die()
+    public void Die()
     {
         if (died) return;
         deathMenu.SetActive(true);

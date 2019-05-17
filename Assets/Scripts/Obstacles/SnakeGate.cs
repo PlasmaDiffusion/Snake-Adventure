@@ -40,6 +40,7 @@ public class SnakeGate : MonoBehaviour
     {
         requirement--;
         GlobalStats.requiredFood = requirement;
+        if (requirement < 0) GlobalStats.requiredFood = 0;
 
         //Update gate text
         requirementText.text = requirement.ToString();
@@ -53,8 +54,7 @@ public class SnakeGate : MonoBehaviour
             Debug.Log("Opened");
             GetComponent<Renderer>().material.color = new Color(0.2f, 0.0f, 0.6f, 0.5f);
 
-            if(transform.parent.name != "StartingLevel")
-            GlobalStats.score += 10;
+
 
         }
 
@@ -74,11 +74,16 @@ public class SnakeGate : MonoBehaviour
     {
         if (other.name == "Player" && open && !entered)
         {
+            if (transform.parent.name != "StartingLevel")
+            {
+                GlobalStats.score += 10;
+            }
+
             Debug.Log("Entered");
             //Spawn in more level here. Despawn the oldest level, but not the one being exited.
             entered = true;
             LevelSpawner spawner = GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>();
-            spawner.EndLevel();
+            spawner.EndLevel(transform.position);
 
         }
         else if (other.tag == "Wall") //Alternatively if a level is spawned in, despawn any walls that would  be in the way of the door.

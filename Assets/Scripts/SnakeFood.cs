@@ -29,7 +29,7 @@ public class SnakeFood : MonoBehaviour
             //Add a snake segment
             Snake snake = other.GetComponent<Snake>();
             snake.AddSegment();
-            snake.cam.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            snake.ZoomOutCamera();
 
 
             //Notify the gate this was collected

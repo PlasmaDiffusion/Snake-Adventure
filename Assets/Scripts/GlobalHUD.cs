@@ -32,14 +32,17 @@ public class GlobalHUD : MonoBehaviour
     {
         //Hide coins after a second
         if (coinsVisibleTime > 0 || coinsVisibleTime == 10.0f) coinsVisibleTime -= Time.deltaTime;
-        else coinText.rectTransform.Translate(0.0f, 1.0f * Time.deltaTime, 0.0f);
+        else coinText.rectTransform.Translate(0.0f, 8.0f * Time.deltaTime, 0.0f);
     }
 
     public void UpdateHUD()
     {
+        if (scoreText && requiredFoodText && coinText) //Make sure they all exist
+        { 
         scoreText.text = GlobalStats.score.ToString();
         requiredFoodText.text = GlobalStats.requiredFood.ToString();
         coinText.text = GlobalStats.coins.ToString();
+        }
     }
 
     public void DisplayCoins(bool forever)

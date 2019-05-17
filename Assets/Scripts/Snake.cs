@@ -30,6 +30,7 @@ public class Snake : MonoBehaviour
     List<GameObject> otherSegments;
 
     public GameObject cam;
+    Vector3 camOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,8 @@ public class Snake : MonoBehaviour
 
         canMove = true;
         timeRotating = 1.0f;
+
+        camOffset = new Vector3(0.0f, 12.5f, 0.0f);
     }
 
     // Update is called once per frame
@@ -85,14 +88,19 @@ public class Snake : MonoBehaviour
                 case TouchPhase.Moved:
                     // Determine direction by comparing the current touch position with the initial one
                     timeSwipeHeld += Time.deltaTime;
-
-
+                    if (timeSwipeHeld > 0.15f)
+                    {
+                        //Either the player releases or holds their swipe long enough
+                        endSwipePos = touch.position;
+                        ChangeDirection();
+                        timeSwipeHeld = 0.0f;
+                    }
                     break;
 
                 case TouchPhase.Ended:
                     // Report that the touch has ended when it ends
                     endSwipePos = touch.position;
-                    if (timeSwipeHeld > 0.1f)
+                    if (timeSwipeHeld > 0.0f)
                     {
                         ChangeDirection();
                         timeSwipeHeld = 0.0f;
@@ -127,7 +135,7 @@ public class Snake : MonoBehaviour
         }
 
         //Camera moves with player except for the y
-        cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, transform.position.z);
+        cam.transform.position = transform.position + camOffset;
         
 
         LerpToDirection();
@@ -192,13 +200,12 @@ public class Snake : MonoBehaviour
         RecordPositions();
     }
 
-    
-    //private void OnMouseDown()
-    //{
-    //    startSwipePos = Input.mousePosition;
-    //    ChangeDirection();
-    //}
-
+    //Call this whenever the snake grows, but not limit it eventually.
+    public void ZoomOutCamera()
+    {
+        if (camOffset.y < 20.0f)
+        camOffset += new Vector3(0.0f, 0.1f, 0.0f);
+    }
     void ChangeDirection()
     {
         Vector3 dragVectorDirection = (endSwipePos - startSwipePos).normalized;

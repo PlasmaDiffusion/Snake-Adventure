@@ -17,8 +17,13 @@ public class LevelSpawner : MonoBehaviour
     public List<GameObject> mediumLevels;
     public List<GameObject> hardLevels;
 
+    public bool testing;
+    public List<GameObject> testLevels;
+
     GameObject prevLevel;
     GameObject currentLevel;
+
+    Vector3 currentGatePos;
 
     // Start is called before the first frame update
     void Start()
@@ -32,13 +37,27 @@ public class LevelSpawner : MonoBehaviour
         easyLevelPool.AddRange(easyLevels);
         mediumLevelPool.AddRange(mediumLevels);
         hardLevelPool.AddRange(hardLevels);
+
+        currentLevel = GameObject.Find("StartingLevel");
+
     }
 
     int getLevel() { return level; }
 
-    public void EndLevel()
+    public void EndLevel(Vector3 pos)
     {
+        //Reference of where to spawn the level from
+        currentGatePos = pos;
+
         level++;
+
+        if (testing) //For testing specific levels
+        {
+            SpawnInLevel(ref testLevels);
+            if (prevLevel) DespawnOldLevel();
+            return;
+        }
+
         List<GameObject> levelPool = DetermineLevelPool();
 
         //Despawn prevLevel if it exists
@@ -98,14 +117,13 @@ public class LevelSpawner : MonoBehaviour
         newLevel = Instantiate(levelList[levelIndex]);
 
 
-        LevelProperties properties = newLevel.GetComponent<LevelProperties>();
 
-        //Move the new level
-        transform.position += properties.size;
+        transform.position = currentGatePos;
 
         //New level goes a little bit down
-        DeathCheck.deathY--;
-        newLevel.transform.position = transform.position + new Vector3(0.0f, DeathCheck.deathY + 10, 0.0f);
+        DeathCheck.deathY-= 5.0f;
+        //Debug.Log("Death Y: " + DeathCheck.deathY.ToString());
+        newLevel.transform.position = transform.position + new Vector3(0.0f, -5.0f, 0.0f);
 
         //Remove the given level from the pool. We don't want duplicates.
         levelList.RemoveAt(levelIndex);
