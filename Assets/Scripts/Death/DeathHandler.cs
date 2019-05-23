@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
+//Class that is basically the game over screen.
 public class DeathHandler : MonoBehaviour
 {
     bool watchedAd;
@@ -13,6 +14,7 @@ public class DeathHandler : MonoBehaviour
     public GameObject adButton;
     public GameObject coinButton;
     public GameObject continueText;
+
 
     // Start is called before the first frame update
     void Start()

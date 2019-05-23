@@ -20,6 +20,9 @@ public class DeathCheck : MonoBehaviour
     float collisionTimeLimit;
     float collisionTimeInSegment;
 
+    float invincibility;
+    float maxInvincibility;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,14 +33,23 @@ public class DeathCheck : MonoBehaviour
 
         colliding = false;
         deathY = -10.0f;
+        invincibility = 0.0f;
+        maxInvincibility = 1.0f;
     }
 
     //If you're touching nothing you'll gain your time back
     void Update()
     {
+        Debug.Log(invincibility);
+
         if (!colliding && collisionTimeInSegment > 0.0f)
         {
             collisionTimeInSegment -= Time.deltaTime;
+            UpdateColour();
+        }
+        else if(invincibility > 0.0f)
+        {
+            invincibility -= Time.deltaTime;
             UpdateColour();
         }
 
@@ -47,27 +59,40 @@ public class DeathCheck : MonoBehaviour
             Die();
         }
 
-    }
+
+
+        }
 
     //Pop up the game over screen and make the snake stop moving.
     public void Die()
     {
-        if (died) return;
+        if (died || invincibility > 0.0f) return;
         deathMenu.SetActive(true);
-        gameObject.GetComponent<Snake>().canMove = false;
+        gameObject.GetComponent<Snake>().alive = false;
+
+        GlobalStats.paused = true;
 
         died = true;
     }
 
     public void Respawn()
     {
+        
         died = false;
-        gameObject.GetComponent<Snake>().canMove = true;
+        Snake snake = gameObject.GetComponent<Snake>();
+        snake.alive = true;
+        snake.Pause();
+
+        //Respawn with some invincibility
+        MakeInvincible(4.0f);
+        StopCheck();
     }
 
     //You can only collide for so long until ya die.
     public void CheckForDeath()
     {
+        if (invincibility > 0.0f) return;
+
         collisionTimeInSegment += Time.deltaTime;
         if (collisionTimeInSegment > collisionTimeLimit) Die();
 
@@ -86,6 +111,12 @@ public class DeathCheck : MonoBehaviour
     void UpdateColour()
     {
         //Tint yellow to show near death
-        rend.material.color = new Color((collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b);
+        rend.material.color = new Color(regColor.r + (1.0f-regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility/maxInvincibility));
+    }
+
+    public void MakeInvincible(float time)
+    {
+        invincibility = time;
+        maxInvincibility = time;
     }
 }

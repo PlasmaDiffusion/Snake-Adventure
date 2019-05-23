@@ -16,7 +16,7 @@ public class SnakeFood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0.0f, 5.0f * Time.deltaTime, 0.0f));   
+        transform.Rotate(new Vector3(0.0f, 15.0f * Time.deltaTime, 0.0f));   
     }
 
     private void OnTriggerEnter(Collider other)

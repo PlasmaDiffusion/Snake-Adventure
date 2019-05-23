@@ -7,7 +7,7 @@ public class Snake : MonoBehaviour
 
     //Movement vars
     public float speed;
-    public bool canMove;
+    public bool alive; //When not alive, the game is forced to be paused
     DraggedDirection currentDirection;
     DraggedDirection oldDirection;
     Rigidbody rigidbody;
@@ -32,6 +32,8 @@ public class Snake : MonoBehaviour
     public GameObject cam;
     Vector3 camOffset;
 
+    //
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class Snake : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         currentDirection = DraggedDirection.Up;
 
-        canMove = true;
+        alive = true;
         timeRotating = 1.0f;
 
         camOffset = new Vector3(0.0f, 12.5f, 0.0f);
@@ -56,7 +58,7 @@ public class Snake : MonoBehaviour
     void Update()
     {
         //Can't move if game is paused, game over, etc.
-        if (!canMove)
+        if (GlobalStats.paused || !alive)
         {
             rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
             return;
@@ -172,6 +174,9 @@ public class Snake : MonoBehaviour
 
     public void AddSegment()
     {
+        //Make the new segment have the same material!
+        segmentReference.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
+
         segments++;
         otherSegments.Add(Instantiate(segmentReference));
 
@@ -263,7 +268,8 @@ public class Snake : MonoBehaviour
     
     public void Pause()
     {
-        canMove = !canMove;
+        if (alive)
+        GlobalStats.paused = !GlobalStats.paused;
     }
 
     void LerpToDirection()

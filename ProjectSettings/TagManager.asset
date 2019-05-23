@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Floor
+  - Segment
+  - DirectionChanger
   layers:
   - Default
   - TransparentFX

@@ -50,6 +50,8 @@ public class SpikeTrap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GlobalStats.paused) return;
+
         if (collisionDebounce > 0.0f) collisionDebounce -= Time.deltaTime;
 
         //Make sure a spike doesn't randomly get stuck.
@@ -118,7 +120,7 @@ public class SpikeTrap : MonoBehaviour
         {
             KillPlayer(collision.gameObject.GetComponent<DeathCheck>());
         }
-        else if (collision.gameObject.tag == "Wall")
+        else if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Segment")
         {
             BounceOffWall();
         }
@@ -128,11 +130,11 @@ public class SpikeTrap : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.name == "Player")
+        if (other.name == "Player")
         {
             KillPlayer(other.GetComponent<DeathCheck>());
         }
-        else if (other.gameObject.tag == "Wall")
+        else if (other.tag == "Wall" || other.tag == "Segment")
         {
             BounceOffWall();
         }

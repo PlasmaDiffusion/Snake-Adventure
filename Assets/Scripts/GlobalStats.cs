@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GlobalStats : MonoBehaviour
 {
+    public static bool paused;
+
     public static int score;
     public static int requiredFood;
     public static int coins;
@@ -17,6 +19,7 @@ public class GlobalStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        paused = false;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
     }
 
