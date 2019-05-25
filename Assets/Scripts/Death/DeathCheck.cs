@@ -20,8 +20,8 @@ public class DeathCheck : MonoBehaviour
     float collisionTimeLimit;
     float collisionTimeInSegment;
 
-    float invincibility;
-    float maxInvincibility;
+    public float invincibility;
+    public float maxInvincibility;
 
     // Start is called before the first frame update
     void Start()

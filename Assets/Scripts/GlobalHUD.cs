@@ -5,17 +5,33 @@ using UnityEngine.UI;
 
 public class GlobalHUD : MonoBehaviour
 {
+    //Text objects
     public GameObject scoreObject;
     public GameObject requiredFoodObject;
     public GameObject coinObject;
+
+    //Halfcircle powerup objects
+    public GameObject bonusMultiplierObject;
+    public GameObject fireObject;
+    public GameObject ghostObject;
 
     Text scoreText;
     Text requiredFoodText;
     Text coinText;
 
+    Image bonusMultiplierTime;
+    Image fireTime;
+    Image ghostTime;
+    
     Vector3 defaultCoinPosition;
 
     public float coinsVisibleTime; //If 10.0f, coins will be constantly visible
+
+    //Gets values for ghost powerup
+    DeathCheck playerDeathCheck;
+
+    //Get values for fire powerup
+    FireBreathe fireBreathe; 
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +40,14 @@ public class GlobalHUD : MonoBehaviour
         requiredFoodText = requiredFoodObject.GetComponent<Text>();
         coinText = coinObject.GetComponent<Text>();
 
+        bonusMultiplierTime = bonusMultiplierObject.GetComponent<Image>();
+        ghostTime = ghostObject.GetComponent<Image>();
+        fireTime = fireObject.GetComponent<Image>();
+
         defaultCoinPosition = coinText.rectTransform.position;
+
+        playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
+        fireBreathe = GameObject.Find("Tongue").GetComponent<FireBreathe>();
     }
 
     // Update is called once per frame
@@ -33,6 +56,41 @@ public class GlobalHUD : MonoBehaviour
         //Hide coins after a second
         if (coinsVisibleTime > 0 || coinsVisibleTime == 10.0f) coinsVisibleTime -= Time.deltaTime;
         else coinText.rectTransform.Translate(0.0f, 8.0f * Time.deltaTime, 0.0f);
+
+        float scoreTime = SnakeFood.GetMultiplierTime();
+
+        //Update score multiplier circle
+        if (scoreTime > 0.0f)
+        {
+            bonusMultiplierTime.fillAmount = scoreTime / 8.0f;
+            bonusMultiplierTime.gameObject.SetActive(true);
+        }
+        else
+        {
+            bonusMultiplierTime.gameObject.SetActive(false);
+        }
+
+        //Update ghost circle
+        if (playerDeathCheck.invincibility > 0.0f)
+        {
+            ghostTime.fillAmount = playerDeathCheck.invincibility / playerDeathCheck.maxInvincibility;
+            ghostTime.gameObject.SetActive(true);
+        }
+        else
+        {
+            ghostTime.gameObject.SetActive(false);
+        }
+
+        //Update fire circle
+        if (fireBreathe.activeTime > 0.0f)
+        {
+            fireTime.fillAmount = fireBreathe.activeTime / fireBreathe.maxActiveTime;
+            fireTime.gameObject.SetActive(true);
+        }
+        else
+        {
+            fireTime.gameObject.SetActive(false);
+        }
     }
 
     public void UpdateHUD()

@@ -150,6 +150,9 @@ public class Snake : MonoBehaviour
         }
 
         RecordPositions();
+
+        //Update score multiplier powerup here.
+        SnakeFood.CheckScoreMultiplier();
     }
 
     void RecordPositions()
@@ -179,6 +182,9 @@ public class Snake : MonoBehaviour
 
         segments++;
         otherSegments.Add(Instantiate(segmentReference));
+
+        //This segment can refer to the owner when the owner dies.
+        otherSegments[otherSegments.Count - 1].GetComponent<SnakeSegment>().snakeOwner = gameObject;
 
         //The first segment you cant collide with cause collision problems
         if (segments == 1)

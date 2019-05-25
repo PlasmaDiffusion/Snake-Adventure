@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class SnakeSegment : MonoBehaviour
 {
-    
-
     Renderer rend;
+    public GameObject snakeOwner;
 
     private void Start()
     {

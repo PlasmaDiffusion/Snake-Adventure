@@ -5,12 +5,13 @@ using UnityEngine;
 public class SnakeFood : MonoBehaviour
 {
 
-    public static int objCount;
+    //Static vars for multipliers
+    static int scoreMultiplier = 1;
+    static float multiplierTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        objCount++;
     }
 
     // Update is called once per frame
@@ -23,7 +24,8 @@ public class SnakeFood : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            GlobalStats.score++;
+            //Add onto the score! There could be a score multiplier too.
+            GlobalStats.score+= scoreMultiplier;
             GlobalStats.hud.UpdateHUD();
 
             //Add a snake segment
@@ -40,8 +42,29 @@ public class SnakeFood : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    //Call this to add a multiplier for a certain number of seconds. Can stack.
+    public static void AddMultiplier()
     {
-        objCount--;
+        scoreMultiplier++;
+        multiplierTime = 8.0f;
     }
+
+    public static int GetScoreMultiplier() { return scoreMultiplier; }
+    public static float GetMultiplierTime() { return multiplierTime; }
+
+    //Snake class calls this every update.
+    public static void CheckScoreMultiplier()
+    {
+        if (multiplierTime > 0.0f)
+        {
+            multiplierTime -= Time.deltaTime;
+            if (multiplierTime <= 0.0f)
+            {
+                multiplierTime = 0.0f;
+                scoreMultiplier = 1;
+            }
+        }
+
+    }
+
 }

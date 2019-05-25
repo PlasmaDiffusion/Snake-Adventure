@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - Segment
   - DirectionChanger
+  - Burnable
   layers:
   - Default
   - TransparentFX
