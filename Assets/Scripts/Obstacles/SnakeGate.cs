@@ -19,6 +19,8 @@ public class SnakeGate : MonoBehaviour
     {
         //Determine how much food is required to open this door. Also count the food in the level to ensure it's possible.
         int amountOfPossibleFood = CountSnakeFood();
+
+        //Debug.Log("Possible food: " + amountOfPossibleFood.ToString());
                                                                           //If amount possible < max, dont exceed amount possible
         requirement = Random.Range(minFoodRequired, (amountOfPossibleFood < maxFoodRequired) ? amountOfPossibleFood : maxFoodRequired);
         open = false;
@@ -51,7 +53,7 @@ public class SnakeGate : MonoBehaviour
             //Now the door shall open!
             GetComponent<BoxCollider>().isTrigger = true;
             open = true;
-            Debug.Log("Opened");
+
             GetComponent<Renderer>().material.color = new Color(0.2f, 0.0f, 0.6f, 0.5f);
 
 
@@ -79,7 +81,7 @@ public class SnakeGate : MonoBehaviour
                 GlobalStats.score += 10;
             }
 
-            Debug.Log("Entered");
+
             //Spawn in more level here. Despawn the oldest level, but not the one being exited.
             entered = true;
             LevelSpawner spawner = GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>();
@@ -95,5 +97,5 @@ public class SnakeGate : MonoBehaviour
 
     }
     
-    int CountSnakeFood() {return transform.GetComponentsInChildren<SnakeFood>().Length;}
+    int CountSnakeFood() {return transform.parent.GetComponentsInChildren<SnakeFood>().Length;}
 }

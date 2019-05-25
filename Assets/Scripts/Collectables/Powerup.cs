@@ -40,7 +40,7 @@ public class Powerup : MonoBehaviour
 
     void  PickupCoin(Collider other)
     {
-        GlobalStats.coins++;
+        GlobalStats.coins+= 5;
         GlobalStats.hud.UpdateHUD();
         GlobalStats.hud.DisplayCoins(false);
     }

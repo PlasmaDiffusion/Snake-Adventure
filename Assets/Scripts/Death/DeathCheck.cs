@@ -40,7 +40,7 @@ public class DeathCheck : MonoBehaviour
     //If you're touching nothing you'll gain your time back
     void Update()
     {
-        Debug.Log(invincibility);
+        if (GlobalStats.paused) return;
 
         if (!colliding && collisionTimeInSegment > 0.0f)
         {

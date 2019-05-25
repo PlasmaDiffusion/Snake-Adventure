@@ -25,10 +25,13 @@ public class LevelSpawner : MonoBehaviour
 
     Vector3 currentGatePos;
 
+    public int lastEasyLevel = 5;
+    public int lastMediumLevel = 12;
+
     // Start is called before the first frame update
     void Start()
     {
-        level = 1;
+        level = 0;
 
         easyLevelPool = new List<GameObject>();
         mediumLevelPool = new List<GameObject>();
@@ -80,16 +83,18 @@ public class LevelSpawner : MonoBehaviour
         //Determine the difficulty to lean towards
         int difficultyBias = 1;
 
-        if (level > 5) difficultyBias = 2;
-        else if (level > 15) difficultyBias = 3;
+        if (level > lastEasyLevel) difficultyBias = 2;
+        else if (level > lastMediumLevel) difficultyBias = 3;
 
         //1 in 3 chance for difficulty to be 1 level higher
-        if (Random.Range(0, 2) == 2)
+        if (Random.Range(0, 2) == 0)
         {
             difficultyBias++;
 
             //...But if already at the max difficulty then lower to an easier one.
             if (difficultyBias == 4) difficultyBias -= Random.Range(2, 3);
+
+            Debug.Log("Difficulty was randomly 1 level higher.");
         }
 
         Debug.Log("Difficulty: " + difficultyBias.ToString());

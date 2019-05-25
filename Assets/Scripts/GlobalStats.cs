@@ -8,7 +8,7 @@ public class GlobalStats : MonoBehaviour
 
     public static int score;
     public static int requiredFood;
-    public static int coins;
+    public static int coins = 60;
 
     //Records
     static int hiscore;
@@ -20,7 +20,6 @@ public class GlobalStats : MonoBehaviour
     void Start()
     {
         score = 0;
-        coins = 0;
         paused = false;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
     }

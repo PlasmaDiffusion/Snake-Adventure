@@ -14,6 +14,8 @@ public class SnakeSegment : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (GlobalStats.paused) return;
+
         //Die if in segment for too long
         if (other.name == "Player" && name != "First Segment")
         {
