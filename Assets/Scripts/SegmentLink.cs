@@ -25,7 +25,9 @@ public class SegmentLink : MonoBehaviour
         Vector3 direction = difference / difference.magnitude;
         
         transform.position = (targetObject2.transform.position + targetObject.transform.position) / 2.0f;
-        //transform.rotation = Quaternion.Euler(Mathf.Rad2Deg*direction);
+            //transform.rotation = Quaternion.Euler(Mathf.Rad2Deg*direction);
+
+        difference.y = 0.0f;
         transform.localScale = new Vector3(0.25f, 0.25f, 0.25f) + difference;
 
             //Debug.Log(difference);

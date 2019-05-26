@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class GlobalHUD : MonoBehaviour
 {
+    //Menu panels
+    public GameObject mainMenuObject;
+    public GameObject skinMenuObject;
+    public GameObject themeMenuObject;
+
     //Text objects
     public GameObject scoreObject;
     public GameObject requiredFoodObject;
@@ -36,6 +41,8 @@ public class GlobalHUD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         scoreText = scoreObject.GetComponent<Text>();
         requiredFoodText = requiredFoodObject.GetComponent<Text>();
         coinText = coinObject.GetComponent<Text>();
@@ -48,6 +55,8 @@ public class GlobalHUD : MonoBehaviour
 
         playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
         fireBreathe = GameObject.Find("Tongue").GetComponent<FireBreathe>();
+
+        hideChildren();
     }
 
     // Update is called once per frame
@@ -109,5 +118,49 @@ public class GlobalHUD : MonoBehaviour
         else coinsVisibleTime = 2.0f;
 
         coinText.rectTransform.position = defaultCoinPosition;
+    }
+    
+    void hideChildren()
+    {
+        for (int i = transform.childCount - 1; i> 0; i--)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    
+    //Show main HUD and hide menu
+    public void showChildren()
+    {
+        for (int i = transform.childCount - 1; i > 0; i--)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        mainMenuObject.SetActive(false);
+    }
+
+
+    public void ChangeMenuMode(int newMode)
+    {
+        switch(newMode)
+        {
+            default: //Regular game
+
+                GameObject.Find("MainMenuPanel").SetActive(false);
+
+                break;
+
+            case 1: //Main menu
+
+                break;
+
+            case 2: //Skin menu
+
+                break;
+
+            case 3: //Theme menu
+
+                break;
+        }
     }
 }

@@ -120,7 +120,7 @@ public class DeathHandler : MonoBehaviour
 
 
             //Cap this off at 30? We don't want unlimited lives after all..
-            if ((cost > 30)) payedCoins = true;
+            if ((cost >= 30)) payedCoins = true;
 
             //Update the button
             cost = cost = 10 * coinCostMultiplier;

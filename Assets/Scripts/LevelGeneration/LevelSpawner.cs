@@ -87,12 +87,12 @@ public class LevelSpawner : MonoBehaviour
         else if (level > lastMediumLevel) difficultyBias = 3;
 
         //1 in 3 chance for difficulty to be 1 level higher
-        if (Random.Range(0, 2) == 0)
+        if (Random.Range(0, 3) == 0)
         {
             difficultyBias++;
 
             //...But if already at the max difficulty then lower to an easier one.
-            if (difficultyBias == 4) difficultyBias -= Random.Range(2, 3);
+            if (difficultyBias == 4) difficultyBias -= Random.Range(2, 4);
 
             Debug.Log("Difficulty was randomly 1 level higher.");
         }

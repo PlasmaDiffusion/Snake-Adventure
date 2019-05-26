@@ -20,7 +20,7 @@ public class GlobalStats : MonoBehaviour
     void Start()
     {
         score = 0;
-        paused = false;
+        paused = true;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
     }
 

@@ -12,6 +12,10 @@ public class Snake : MonoBehaviour
     DraggedDirection oldDirection;
     Rigidbody rigidbody;
 
+    [HideInInspector]
+    public Vector3 lastGroundedPosition;
+    
+    //Touch input
     Vector3 startSwipePos;
     Vector3 endSwipePos;
     float timeSwipeHeld;
@@ -57,18 +61,6 @@ public class Snake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Can't move if game is paused, game over, etc.
-        if (GlobalStats.paused || !alive)
-        {
-            rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) currentDirection = DraggedDirection.Left;
-        if (Input.GetKeyDown(KeyCode.RightArrow)) currentDirection = DraggedDirection.Right;
-        if (Input.GetKeyDown(KeyCode.UpArrow)) currentDirection = DraggedDirection.Up;
-        if (Input.GetKeyDown(KeyCode.DownArrow)) currentDirection = DraggedDirection.Down;
-
         //-----------------------------------------------------------------------------------
         //Detect Touch Input here!
         //-----------------------------------------------------------------------------------
@@ -83,7 +75,7 @@ public class Snake : MonoBehaviour
                 case TouchPhase.Began:
                     // Record initial touch position.
                     startSwipePos = touch.position;
-                    
+
                     break;
 
                 //Determine if the touch is a moving touch
@@ -111,7 +103,34 @@ public class Snake : MonoBehaviour
             }
         }
 
-            switch (currentDirection)
+        //Can't move if game is paused, game over, etc.
+        if (GlobalStats.paused && !alive)
+        {
+            rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            return;
+        }
+        else if (GlobalStats.paused) //If paused and the player is alive...
+        {
+            //Resume the game upon swiping to move
+            if (timeSwipeHeld > 0.10f)
+            {
+                Pause();
+            }
+            else
+            {
+                rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                return;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) currentDirection = DraggedDirection.Left;
+        if (Input.GetKeyDown(KeyCode.RightArrow)) currentDirection = DraggedDirection.Right;
+        if (Input.GetKeyDown(KeyCode.UpArrow)) currentDirection = DraggedDirection.Up;
+        if (Input.GetKeyDown(KeyCode.DownArrow)) currentDirection = DraggedDirection.Down;
+
+
+
+        switch (currentDirection)
         {
                
             case DraggedDirection.Up:
@@ -153,18 +172,34 @@ public class Snake : MonoBehaviour
 
         //Update score multiplier powerup here.
         SnakeFood.CheckScoreMultiplier();
+
+
     }
 
     void RecordPositions()
     {
-        //Record positions
+        //Record positions every now and then
         positionRecordTime += Time.deltaTime;
 
         if (positionRecordTime > timeBetweenPositions)
         {
             positionRecordTime = 0.0f;
 
+            //Record last grounded position for when the player falls off the world... (Position from one of the last segments)
+            if (rigidbody.velocity.y == 0.0f && prevPositions.Count > 2)
+            {
+                    //Ideally 6 positions away would work but the player will need that many segments
+                    for (int i = 6; i > 2; i--)
+                    {
+                        if (prevPositions.Count > i)
+                        {
+                            lastGroundedPosition = prevPositions[prevPositions.Count - i];
+                            break;
+                        }
+                    }
+            }
 
+            //Record position for the snake segments
             prevPositions.Add(AlignToGrid(transform.position));
 
             //Remove older uneeded positions
@@ -177,6 +212,8 @@ public class Snake : MonoBehaviour
 
     public void AddSegment()
     {
+        if (segments >= 100) return;
+
         //Make the new segment have the same material!
         segmentReference.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
 
@@ -214,7 +251,7 @@ public class Snake : MonoBehaviour
     //Call this whenever the snake grows, but not limit it eventually.
     public void ZoomOutCamera()
     {
-        if (camOffset.y < 20.0f)
+        if (camOffset.y < 30.0f)
         camOffset += new Vector3(0.0f, 0.1f, 0.0f);
     }
     void ChangeDirection()
@@ -275,8 +312,13 @@ public class Snake : MonoBehaviour
     public void Pause()
     {
         if (alive)
-        GlobalStats.paused = !GlobalStats.paused;
+        {
+            GlobalStats.paused = !GlobalStats.paused;
+            GlobalStats.hud.showChildren();
+        }
     }
+
+    public void MakeAlive() { alive = true; }
 
     void LerpToDirection()
     {

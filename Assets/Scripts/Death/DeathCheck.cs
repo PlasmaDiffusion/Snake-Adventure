@@ -75,13 +75,16 @@ public class DeathCheck : MonoBehaviour
         died = true;
     }
 
+    //Call this to make the snake alive and await a swipe to resume the game.
     public void Respawn()
     {
         
         died = false;
         Snake snake = gameObject.GetComponent<Snake>();
         snake.alive = true;
-        snake.Pause();
+        snake.MakeAlive();
+
+        if (gameObject.transform.position.y < deathY) transform.position = snake.lastGroundedPosition;
 
         //Respawn with some invincibility
         MakeInvincible(4.0f);
