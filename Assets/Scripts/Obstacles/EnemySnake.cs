@@ -61,8 +61,8 @@ public class EnemySnake : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    // Movement update
+    void FixedUpdate()
     {
 
         if (!canMove || GlobalStats.paused)
@@ -95,6 +95,18 @@ public class EnemySnake : MonoBehaviour
                 targetRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                 timeRotating = 0.0f;
                 break;
+        }
+
+
+    }
+
+    //Visual and segment updating
+    void Update()
+    {
+        if (!canMove || GlobalStats.paused)
+        {
+            rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            return;
         }
 
         LerpToDirection();

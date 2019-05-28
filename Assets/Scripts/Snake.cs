@@ -55,10 +55,10 @@ public class Snake : MonoBehaviour
         alive = true;
         timeRotating = 1.0f;
 
-        camOffset = new Vector3(0.0f, 12.5f, 0.0f);
+        camOffset = new Vector3(0.0f, 20.0f, 0.0f);
     }
 
-    // Update is called once per frame
+    // Input, visual and segment updating happens here!
     void Update()
     {
         //-----------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ public class Snake : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-
+            
             // Handle finger movements based on TouchPhase
             switch (touch.phase)
             {
@@ -82,13 +82,7 @@ public class Snake : MonoBehaviour
                 case TouchPhase.Moved:
                     // Determine direction by comparing the current touch position with the initial one
                     timeSwipeHeld += Time.deltaTime;
-                    if (timeSwipeHeld > 0.15f)
-                    {
-                        //Either the player releases or holds their swipe long enough
-                        endSwipePos = touch.position;
-                        ChangeDirection();
-                        timeSwipeHeld = 0.0f;
-                    }
+                    touch = ForceEndSwipe(touch);
                     break;
 
                 case TouchPhase.Ended:
@@ -100,60 +94,20 @@ public class Snake : MonoBehaviour
                         timeSwipeHeld = 0.0f;
                     }
                     break;
+
+
             }
+
+            //End the swipe if its too long
+            if (touch.deltaPosition.magnitude > 2.0f) ForceEndSwipe(touch);
         }
 
-        //Can't move if game is paused, game over, etc.
-        if (GlobalStats.paused && !alive)
-        {
-            rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-            return;
-        }
-        else if (GlobalStats.paused) //If paused and the player is alive...
-        {
-            //Resume the game upon swiping to move
-            if (timeSwipeHeld > 0.10f)
-            {
-                Pause();
-            }
-            else
-            {
-                rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-                return;
-            }
-        }
+        if (CheckIfPaused()) return;
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) currentDirection = DraggedDirection.Left;
         if (Input.GetKeyDown(KeyCode.RightArrow)) currentDirection = DraggedDirection.Right;
         if (Input.GetKeyDown(KeyCode.UpArrow)) currentDirection = DraggedDirection.Up;
         if (Input.GetKeyDown(KeyCode.DownArrow)) currentDirection = DraggedDirection.Down;
-
-
-
-        switch (currentDirection)
-        {
-               
-            case DraggedDirection.Up:
-                rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, speed* Time.deltaTime));
-                targetRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-            case DraggedDirection.Down:
-                rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
-                targetRotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-            case DraggedDirection.Left:
-                rigidbody.velocity = (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-                targetRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-            case DraggedDirection.Right:
-                rigidbody.velocity = (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-                targetRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-        }
 
         //Camera moves with player except for the y
         cam.transform.position = transform.position + camOffset;
@@ -174,6 +128,77 @@ public class Snake : MonoBehaviour
         SnakeFood.CheckScoreMultiplier();
 
 
+    }
+
+    private Touch ForceEndSwipe(Touch touch)
+    {
+        if (timeSwipeHeld > 0.15f)
+        {
+            //Either the player releases or holds their swipe long enough
+            endSwipePos = touch.position;
+            ChangeDirection();
+            timeSwipeHeld = 0.0f;
+        }
+
+        return touch;
+    }
+    
+    //Movement updating
+    void FixedUpdate()
+    {
+
+        if(CheckIfPaused()) return;
+
+        switch (currentDirection)
+        {
+
+            case DraggedDirection.Up:
+                rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, speed * Time.deltaTime));
+                targetRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+                timeRotating = 0.0f;
+                break;
+            case DraggedDirection.Down:
+                rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
+                targetRotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
+                timeRotating = 0.0f;
+                break;
+            case DraggedDirection.Left:
+                rigidbody.velocity = (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+                targetRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                timeRotating = 0.0f;
+                break;
+            case DraggedDirection.Right:
+                rigidbody.velocity = (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+                targetRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                timeRotating = 0.0f;
+                break;
+        }
+
+    }
+
+    bool CheckIfPaused()
+    {
+        //Can't move if game is paused, game over, etc.
+        if (GlobalStats.paused && !alive)
+        {
+            rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            return true;
+        }
+        else if (GlobalStats.paused) //If paused and the player is alive...
+        {
+            //Resume the game upon swiping to move
+            if (timeSwipeHeld > 0.10f)
+            {
+                Pause();
+            }
+            else
+            {
+                rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void RecordPositions()
@@ -328,5 +353,27 @@ public class Snake : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, timeRotating);
             
         }
+    }
+
+
+    public GUIStyle style;
+
+    private void OnGUI()
+    {
+        if (Input.touchCount > 0)
+        {
+
+
+        Touch touch =Input.GetTouch(0);
+
+            GUI.color = Color.red;
+            GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
+
+        }
+
+        GUI.color = Color.blue;
+        GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + (60.0f * (1.0f - Time.deltaTime)).ToString(), style);
+        GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
+
     }
 }
