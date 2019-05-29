@@ -36,7 +36,9 @@ public class Snake : MonoBehaviour
     public GameObject cam;
     Vector3 camOffset;
 
-    //
+    //Skin vars
+    Skins skinObject;
+    Renderer rend;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +58,10 @@ public class Snake : MonoBehaviour
         timeRotating = 1.0f;
 
         camOffset = new Vector3(0.0f, 20.0f, 0.0f);
+
+        rend = GetComponent<Renderer>();
+        skinObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
+        rend.material = skinObject.snakeSkins[(int)Skins.snakeSkin];
     }
 
     // Input, visual and segment updating happens here!
@@ -349,7 +355,7 @@ public class Snake : MonoBehaviour
     {
         if (timeRotating < 1.0f)
         {
-            timeRotating += Time.deltaTime * 4.0f;
+            timeRotating += Time.deltaTime * 8.0f;
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, timeRotating);
             
         }

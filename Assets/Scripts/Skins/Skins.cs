@@ -15,8 +15,8 @@ public class Skins : MonoBehaviour
     public enum Themes
     {
         FOREST,
-        DESSERT,
         SNOW,
+        DESSERT,
         SKY,
         SEA,
         CANYON,
@@ -26,13 +26,13 @@ public class Skins : MonoBehaviour
     };
 
     //List of all snake skins
-    public static Material[] snakeSkins;
+    public Material[] snakeSkins;
     //List of all wall materials
-    public static Material[] levelThemeWallMaterials;
+    public Material[] levelThemeWallMaterials;
     //List of all floor materials
-    public static Material[] levelThemeFloorMaterials;
+    public Material[] levelThemeFloorMaterials;
     //List of all level theme objects.
-    public static GameObject[] levelThemeObjects;
+    public GameObject[] levelThemeObjects;
 
     public static SnakeSkins snakeSkin;
     public static Themes levelTheme;
@@ -46,8 +46,8 @@ public class Skins : MonoBehaviour
         random = false;
 
         //Default level skins
-        snakeSkin = SnakeSkins.DEFAULT;
-        levelTheme = Themes.FOREST;
+        snakeSkin = SnakeSkins.BLUE;
+        levelTheme = Themes.SNOW;
 
         //Load the last selected theme here.
     }

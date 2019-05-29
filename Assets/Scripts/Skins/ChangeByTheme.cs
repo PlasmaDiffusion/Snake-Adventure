@@ -8,38 +8,47 @@ public class ChangeByTheme : MonoBehaviour
     public bool themeAffectsMaterial;
     //If material changes, is it changing based on the floor material? If not then it's a wall material.
     public bool changesFloorMaterial;
-    
+
     public bool themeAffectsMesh;
 
-    Material mat;
+
+    Renderer rend;
+
+    //Skin object
+    Skins skinChangerObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        mat = GetComponent<Renderer>().material;
+        skinChangerObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
+
+        rend = GetComponent<Renderer>();
 
         UpdateTheme();
     }
     
     public void UpdateTheme()
     {
-        if (themeAffectsMaterial)
+        if (themeAffectsMaterial || changesFloorMaterial)
         {
             if (changesFloorMaterial)
-                mat = Skins.levelThemeFloorMaterials[(int)Skins.levelTheme];
+                rend.material = skinChangerObject.levelThemeFloorMaterials[(int)Skins.levelTheme];
             else
-                mat = Skins.levelThemeWallMaterials[(int)Skins.levelTheme];
+                rend.material = skinChangerObject.levelThemeWallMaterials[(int)Skins.levelTheme];
         }
 
 
         if(themeAffectsMesh)
         {
-            GameObject changedObj = Instantiate(Skins.levelThemeObjects[(int)Skins.levelTheme], transform.parent);
+            GameObject changedObj = Instantiate(skinChangerObject.levelThemeObjects[(int)Skins.levelTheme], transform.parent);
 
             //Update transform
             changedObj.transform.position = transform.position;
             changedObj.transform.rotation = transform.rotation;
-            changedObj.transform.localScale = transform.localScale;
+            //changedObj.transform.localScale = transform.localScale;
+
+            //Destroy self
+            Destroy(gameObject);
         }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1911672353222341598}
   - component: {fileID: 1911672353222341599}
   - component: {fileID: 7646174957095730743}
+  - component: {fileID: 948435289493161414}
   m_Layer: 0
   m_Name: Cube (24)
   m_TagString: Wall
@@ -105,6 +106,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: -0.000000059604645, y: 0, z: 0}
+--- !u!114 &948435289493161414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911672353222341537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6eb5fce63958cf4fac2562021b4cdf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeAffectsMaterial: 1
+  changesFloorMaterial: 0
+  themeAffectsMesh: 0
 --- !u!1 &3943048645955830340
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +134,7 @@ GameObject:
   - component: {fileID: 2742386650436728176}
   - component: {fileID: 2074366784353798411}
   - component: {fileID: 1233907830324288758}
+  - component: {fileID: 3003582483076786059}
   m_Layer: 0
   m_Name: Cube (25)
   m_TagString: Wall
@@ -210,6 +227,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.00000004656613, y: 0, z: 0}
+--- !u!114 &3003582483076786059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3943048645955830340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6eb5fce63958cf4fac2562021b4cdf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeAffectsMaterial: 1
+  changesFloorMaterial: 0
+  themeAffectsMesh: 0
 --- !u!1 &4516076331592280089
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +954,7 @@ GameObject:
   - component: {fileID: 5998634097214336669}
   - component: {fileID: 5998634097214336668}
   - component: {fileID: 5998634097214336671}
+  - component: {fileID: 877856187238785211}
   m_Layer: 0
   m_Name: Cube (27)
   m_TagString: Wall
@@ -1014,6 +1047,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.00000004656613, y: 0, z: 0}
+--- !u!114 &877856187238785211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5998634097214336665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6eb5fce63958cf4fac2562021b4cdf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeAffectsMaterial: 1
+  changesFloorMaterial: 0
+  themeAffectsMesh: 0
 --- !u!1 &7255973302415972591
 GameObject:
   m_ObjectHideFlags: 0

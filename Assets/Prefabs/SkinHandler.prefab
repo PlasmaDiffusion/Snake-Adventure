@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8696292504044610072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8696292504044610071}
+  - component: {fileID: 8696292504044610070}
+  m_Layer: 0
+  m_Name: SkinHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8696292504044610071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696292504044610072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.120013, y: 4.660238, z: 2.0451393}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8696292504044610070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696292504044610072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7dfa147ea6f9e94cacfb45acbc86733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snakeSkins:
+  - {fileID: 2100000, guid: 735d0c5fb37532741b8ca80ebdc35ca3, type: 2}
+  - {fileID: 2100000, guid: 15739bdce704ec04c8f6f544b903ebb3, type: 2}
+  levelThemeWallMaterials:
+  - {fileID: 2100000, guid: 5bce6d425638ae049afebe90ca9160bf, type: 2}
+  - {fileID: 2100000, guid: 2871c2c939192f944aa3798597a2431a, type: 2}
+  levelThemeFloorMaterials:
+  - {fileID: 2100000, guid: 01d7fb47618fba84d8f6efda0eea522a, type: 2}
+  - {fileID: 2100000, guid: 3e92b03d0258357408295ef085587534, type: 2}
+  levelThemeObjects:
+  - {fileID: 2000637683906764754, guid: 6df557514ff44724fadfdc5f54ab65c4, type: 3}
+  - {fileID: 9170965267779166155, guid: 1ec2b1b8601433b40a2f3e6a5077f856, type: 3}
