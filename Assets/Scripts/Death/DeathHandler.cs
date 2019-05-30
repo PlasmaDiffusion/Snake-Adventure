@@ -69,7 +69,7 @@ public class DeathHandler : MonoBehaviour
     //End the game here along with highscores, rewards, etc.
     public void EndGame()
     {
-        GlobalStats.coins += (GlobalStats.score / 10);
+        GlobalStats.coins += (GlobalStats.score / 5);
 
         SceneManager.LoadScene(0);
     }
@@ -109,7 +109,7 @@ public class DeathHandler : MonoBehaviour
 
     public void PayCoins()
     {
-        int cost = 10 * coinCostMultiplier;
+        int cost = 5 * coinCostMultiplier;
 
         //Pay up and increase the cost next time.
         if (GlobalStats.coins >= cost)
@@ -119,11 +119,11 @@ public class DeathHandler : MonoBehaviour
             coinCostMultiplier++;
 
 
-            //Cap this off at 30? We don't want unlimited lives after all..
-            if ((cost >= 30)) payedCoins = true;
+            //Cap this off at 3 revives? We don't want unlimited lives after all..
+            if ((cost >= 15)) payedCoins = true;
 
             //Update the button
-            cost = cost = 10 * coinCostMultiplier;
+            cost = cost = 5 * coinCostMultiplier;
             coinButtonText.text = "Pay " + cost.ToString() + " Coins";
             
             //Actually revive the player too.

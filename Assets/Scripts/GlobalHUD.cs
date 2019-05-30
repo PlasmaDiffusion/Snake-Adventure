@@ -152,15 +152,29 @@ public class GlobalHUD : MonoBehaviour
 
             case 1: //Main menu
 
+                skinMenuObject.SetActive(false);
+                themeMenuObject.SetActive(false);
+                
                 break;
 
             case 2: //Skin menu
+
+                skinMenuObject.SetActive(true);
+                hideChildren();
 
                 break;
 
             case 3: //Theme menu
 
+                themeMenuObject.SetActive(true);
+                hideChildren();
+
                 break;
         }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

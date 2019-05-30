@@ -24,7 +24,7 @@ public class CollectableSpawner : MonoBehaviour
             if (possiblePowerup[i]) canSpawn.Add(collectables[i]);
 
         //Spawn a random object from that list.
-        GameObject newCollectable = Instantiate(canSpawn[Random.Range(0, canSpawn.Count - 1)], transform.parent);
+        GameObject newCollectable = Instantiate(canSpawn[Random.Range(0, canSpawn.Count)], transform.parent);
         newCollectable.transform.position = transform.position;
     }
 
