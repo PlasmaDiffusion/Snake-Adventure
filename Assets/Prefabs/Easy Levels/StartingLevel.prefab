@@ -223,6 +223,7 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
+  alreadyChangedMesh: 0
 --- !u!1 &1416034864092530818
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +345,7 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
+  alreadyChangedMesh: 0
 --- !u!1 &6493687332314338746
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +467,7 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
+  alreadyChangedMesh: 0
 --- !u!1 &6493687332554888565
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +797,7 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
+  alreadyChangedMesh: 0
 --- !u!1001 &1947025910350015590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -935,6 +939,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560337726910956628, guid: d4cc9a741317615429851a30a39a3002,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.421712
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560337726910956628, guid: d4cc9a741317615429851a30a39a3002,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4cc9a741317615429851a30a39a3002, type: 3}

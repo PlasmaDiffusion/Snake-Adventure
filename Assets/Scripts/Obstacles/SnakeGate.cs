@@ -82,10 +82,14 @@ public class SnakeGate : MonoBehaviour
             }
 
 
+            //Ranzomide level theme if that is set
+            Skins.CheckForRandomization();
+
             //Spawn in more level here. Despawn the oldest level, but not the one being exited.
             entered = true;
             LevelSpawner spawner = GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>();
             spawner.EndLevel(transform.position);
+
 
         }
         else if (other.tag == "Wall") //Alternatively if a level is spawned in, despawn any walls that would  be in the way of the door.

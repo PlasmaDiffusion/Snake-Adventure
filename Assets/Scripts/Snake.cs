@@ -362,24 +362,24 @@ public class Snake : MonoBehaviour
     }
 
 
-    public GUIStyle style;
+    //public GUIStyle style;
 
-    private void OnGUI()
-    {
-        if (Input.touchCount > 0)
-        {
+    //private void OnGUI()
+    //{
+    //    if (Input.touchCount > 0)
+    //    {
 
 
-        Touch touch =Input.GetTouch(0);
+    //    Touch touch =Input.GetTouch(0);
 
-            GUI.color = Color.red;
-            GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
+    //        GUI.color = Color.red;
+    //        GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
 
-        }
+    //    }
 
-        GUI.color = Color.blue;
-        GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + (60.0f * (1.0f - Time.deltaTime)).ToString(), style);
-        GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
+    //    GUI.color = Color.blue;
+    //    GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + (60.0f * (1.0f - Time.deltaTime)).ToString(), style);
+    //    GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
 
-    }
+    //}
 }

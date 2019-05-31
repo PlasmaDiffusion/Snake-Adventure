@@ -115,7 +115,7 @@ public class LevelSpawner : MonoBehaviour
     {
         GameObject newLevel;
 
-        int levelIndex = Random.Range(0, levelList.Count - 1);
+        int levelIndex = Random.Range(0, levelList.Count);
 
 
 

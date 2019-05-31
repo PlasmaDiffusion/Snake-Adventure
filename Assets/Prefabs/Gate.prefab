@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4560337726910956628}
   - component: {fileID: 4560337726910956635}
   - component: {fileID: 4560337726910956634}
+  - component: {fileID: 7104121026729535869}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -103,8 +104,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4560337726910956631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0060000946, y: 0.61500007, z: 0}
-  m_LocalScale: {x: 1.003494, y: 0.24717084, z: 1}
+  m_LocalPosition: {x: 0.001, y: 0.61500007, z: 0}
+  m_LocalScale: {x: 1.4209476, y: 0.24717084, z: 1}
   m_Children: []
   m_Father: {fileID: 8570738277563759869}
   m_RootOrder: 4
@@ -154,6 +155,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7104121026729535869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4560337726910956631}
+  m_Material: {fileID: 13400000, guid: 2d6a0ca60a423b74cb0c90260aec86d3, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4560337727954573981
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +253,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4560337727954573981}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2d6a0ca60a423b74cb0c90260aec86d3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -512,7 +526,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8570738277273921843}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2d6a0ca60a423b74cb0c90260aec86d3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -610,7 +624,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8570738277563759809}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2d6a0ca60a423b74cb0c90260aec86d3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

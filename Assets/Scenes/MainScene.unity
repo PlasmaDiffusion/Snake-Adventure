@@ -17872,7 +17872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df603127c611a6449b67caed226b447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeToActivate: 6
+  themeToActivate: 0
   skinToActivate: 0
   isLevelTheme: 1
 --- !u!114 &1013695849
@@ -19082,7 +19082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df603127c611a6449b67caed226b447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeToActivate: 7
+  themeToActivate: 0
   skinToActivate: 0
   isLevelTheme: 1
 --- !u!114 &1047750483
@@ -19745,6 +19745,11 @@ PrefabInstance:
     - target: {fileID: 1080391994657624794, guid: 6df557514ff44724fadfdc5f54ab65c4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266572997102604342, guid: 6df557514ff44724fadfdc5f54ab65c4,
+        type: 3}
+      propertyPath: alreadyChangedMesh
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -21319,73 +21324,6 @@ MonoBehaviour:
   segmentReference: {fileID: 351685800}
   segmentLinkReference: {fileID: 1218128339}
   cam: {fileID: 963194225}
-  style:
-    m_Name: DefaultTheme
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0.053465415, g: 0, b: 0.7169812, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
 --- !u!54 &1137524160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25738,7 +25676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df603127c611a6449b67caed226b447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeToActivate: 5
+  themeToActivate: 0
   skinToActivate: 0
   isLevelTheme: 1
 --- !u!114 &1424405404
@@ -28026,7 +27964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df603127c611a6449b67caed226b447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeToActivate: 8
+  themeToActivate: 2
   skinToActivate: 0
   isLevelTheme: 1
 --- !u!114 &1567144658
@@ -35454,7 +35392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df603127c611a6449b67caed226b447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeToActivate: 3
+  themeToActivate: 0
   skinToActivate: 0
   isLevelTheme: 1
 --- !u!114 &1733544024
@@ -40864,7 +40802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df603127c611a6449b67caed226b447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeToActivate: 4
+  themeToActivate: 0
   skinToActivate: 0
   isLevelTheme: 1
 --- !u!114 &2052461062
@@ -41872,7 +41810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df603127c611a6449b67caed226b447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeToActivate: 2
+  themeToActivate: 0
   skinToActivate: 0
   isLevelTheme: 1
 --- !u!114 &2087554376
@@ -43289,7 +43227,7 @@ PrefabInstance:
     - target: {fileID: 1080391994657624794, guid: 6df557514ff44724fadfdc5f54ab65c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.487012
+      value: -4.39
       objectReference: {fileID: 0}
     - target: {fileID: 1080391994657624794, guid: 6df557514ff44724fadfdc5f54ab65c4,
         type: 3}

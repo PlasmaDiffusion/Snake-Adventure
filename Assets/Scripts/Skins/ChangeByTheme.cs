@@ -5,6 +5,7 @@ using UnityEngine;
 //Depending on the flag, change the mesh or material to match the given theme. Add skins in the SkinManager game object.
 public class ChangeByTheme : MonoBehaviour
 {
+    
     public bool themeAffectsMaterial;
     //If material changes, is it changing based on the floor material? If not then it's a wall material.
     public bool changesFloorMaterial;
@@ -16,21 +17,25 @@ public class ChangeByTheme : MonoBehaviour
 
     //Skin object
     Skins skinChangerObject;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+
         skinChangerObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
 
         rend = GetComponent<Renderer>();
-
-        UpdateTheme();
+        
+        ChangeTheme();
     }
-    
-    public void UpdateTheme()
+
+    public void ChangeTheme()
     {
+
         if (themeAffectsMaterial || changesFloorMaterial)
         {
+
             if (changesFloorMaterial)
                 rend.material = skinChangerObject.levelThemeFloorMaterials[(int)Skins.levelTheme];
             else
@@ -38,10 +43,13 @@ public class ChangeByTheme : MonoBehaviour
         }
 
 
-        if(themeAffectsMesh)
+        if(themeAffectsMesh && Skins.levelTheme != Skins.Themes.DEFAULT)
         {
-            GameObject changedObj = Instantiate(skinChangerObject.levelThemeObjects[(int)Skins.levelTheme], transform.parent);
 
+            Debug.Log((int)Skins.levelTheme);
+
+            GameObject changedObj = Instantiate(skinChangerObject.levelThemeObjects[(int)Skins.levelTheme], transform.parent);
+            
             //Update transform
             changedObj.transform.position = transform.position;
             changedObj.transform.rotation = transform.rotation;
@@ -51,4 +59,5 @@ public class ChangeByTheme : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
