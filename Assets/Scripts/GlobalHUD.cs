@@ -56,7 +56,7 @@ public class GlobalHUD : MonoBehaviour
         playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
         fireBreathe = GameObject.Find("Tongue").GetComponent<FireBreathe>();
 
-        hideChildren();
+        HideChildren();
     }
 
     // Update is called once per frame
@@ -120,7 +120,7 @@ public class GlobalHUD : MonoBehaviour
         coinText.rectTransform.position = defaultCoinPosition;
     }
     
-    void hideChildren()
+    void HideChildren()
     {
         for (int i = transform.childCount - 1; i> 0; i--)
         {
@@ -129,7 +129,7 @@ public class GlobalHUD : MonoBehaviour
     }
     
     //Show main HUD and hide menu
-    public void showChildren()
+    public void ShowChildren()
     {
         for (int i = transform.childCount - 1; i > 0; i--)
         {
@@ -160,14 +160,14 @@ public class GlobalHUD : MonoBehaviour
             case 2: //Skin menu
 
                 skinMenuObject.SetActive(true);
-                hideChildren();
+                HideChildren();
 
                 break;
 
             case 3: //Theme menu
 
                 themeMenuObject.SetActive(true);
-                hideChildren();
+                HideChildren();
 
                 break;
         }

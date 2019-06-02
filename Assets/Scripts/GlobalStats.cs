@@ -10,6 +10,8 @@ public class GlobalStats : MonoBehaviour
     public static int requiredFood;
     public static int coins = 60;
 
+    static bool loadedSave = false;
+
     //Records
     static int hiscore;
     static int farthestLevel;
@@ -22,6 +24,12 @@ public class GlobalStats : MonoBehaviour
         score = 0;
         paused = true;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
+
+        if (!loadedSave)
+            {
+            //Load stuff here!
+            loadedSave = true;
+            }
     }
 
     // Update is called once per frame

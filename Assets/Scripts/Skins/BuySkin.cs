@@ -44,12 +44,7 @@ public class BuySkin : MonoBehaviour
         {
             if (GlobalStats.coins >= cost)
             {
-                GlobalStats.coins -= cost;
-
-
-                
-
-                Skins.unlockedSnakeSkins[UnlockRandomLevelThemeIndex()] = true;
+                Purchase();
             }
         }
         else
@@ -57,26 +52,40 @@ public class BuySkin : MonoBehaviour
 
             if (GlobalStats.coins >= cost)
             {
-                GlobalStats.coins -= cost;
-
-
-                int randomIndex = UnlockRandomLevelThemeIndex();
-
-                Skins.unlockedLevelThemes[randomIndex] = true;
-
-                skinObj.CreateRandomSkinPoolList();
-
-                //Show feedback for what you just bought
-                text.text = "New Theme! \n" + ((Skins.Themes)randomIndex);
-                //Update coin count on HUD
-                GlobalStats.hud.UpdateHUD();
-
-                //Recolour buttons
-                UpdateButtons();
+                Purchase();
             }
 
         }
 
+    }
+
+    private void Purchase()
+    {
+        GlobalStats.coins -= cost;
+
+
+        int randomIndex;
+
+        //Get a random unlockable.
+        if (isSnake) randomIndex = UnlockRandomSnakeIndex();
+        else randomIndex = UnlockRandomLevelThemeIndex();
+
+        if (isSnake ) Skins.unlockedSnakeSkins[randomIndex] = true;
+        else Skins.unlockedLevelThemes[randomIndex] = true;
+
+        //Update both pools
+        skinObj.CreateRandomSkinPoolList();
+
+        //Show feedback for what you just bought
+        if (isSnake) text.text = "New Snake! \n";
+        else text.text = "New Theme! \n";
+        text.text += ((Skins.Themes)randomIndex);
+        
+        //Update coin count on HUD
+        GlobalStats.hud.UpdateHUD();
+
+        //Recolour buttons
+        UpdateButtons();
     }
 
     //Go through the list of all themes yet to be unlocked.
@@ -123,6 +132,7 @@ public class BuySkin : MonoBehaviour
         {
             buttonScript.RecolourIfUnlocked();
         }
+
 
     }
 

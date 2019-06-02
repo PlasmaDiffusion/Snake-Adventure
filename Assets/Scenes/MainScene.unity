@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 20354503}
   - component: {fileID: 20354502}
   m_Layer: 5
-  m_Name: ThemeButton (1)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2591,7 +2591,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "New Theme \n50 Coins"
+  m_Text: "New Snake \n40 Coins"
 --- !u!222 &171994722
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4152,7 +4152,7 @@ GameObject:
   - component: {fileID: 269909892}
   - component: {fileID: 269909891}
   m_Layer: 5
-  m_Name: ThemeButton (8)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8326,7 +8326,7 @@ GameObject:
   - component: {fileID: 505252718}
   - component: {fileID: 505252717}
   m_Layer: 5
-  m_Name: ThemeButton (2)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8366,7 +8366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToActivate: 0
-  skinToActivate: 0
+  skinToActivate: 1
   isLevelTheme: 0
 --- !u!114 &505252718
 MonoBehaviour:
@@ -9362,7 +9362,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Forest
+  m_Text: Default
 --- !u!222 &580847233
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9489,7 +9489,7 @@ GameObject:
   - component: {fileID: 581586439}
   - component: {fileID: 581586438}
   m_Layer: 5
-  m_Name: ThemeButton (7)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14498,7 +14498,7 @@ GameObject:
   - component: {fileID: 797840244}
   - component: {fileID: 797840243}
   m_Layer: 5
-  m_Name: ThemeButton (4)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18154,13 +18154,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ShowRewardedAd
-        m_Mode: 1
+      - m_Target: {fileID: 145381874}
+        m_MethodName: ChangeMenuMode
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -20910,8 +20910,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f71a31e862c27e42b71ed490522e24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTheme: 1
-  isSnake: 0
+  isTheme: 0
+  isSnake: 1
   cost: 0
 --- !u!114 &1121996328
 MonoBehaviour:
@@ -22361,7 +22361,7 @@ GameObject:
   - component: {fileID: 1205248313}
   - component: {fileID: 1205248312}
   m_Layer: 5
-  m_Name: ThemeButton
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22401,7 +22401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToActivate: 0
-  skinToActivate: 0
+  skinToActivate: 2
   isLevelTheme: 0
 --- !u!114 &1205248313
 MonoBehaviour:
@@ -23057,7 +23057,7 @@ GameObject:
   - component: {fileID: 1243334848}
   - component: {fileID: 1243334847}
   m_Layer: 5
-  m_Name: ThemeButton (5)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25488,7 +25488,7 @@ GameObject:
   - component: {fileID: 1416412450}
   - component: {fileID: 1416412449}
   m_Layer: 5
-  m_Name: ThemeButton (6)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38033,7 +38033,7 @@ GameObject:
   - component: {fileID: 1855901280}
   - component: {fileID: 1855901279}
   m_Layer: 5
-  m_Name: ThemeButton (3)
+  m_Name: SkinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39400,7 +39400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Snow
+  m_Text: Blue
 --- !u!222 &1997011534
 CanvasRenderer:
   m_ObjectHideFlags: 0

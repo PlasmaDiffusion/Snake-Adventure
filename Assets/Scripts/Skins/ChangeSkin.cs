@@ -69,7 +69,10 @@ public class ChangeSkin : MonoBehaviour
         if (isLevelTheme)
             Skins.levelTheme = themeToActivate;
         else
+        {
             Skins.snakeSkin = skinToActivate;
+            GameObject.Find("Player").GetComponent<Snake>().ChangeSnakeSkin();
+        }
 
         //If this isn't button for random, turn it off.
         if (themeToActivate != Skins.Themes.RANDOM || skinToActivate != Skins.SnakeSkins.RANDOM) Skins.CheckToTurnOffRandom();

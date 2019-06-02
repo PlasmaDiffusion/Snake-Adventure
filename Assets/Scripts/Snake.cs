@@ -61,7 +61,15 @@ public class Snake : MonoBehaviour
 
         rend = GetComponent<Renderer>();
         skinObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
+        ChangeSnakeSkin();
+    }
+
+    //Update the snake skin and colour variable. Called whenever the player swaps skins beforet the game starts.
+    public void ChangeSnakeSkin()
+    {
+        Skins.CheckForRandomization();
         rend.material = skinObject.snakeSkins[(int)Skins.snakeSkin];
+        GetComponent<DeathCheck>().regColor = rend.material.color;
     }
 
     // Input, visual and segment updating happens here!
@@ -345,7 +353,7 @@ public class Snake : MonoBehaviour
         if (alive)
         {
             GlobalStats.paused = !GlobalStats.paused;
-            GlobalStats.hud.showChildren();
+            GlobalStats.hud.ShowChildren();
         }
     }
 

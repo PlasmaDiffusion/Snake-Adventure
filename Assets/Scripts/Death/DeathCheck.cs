@@ -11,7 +11,8 @@ public class DeathCheck : MonoBehaviour
     public static float deathY;
 
     Renderer rend;
-    Color regColor;
+    [HideInInspector]
+    public Color regColor;
 
     bool colliding;
     bool died;

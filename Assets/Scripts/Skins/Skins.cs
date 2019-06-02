@@ -50,10 +50,15 @@ public class Skins : MonoBehaviour
     static bool randomTheme;
     static bool randomSkin;
 
+    static bool firstTimeStartup = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Initialize everything here but only the first time because static variables
+        if (!firstTimeStartup)
+        {
+
         //By default randomizing isn't set. Unless the player wants random themes for each level.
         randomTheme = false;
 
@@ -81,6 +86,9 @@ public class Skins : MonoBehaviour
         themePool = new List<Themes>();
         skinPool = new List<SnakeSkins>();
         CreateRandomSkinPoolList();
+
+            firstTimeStartup = true;
+        }
     }
 
     //Get a list of all unlocked skins to choose from when randomizing skins.
