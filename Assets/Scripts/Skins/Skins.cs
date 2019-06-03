@@ -8,7 +8,7 @@ public class Skins : MonoBehaviour
     {
         DEFAULT,
         BLUE,
-        //CHECKER,
+        CAMO,
         RANDOM
     };
 
@@ -81,7 +81,7 @@ public class Skins : MonoBehaviour
 
 
         //Load in all unlocked skins here (And everything else)
-        //GlobalStats.Load();
+        GlobalStats.Load();
 
         //Make a list of the unlocked skins for randomization
         themePool = new List<Themes>();

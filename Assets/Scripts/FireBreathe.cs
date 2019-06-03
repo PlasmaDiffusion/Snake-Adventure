@@ -21,6 +21,8 @@ public class FireBreathe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GlobalStats.paused) return;
+
         if (activeTime > 0.0f)
         {
             activeTime -= Time.deltaTime;

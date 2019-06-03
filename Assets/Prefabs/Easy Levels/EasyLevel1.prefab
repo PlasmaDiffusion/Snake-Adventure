@@ -225,7 +225,6 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
-  alreadyChangedMesh: 0
 --- !u!1 &4111604366473926444
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +762,6 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
-  alreadyChangedMesh: 0
 --- !u!1 &4111604367286233592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1403,6 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
-  alreadyChangedMesh: 0
 --- !u!1 &4111604367837411638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1524,6 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
-  alreadyChangedMesh: 0
 --- !u!1 &4111604367870715851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1749,6 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
-  alreadyChangedMesh: 0
 --- !u!1 &4111604368060488459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,7 +2236,6 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 1
   themeAffectsMesh: 0
-  alreadyChangedMesh: 0
 --- !u!1001 &3227042752323022407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2312,6 +2306,11 @@ PrefabInstance:
     - target: {fileID: 6222274012711073924, guid: d49193eea8bd3b94daa739c8d501bdf9,
         type: 3}
       propertyPath: possiblePowerup.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222274012711073924, guid: d49193eea8bd3b94daa739c8d501bdf9,
+        type: 3}
+      propertyPath: possiblePowerup.Array.data[4]
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

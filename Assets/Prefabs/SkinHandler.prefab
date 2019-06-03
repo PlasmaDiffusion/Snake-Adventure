@@ -46,6 +46,7 @@ MonoBehaviour:
   snakeSkins:
   - {fileID: 2100000, guid: 735d0c5fb37532741b8ca80ebdc35ca3, type: 2}
   - {fileID: 2100000, guid: 15739bdce704ec04c8f6f544b903ebb3, type: 2}
+  - {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
   levelThemeWallMaterials:
   - {fileID: 2100000, guid: 5bce6d425638ae049afebe90ca9160bf, type: 2}
   - {fileID: 2100000, guid: 2871c2c939192f944aa3798597a2431a, type: 2}

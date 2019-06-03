@@ -20,7 +20,9 @@ public class SpikeTrap : MonoBehaviour
     //Prevent constant collisions
     float collisionDebounce;
 
-    
+    //Vel to save for pausing purposes
+    Vector3 currentVel;
+    bool wasPaused;
 
     // Start is called before the first frame update
     void Start()
@@ -45,13 +47,33 @@ public class SpikeTrap : MonoBehaviour
 
         rigidbody.velocity = startingVel;
         oppositeVel = -startingVel;
+
+        currentVel = -startingVel;
+        wasPaused = false;
     }
 
-    // Update is called once per frame
+    //Pausing code happens here
+    private void Update()
+    {
+        if (GlobalStats.paused)
+        {
+            rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            wasPaused = true;
+            return;
+        }
+        else if (wasPaused && !hideWarningText)
+        {
+            rigidbody.velocity = currentVel;
+            wasPaused = false;
+        }
+
+    }
+
+    // Movement updating happens here
     void FixedUpdate()
     {
         if (GlobalStats.paused) return;
-
+        
         if (collisionDebounce > 0.0f) collisionDebounce -= Time.deltaTime;
 
         //Make sure a spike doesn't randomly get stuck.
@@ -104,8 +126,10 @@ public class SpikeTrap : MonoBehaviour
     {
         if (collisionDebounce > 0.0f) return;
 
-        if (!opposite) rigidbody.velocity = oppositeVel;
-        else rigidbody.velocity = startingVel;
+        //Reverse the velocity, also store the new velocity for pausing purposes
+        if (!opposite) { rigidbody.velocity = oppositeVel; currentVel = oppositeVel; }
+        else { rigidbody.velocity = startingVel; currentVel = startingVel; }
+        
 
         //Don't let collision happen constantly
         collisionDebounce = 0.5f;

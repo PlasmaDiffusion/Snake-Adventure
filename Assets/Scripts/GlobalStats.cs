@@ -62,20 +62,20 @@ public class GlobalStats : MonoBehaviour
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/snakeData.dat");
-        GameSave data = new GameSave
-        {
-            
-            //Save data involving best scores and skins
-            coins = coins,
-            hiScore = hiscore,
-            farthestLevel = farthestLevel,
+        GameSave data = new GameSave();
 
-            currentSnakeIndex = (int)Skins.snakeSkin,
-            currentThemeIndex = (int)Skins.levelTheme,
 
-            unlockedSnakeSkins = Skins.unlockedSnakeSkins,
-            unlockedLevelThemes = Skins.unlockedLevelThemes
-        };
+        //Save data involving best scores and skins
+        data.coins = coins;
+        data.hiScore = hiscore;
+        data.farthestLevel = farthestLevel;
+
+        data.currentSnakeIndex = (int)Skins.snakeSkin;
+        data.currentThemeIndex = (int)Skins.levelTheme;
+
+        data.unlockedSnakeSkins = Skins.unlockedSnakeSkins;
+        data.unlockedLevelThemes = Skins.unlockedLevelThemes;
+        
 
         bf.Serialize(file, data);
         file.Close();
@@ -104,6 +104,7 @@ public class GlobalStats : MonoBehaviour
 
             Skins.unlockedSnakeSkins = data.unlockedSnakeSkins;
             Skins.unlockedLevelThemes = data.unlockedLevelThemes;
+            
         }
         else
         {

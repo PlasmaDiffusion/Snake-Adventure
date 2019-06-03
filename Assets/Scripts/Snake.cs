@@ -6,6 +6,7 @@ public class Snake : MonoBehaviour
 {
 
     //Movement vars
+
     public float speed;
     public bool alive; //When not alive, the game is forced to be paused
     DraggedDirection currentDirection;
@@ -29,6 +30,7 @@ public class Snake : MonoBehaviour
     float positionRecordTime;
     float timeBetweenPositions;
     public List<Vector3> prevPositions;
+    [Header("Snake References to Copy")]
     public GameObject segmentReference;
     public GameObject segmentLinkReference;
     List<GameObject> otherSegments;
@@ -39,6 +41,12 @@ public class Snake : MonoBehaviour
     //Skin vars
     Skins skinObject;
     Renderer rend;
+
+    //Menu checks for resuming the game
+    [Header("Menu References for pausing/unpausing")]
+    public GameObject mainMenuObject;
+    public GameObject gameOverMenuObject;
+    public GameObject pauseMenuObject;
 
     // Start is called before the first frame update
     void Start()
@@ -200,8 +208,8 @@ public class Snake : MonoBehaviour
         }
         else if (GlobalStats.paused) //If paused and the player is alive...
         {
-            //Resume the game upon swiping to move
-            if (timeSwipeHeld > 0.10f)
+            //Resume the game upon swiping to move (AND on the main menu/ game over/ pause screen
+            if (timeSwipeHeld > 0.10f && (mainMenuObject.activeSelf || gameOverMenuObject.activeSelf || pauseMenuObject.activeSelf))
             {
                 Pause();
             }
@@ -348,16 +356,22 @@ public class Snake : MonoBehaviour
         //return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
     }
     
+    //Call to toggle pause
     public void Pause()
     {
         if (alive)
         {
             GlobalStats.paused = !GlobalStats.paused;
             GlobalStats.hud.ShowChildren();
+
+            if (GlobalStats.paused)
+            pauseMenuObject.SetActive(true);
+            else
+                pauseMenuObject.SetActive(false);
         }
     }
 
-    public void MakeAlive() { alive = true; }
+    public void MakeAlive() { alive = true; pauseMenuObject.SetActive(true); }
 
     void LerpToDirection()
     {

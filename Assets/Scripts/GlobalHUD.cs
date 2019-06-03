@@ -36,8 +36,8 @@ public class GlobalHUD : MonoBehaviour
     DeathCheck playerDeathCheck;
 
     //Get values for fire powerup
-    FireBreathe fireBreathe; 
-
+    FireBreathe fireBreathe;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +55,6 @@ public class GlobalHUD : MonoBehaviour
 
         playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
         fireBreathe = GameObject.Find("Tongue").GetComponent<FireBreathe>();
-
         HideChildren();
     }
 

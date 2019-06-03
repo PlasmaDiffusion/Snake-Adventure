@@ -19,6 +19,8 @@ public class ChangeSkin : MonoBehaviour
 
     Color unlockedColour;
 
+    bool initialized =false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,15 @@ public class ChangeSkin : MonoBehaviour
 
         //Record unlock colour in case it's unlocked later on this screen
         unlockedColour = image.color;
+        RecolourIfUnlocked();
 
+        initialized = true;
+    }
+
+    //Recolour but not if initialized already
+    private void OnEnable()
+    {
+        if (initialized)
         RecolourIfUnlocked();
     }
 

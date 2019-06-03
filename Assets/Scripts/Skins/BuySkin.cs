@@ -120,7 +120,7 @@ public class BuySkin : MonoBehaviour
         List<int> potentialIndexes;
         potentialIndexes = new List<int>();
 
-        for (int i = 0; i < (int)Skins.Themes.RANDOM; i++)
+        for (int i = 0; i < (int)Skins.SnakeSkins.RANDOM; i++)
         {
             if (!Skins.unlockedSnakeSkins[i])
                 potentialIndexes.Add(i);
