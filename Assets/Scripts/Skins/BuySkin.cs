@@ -17,6 +17,8 @@ public class BuySkin : MonoBehaviour
 
     Skins skinObj;
 
+    GlobalStats globalStats;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,8 @@ public class BuySkin : MonoBehaviour
             if (isTheme) cost = 50;
             else if (isSnake) cost = 40;
         }
+
+        globalStats = GameObject.Find("LevelSpawner").GetComponent<GlobalStats>();
     }
 
     // Update is called once per frame
@@ -86,6 +90,10 @@ public class BuySkin : MonoBehaviour
 
         //Recolour buttons
         UpdateButtons();
+
+        //Save game so skin is here for good.
+        GlobalStats.Save();
+        //globalStats.Save();
     }
 
     //Go through the list of all themes yet to be unlocked.

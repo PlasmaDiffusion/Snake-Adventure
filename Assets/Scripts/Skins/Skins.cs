@@ -80,13 +80,15 @@ public class Skins : MonoBehaviour
         unlockedLevelThemes[(int)Themes.DEFAULT] = true;
 
 
-        //Load in all unlocked skins here
+        //Load in all unlocked skins here (And everything else)
+        //GlobalStats.Load();
 
         //Make a list of the unlocked skins for randomization
         themePool = new List<Themes>();
         skinPool = new List<SnakeSkins>();
         CreateRandomSkinPoolList();
-
+            CheckForRandomization();
+            GlobalStats.hud.UpdateHUD();
             firstTimeStartup = true;
         }
     }
@@ -105,25 +107,29 @@ public class Skins : MonoBehaviour
     //Call this once every level spawns in.
     public static void CheckForRandomization()
     {
-        Debug.Log("Picking a random skin. " + (Themes)Random.Range(0, (int)Themes.RANDOM));
-
         if (levelTheme == Themes.RANDOM || randomTheme)
         {
             randomTheme = true;
             levelTheme = themePool[Random.Range(0, themePool.Count)];
+            Debug.Log("Themes should be random now.");
         }
 
         if (snakeSkin == SnakeSkins.RANDOM || randomSkin)
         {
             randomSkin = true;
             snakeSkin =  skinPool[Random.Range(0, skinPool.Count)];
+            Debug.Log("Skins should be random now.");
         }
     }
 
     public static void CheckToTurnOffRandom()
     {
+
         if (snakeSkin != SnakeSkins.RANDOM) randomSkin = false;
         if (levelTheme != Themes.RANDOM) randomTheme = false;
+
+
+        Debug.Log("Checking to turn off random. Random Snakes: " + randomSkin.ToString() + " Random Themes: " + randomTheme.ToString());
     }
 
     // Update is called once per frame

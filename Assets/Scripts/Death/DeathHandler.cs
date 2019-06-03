@@ -15,6 +15,7 @@ public class DeathHandler : MonoBehaviour
     public GameObject adButton;
     public GameObject coinButton;
     public GameObject continueText;
+    
     Text coinButtonText;
 
     int coinCostMultiplier;
@@ -26,6 +27,7 @@ public class DeathHandler : MonoBehaviour
         watchedAd = false;
         payedCoins = false;
 
+        
 
          coinButtonText = coinButton.transform.GetChild(0).GetComponent<Text>();
     }
@@ -69,7 +71,21 @@ public class DeathHandler : MonoBehaviour
     //End the game here along with highscores, rewards, etc.
     public void EndGame()
     {
-        GlobalStats.coins += (GlobalStats.score / 5);
+        int coinBonus = GlobalStats.score / 5;
+
+        GlobalStats.coins += coinBonus;
+
+        //Check for best scores here. Show feedback if the player improved!
+        if(GlobalStats.CheckForHiScore())
+        {
+
+        }
+        if (GlobalStats.CheckForFarthestLevel())
+        {
+        }
+
+        //Save the game whenver the game ends
+        GlobalStats.Save();
 
         SceneManager.LoadScene(0);
     }
@@ -123,7 +139,7 @@ public class DeathHandler : MonoBehaviour
             if ((cost >= 15)) payedCoins = true;
 
             //Update the button
-            cost = cost = 5 * coinCostMultiplier;
+            cost = 5 * coinCostMultiplier;
             coinButtonText.text = "Pay " + cost.ToString() + " Coins";
             
             //Actually revive the player too.

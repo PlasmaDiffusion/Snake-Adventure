@@ -77,6 +77,9 @@ public class ChangeSkin : MonoBehaviour
         //If this isn't button for random, turn it off.
         if (themeToActivate != Skins.Themes.RANDOM || skinToActivate != Skins.SnakeSkins.RANDOM) Skins.CheckToTurnOffRandom();
 
+        //Save new skin
+        GlobalStats.Save();
+
         //If random was just picked, then turn random on.
         Skins.CheckForRandomization();
     }

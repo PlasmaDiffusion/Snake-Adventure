@@ -45,7 +45,7 @@ public class LevelSpawner : MonoBehaviour
 
     }
 
-    int GetLevel() { return level; }
+    public int GetLevel() { return level; }
 
     public void EndLevel(Vector3 pos)
     {
