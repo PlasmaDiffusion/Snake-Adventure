@@ -81,6 +81,8 @@ public class ChangeSkin : MonoBehaviour
         else
         {
             Skins.snakeSkin = skinToActivate;
+
+            //Change the player skin if not randomizing
             GameObject.Find("Player").GetComponent<Snake>().ChangeSnakeSkin();
         }
 

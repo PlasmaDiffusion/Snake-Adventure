@@ -81,9 +81,16 @@ public class BuySkin : MonoBehaviour
         skinObj.CreateRandomSkinPoolList();
 
         //Show feedback for what you just bought
-        if (isSnake) text.text = "New Snake! \n";
-        else text.text = "New Theme! \n";
-        text.text += ((Skins.Themes)randomIndex);
+        if (isSnake)
+        {
+            text.text = "New Snake!\n";
+            text.text += ((Skins.SnakeSkins)randomIndex);
+        }
+        else
+        {
+            text.text = "New Theme!\n";
+            text.text += ((Skins.Themes)randomIndex);
+        }
         
         //Update coin count on HUD
         GlobalStats.hud.UpdateHUD();

@@ -43,6 +43,8 @@ public class GlobalStats : MonoBehaviour
         return false;
     }
     
+    public static int GetHiScore() { return hiscore; }
+    public static int GetFarthestLevel() { return farthestLevel; }
 
     public static bool CheckForFarthestLevel()
     {
@@ -75,7 +77,9 @@ public class GlobalStats : MonoBehaviour
 
         data.unlockedSnakeSkins = Skins.unlockedSnakeSkins;
         data.unlockedLevelThemes = Skins.unlockedLevelThemes;
-        
+
+        data.randomSnake = Skins.randomSkin;
+        data.randomTheme = Skins.randomTheme;
 
         bf.Serialize(file, data);
         file.Close();
@@ -104,7 +108,9 @@ public class GlobalStats : MonoBehaviour
 
             Skins.unlockedSnakeSkins = data.unlockedSnakeSkins;
             Skins.unlockedLevelThemes = data.unlockedLevelThemes;
-            
+
+            Skins.randomSkin = data.randomSnake;
+            Skins.randomTheme = data.randomTheme;
         }
         else
         {
@@ -127,5 +133,8 @@ public class GlobalStats : MonoBehaviour
 
         public bool[] unlockedSnakeSkins;
         public bool[] unlockedLevelThemes;
+
+        public bool randomSnake;
+        public bool randomTheme;
     }
 }

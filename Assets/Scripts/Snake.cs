@@ -75,9 +75,15 @@ public class Snake : MonoBehaviour
     //Update the snake skin and colour variable. Called whenever the player swaps skins beforet the game starts.
     public void ChangeSnakeSkin()
     {
-        Skins.CheckForRandomization();
-        rend.material = skinObject.snakeSkins[(int)Skins.snakeSkin];
-        GetComponent<DeathCheck>().regColor = rend.material.color;
+        //Randomization seems to not occur sometimes, so make sure it happens if needed.
+        Skins.CheckForRandomization(true);
+
+        //Update the skin, but not if it's random (index would be out of range)
+        if (Skins.snakeSkin != Skins.SnakeSkins.RANDOM)
+        {
+            rend.material = skinObject.snakeSkins[(int)Skins.snakeSkin];
+            GetComponent<DeathCheck>().regColor = rend.material.color;
+        }
     }
 
     // Input, visual and segment updating happens here!
@@ -171,6 +177,7 @@ public class Snake : MonoBehaviour
 
         if(CheckIfPaused()) return;
 
+        //Every update check the direction and update the velocity. Also rotate to that direction.
         switch (currentDirection)
         {
 
@@ -198,6 +205,7 @@ public class Snake : MonoBehaviour
 
     }
 
+    //Set vel to 0 if the game is paused. Also check for unpause.
     bool CheckIfPaused()
     {
         //Can't move if game is paused, game over, etc.

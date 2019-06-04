@@ -47,8 +47,8 @@ public class Skins : MonoBehaviour
     static List<Themes> themePool;
     static List<SnakeSkins> skinPool;
 
-    static bool randomTheme;
-    static bool randomSkin;
+    public static bool randomTheme;
+    public static bool randomSkin;
 
     static bool firstTimeStartup = false;
 
@@ -105,9 +105,9 @@ public class Skins : MonoBehaviour
     }
 
     //Call this once every level spawns in.
-    public static void CheckForRandomization()
+    public static void CheckForRandomization(bool snakeOnly = false)
     {
-        if (levelTheme == Themes.RANDOM || randomTheme)
+        if ((levelTheme == Themes.RANDOM || randomTheme) && !snakeOnly)
         {
             randomTheme = true;
             levelTheme = themePool[Random.Range(0, themePool.Count)];
@@ -119,6 +119,10 @@ public class Skins : MonoBehaviour
             randomSkin = true;
             snakeSkin =  skinPool[Random.Range(0, skinPool.Count)];
             Debug.Log("Skins should be random now.");
+
+            ////Make sure the snake is actually randomized
+            //Snake snake = GameObject.Find("Player").GetComponent<Snake>();
+            //if (snake) snake.ChangeSnakeSkin();
         }
     }
 

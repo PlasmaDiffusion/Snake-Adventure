@@ -9,8 +9,13 @@ public class Switch : MonoBehaviour
     Vector3 normalScale;
     Vector3 pressedScale;
 
+    Color regColor;
+    Color pressedColor;
+
     //Prevent switch from accidently being pressed rapidly.
     float downTime;
+
+    Renderer rend;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +26,10 @@ public class Switch : MonoBehaviour
 
         normalScale = transform.localScale;
         pressedScale = new Vector3(1.0f, 0.25f, 1.0f);
+
+        rend = GetComponent<Renderer>();
+        regColor = rend.material.color;
+        pressedColor = new Color(0.55f, 0.231f, 0.404f, 1.0f);
     }
 
     private void Update()
@@ -38,9 +47,17 @@ public class Switch : MonoBehaviour
         on = !on;
         downTime = 0.3f;
 
-        //Move button down/up
-        if (on) transform.localScale = pressedScale;
-        else transform.localScale = normalScale;
+            //Move button down/up
+            if (on)
+            {
+                transform.localScale = pressedScale;
+                rend.material.color = pressedColor;
+            }
+            else
+            {
+                transform.localScale = normalScale;
+                rend.material.color = regColor;
+            }
 
         SwitchBlock[] switchBlocks= transform.parent.GetComponentsInChildren<SwitchBlock>();
 
