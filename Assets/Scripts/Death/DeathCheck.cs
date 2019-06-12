@@ -110,7 +110,6 @@ public class DeathCheck : MonoBehaviour
 
     public void StopCheck()
     {
-        
         rend.material.color = regColor;
         colliding = false;
     }

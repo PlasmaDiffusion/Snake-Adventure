@@ -16,6 +16,7 @@ public class Skins : MonoBehaviour
     {
         DEFAULT,
         SNOW,
+        FACTORY,
         //DESSERT,
         //SKY,
         //SEA,
@@ -58,7 +59,7 @@ public class Skins : MonoBehaviour
         //Initialize everything here but only the first time because static variables
         if (!firstTimeStartup)
         {
-
+        Debug.Log(Application.dataPath);
         //By default randomizing isn't set. Unless the player wants random themes for each level.
         randomTheme = false;
 

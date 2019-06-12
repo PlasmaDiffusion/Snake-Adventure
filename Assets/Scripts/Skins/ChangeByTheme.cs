@@ -46,7 +46,7 @@ public class ChangeByTheme : MonoBehaviour
         if(themeAffectsMesh && Skins.levelTheme != Skins.Themes.DEFAULT)
         {
 
-            Debug.Log((int)Skins.levelTheme);
+            //Debug.Log((int)Skins.levelTheme);
 
             GameObject changedObj = Instantiate(skinChangerObject.levelThemeObjects[(int)Skins.levelTheme], transform.parent);
             

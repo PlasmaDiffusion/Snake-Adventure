@@ -15,6 +15,7 @@ public class DeathHandler : MonoBehaviour
     public GameObject adButton;
     public GameObject coinButton;
     public GameObject continueText;
+    public GameObject endGameScreen;
     
     Text coinButtonText;
 
@@ -71,19 +72,32 @@ public class DeathHandler : MonoBehaviour
     //End the game here along with highscores, rewards, etc.
     public void EndGame()
     {
+        //Grant bonus coins
         int coinBonus = GlobalStats.score / 5;
-
+        
+        endGameScreen.SetActive(true);
+        
+        //Coins are to be "tallied" so increase them afterwards.
         GlobalStats.coins += coinBonus;
 
-        //Check for best scores here. Show feedback if the player improved!
-        if(GlobalStats.CheckForHiScore())
-        {
 
+        //Check for best scores here. Show feedback if the player improved!
+        if (GlobalStats.CheckForHiScore())
+        {
+            GameObject textObj = endGameScreen.transform.Find("NewBestScoreText").gameObject;
+            textObj.GetComponent<Text>().text = "Beaten!";
         }
         if (GlobalStats.CheckForFarthestLevel())
         {
-        }
+            GameObject textObj = endGameScreen.transform.Find("NewBestLevelText").gameObject;
+            textObj.GetComponent<Text>().text = "Beaten!";
 
+        }
+    }
+
+    //When Continue button is pressed
+    public void RestartScene()
+    {
         //Save the game whenver the game ends
         GlobalStats.Save();
 
@@ -99,6 +113,7 @@ public class DeathHandler : MonoBehaviour
         }
     }
 
+    //Show a single ad to revive the player
     private void HandleShowResult(ShowResult result)
     {
         switch (result)
