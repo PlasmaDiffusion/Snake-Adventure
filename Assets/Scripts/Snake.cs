@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//The main player class.
 public class Snake : MonoBehaviour
 {
 
@@ -24,6 +25,10 @@ public class Snake : MonoBehaviour
     //Var for rotating
     Quaternion targetRotation;
     float timeRotating;
+
+    //Boost
+    float boostGuage;
+    public static bool boosting;
 
     //Other snake segments
     int segments;
@@ -48,17 +53,27 @@ public class Snake : MonoBehaviour
     public GameObject gameOverMenuObject;
     public GameObject pauseMenuObject;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        //Snake segment related
         timeBetweenPositions = 0.275f;
         positionRecordTime = 0.0f;
+
+        //Input swipe related
         timeSwipeHeld = 0.0f;
 
+        //Snake segment related
         prevPositions = new List<Vector3>();
         otherSegments = new List<GameObject>();
         segments = 0;
 
+        //Boost mechanic related
+        boostGuage = 0.0f;
+        boosting = false;
+
+        //Movement related
         rigidbody = GetComponent<Rigidbody>();
         currentDirection = DraggedDirection.Up;
 
@@ -67,6 +82,7 @@ public class Snake : MonoBehaviour
 
         camOffset = new Vector3(0.0f, 20.0f, 0.0f);
 
+        //Change skins
         rend = GetComponent<Renderer>();
         skinObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
         ChangeSnakeSkin();
@@ -155,7 +171,7 @@ public class Snake : MonoBehaviour
         //Update score multiplier powerup here.
         SnakeFood.CheckScoreMultiplier();
 
-
+        UpdateBoost();
     }
 
     private Touch ForceEndSwipe(Touch touch)
@@ -231,6 +247,7 @@ public class Snake : MonoBehaviour
         return false;
     }
 
+    //Record positions for the snake segments to follow.
     void RecordPositions()
     {
         //Record positions every now and then
@@ -265,6 +282,7 @@ public class Snake : MonoBehaviour
         }
     }
 
+    //Add a snake segment. Capped at 100.
     public void AddSegment()
     {
         if (segments >= 100) return;
@@ -309,6 +327,8 @@ public class Snake : MonoBehaviour
         if (camOffset.y < 30.0f)
         camOffset += new Vector3(0.0f, 0.1f, 0.0f);
     }
+
+    //Change swipe directions
     void ChangeDirection()
     {
         Vector3 dragVectorDirection = (endSwipePos - startSwipePos).normalized;
@@ -322,13 +342,6 @@ public class Snake : MonoBehaviour
 
         if (currentDirection != oldDirection) transform.position = AlignToGrid(transform.position);
     }
-    
-    //private void OnMouseUp() //For PC testing. Disable on release.
-    //{
-    //    endSwipePos = Input.mousePosition;
-
-    //    ChangeDirection();
-    //}
 
     private enum DraggedDirection
     {
@@ -339,7 +352,7 @@ public class Snake : MonoBehaviour
     }
 
     
-    private DraggedDirection GetDragDirection(Vector3 dragVector)
+    DraggedDirection GetDragDirection(Vector3 dragVector)
     {
         float positiveX = Mathf.Abs(dragVector.x);
         float positiveY = Mathf.Abs(dragVector.y);
@@ -359,6 +372,7 @@ public class Snake : MonoBehaviour
     //Snap in place to grid so its like traditional snake
     public Vector3 AlignToGrid(Vector3 oldPos)
     {
+        //Change this to go back to snapping
         return oldPos;
 
         //return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
@@ -371,6 +385,8 @@ public class Snake : MonoBehaviour
         {
             GlobalStats.paused = !GlobalStats.paused;
             GlobalStats.hud.ShowChildren();
+
+            GlobalStats.hud.boostMenuObject.SetActive(true);
 
             if (GlobalStats.paused)
             pauseMenuObject.SetActive(true);
@@ -391,25 +407,47 @@ public class Snake : MonoBehaviour
         }
     }
 
+    //------------------------------------------------
+    // Boost functions below.
+    //------------------------------------------------
+    
+    //Tap the boost button to toggle boosting
+    public void ToggleBoost()
+    {
+        if (boostGuage >= 1.0f) //Turn on boost
+        {
+            boosting = true;
+            speed = 360.0f;
+            timeBetweenPositions = 0.175f;
+        }
+        else //Turn off boost
+        {
+            speed = 240.0f;
+            timeBetweenPositions = 0.275f;
+            boosting = false;
+        }
+    }
 
-    //public GUIStyle style;
+    //Call every frame to remove the boost if its activated
+    void UpdateBoost()
+    {
+        if (boosting)
+        {
+            boostGuage -= Time.deltaTime * 0.1f;
 
-    //private void OnGUI()
-    //{
-    //    if (Input.touchCount > 0)
-    //    {
+            //Check to turn boosting off
+            if (boostGuage <= 0.0f)
+            {
+                ToggleBoost();
+            }
+        }
+    }
 
+    public void IncreaseBoostGuage()
+    {
+        boostGuage += 0.1f;
+        if (boostGuage > 1.0f) boostGuage = 1.0f;
+    }
 
-    //    Touch touch =Input.GetTouch(0);
-
-    //        GUI.color = Color.red;
-    //        GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
-
-    //    }
-
-    //    GUI.color = Color.blue;
-    //    GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + (60.0f * (1.0f - Time.deltaTime)).ToString(), style);
-    //    GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
-
-    //}
+    public float GetBoostGuage() { return boostGuage; }
 }

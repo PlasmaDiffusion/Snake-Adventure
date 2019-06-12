@@ -34,6 +34,7 @@ public class ChangeSkin : MonoBehaviour
         //Record unlock colour in case it's unlocked later on this screen
         unlockedColour = image.color;
         RecolourIfUnlocked();
+        
 
         initialized = true;
     }

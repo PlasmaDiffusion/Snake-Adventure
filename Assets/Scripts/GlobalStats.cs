@@ -7,17 +7,18 @@ using System.IO;
 public class GlobalStats : MonoBehaviour
 {
     public static bool paused;
-    
+
     public static int score, requiredFood;
-    
+
     public static int coins = 60;
-    
+
     static bool loadedSave = false;
 
     //Records
     static int hiscore, farthestLevel;
-    
+
     public static GlobalHUD hud;
+  
 
     // Start is called before the first frame update
     void Start()

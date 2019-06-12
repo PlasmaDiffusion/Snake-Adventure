@@ -32,13 +32,12 @@ public class SnakeFood : MonoBehaviour
             Snake snake = other.GetComponent<Snake>();
             snake.AddSegment();
             snake.ZoomOutCamera();
+            snake.IncreaseBoostGuage();
 
 
             //Notify the gate this was collected
             transform.parent.Find("Gate").GetComponent<SnakeGate>().LowerGate();
             Destroy(gameObject);
-
-
         }
     }
 
@@ -55,7 +54,7 @@ public class SnakeFood : MonoBehaviour
     //Snake class calls this every update.
     public static void CheckScoreMultiplier()
     {
-        if (multiplierTime > 0.0f)
+        if (multiplierTime > 0.0f && !Snake.boosting)
         {
             multiplierTime -= Time.deltaTime;
             if (multiplierTime <= 0.0f)

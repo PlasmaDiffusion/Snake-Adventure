@@ -23,7 +23,7 @@ public class FireBreathe : MonoBehaviour
     {
         if (GlobalStats.paused) return;
 
-        if (activeTime > 0.0f)
+        if (activeTime > 0.0f && !Snake.boosting)
         {
             activeTime -= Time.deltaTime;
 

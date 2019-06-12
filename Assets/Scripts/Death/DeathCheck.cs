@@ -47,10 +47,13 @@ public class DeathCheck : MonoBehaviour
         {
             collisionTimeInSegment -= Time.deltaTime;
             UpdateColour();
-        }
+        } //Remove invincibility buff
         else if(invincibility > 0.0f)
         {
-            invincibility -= Time.deltaTime;
+            //Remove invinibility here but not if snake is boosting
+            if(!Snake.boosting) invincibility -= Time.deltaTime;
+
+            //Make transparent
             UpdateColour();
         }
 

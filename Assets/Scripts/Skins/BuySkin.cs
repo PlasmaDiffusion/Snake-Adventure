@@ -143,6 +143,7 @@ public class BuySkin : MonoBehaviour
 
         Debug.Log("Btn Length: " + buttons.Length);
 
+
         foreach (ChangeSkin buttonScript in buttons)
         {
             buttonScript.RecolourIfUnlocked();

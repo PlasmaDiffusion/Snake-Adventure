@@ -7,6 +7,7 @@ public class GlobalHUD : MonoBehaviour
 {
     //Menu panels
     public GameObject mainMenuObject;
+    public GameObject boostMenuObject;
     public GameObject skinMenuObject;
     public GameObject themeMenuObject;
 
@@ -145,7 +146,8 @@ public class GlobalHUD : MonoBehaviour
         {
             default: //Regular game
 
-                GameObject.Find("MainMenuPanel").SetActive(false);
+                mainMenuObject.SetActive(false);
+                boostMenuObject.SetActive(true);
 
                 break;
 
