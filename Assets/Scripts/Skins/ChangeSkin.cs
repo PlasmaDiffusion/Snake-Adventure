@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //Class with functions called when a skin is selected in the menu
 public class ChangeSkin : MonoBehaviour
@@ -64,11 +65,13 @@ public class ChangeSkin : MonoBehaviour
 
         if (isLevelTheme)
         {
+            if (themeToActivate == Skins.Themes.RANDOM) return true;
             if (Skins.unlockedLevelThemes[(int)themeToActivate]) return true;
             else return false;
         }
         else
         {
+            if (skinToActivate == Skins.SnakeSkins.RANDOM) return true;
             if (Skins.unlockedSnakeSkins[(int)skinToActivate]) return true;
             else return false;
         }
@@ -78,22 +81,32 @@ public class ChangeSkin : MonoBehaviour
     void ChangeToDifferentSkin()
     {
         if (isLevelTheme)
+        {
             Skins.levelTheme = themeToActivate;
+            if (themeToActivate != Skins.Themes.RANDOM) Skins.randomTheme = false;
+        }
         else
         {
             Skins.snakeSkin = skinToActivate;
+            if (skinToActivate != Skins.SnakeSkins.RANDOM) Skins.randomSkin = false;
 
             //Change the player skin if not randomizing
             GameObject.Find("Player").GetComponent<Snake>().ChangeSnakeSkin();
         }
 
-        //If this isn't button for random, turn it off.
-        if (themeToActivate != Skins.Themes.RANDOM || skinToActivate != Skins.SnakeSkins.RANDOM) Skins.CheckToTurnOffRandom();
+        //If random was just picked, then turn random on.
+        Skins.CheckForRandomization();
+
 
         //Save new skin
         GlobalStats.Save();
 
-        //If random was just picked, then turn random on.
-        Skins.CheckForRandomization();
+        //Force the theme to change
+        if (isLevelTheme) SceneManager.LoadScene(0);
+        else
+        {
+            //Force out of skin menu
+            GlobalStats.hud.ChangeMenuMode(1);
+        }
     }
 }

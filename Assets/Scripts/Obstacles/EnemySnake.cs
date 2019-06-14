@@ -238,6 +238,17 @@ public class EnemySnake : MonoBehaviour
 
         }
     }
-    
+
+    //Remove child segments when dead
+    private void OnDestroy()
+    {
+        for (int i = otherSegments.Count-1; i >= 0; i--)
+        {
+            //Insert death particle here
+            Destroy(otherSegments[i]);
+            otherSegments.RemoveAt(i);
+        }
+    }
+
 }
 

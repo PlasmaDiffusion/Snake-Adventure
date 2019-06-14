@@ -83,7 +83,7 @@ public class SnakeGate : MonoBehaviour
 
 
             //Ranzomide level theme if that is set
-            Skins.CheckForRandomization();
+            Skins.CheckForRandomization(true);
 
             //Spawn in more level here. Despawn the oldest level, but not the one being exited.
             entered = true;

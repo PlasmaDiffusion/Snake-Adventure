@@ -52,7 +52,7 @@ public class ChangeByTheme : MonoBehaviour
             
             //Update transform
             changedObj.transform.position = transform.position;
-            changedObj.transform.rotation = transform.rotation;
+            if(Skins.levelTheme != Skins.Themes.SNOW) changedObj.transform.rotation = transform.rotation;
             //changedObj.transform.localScale = transform.localScale;
 
             //Destroy self

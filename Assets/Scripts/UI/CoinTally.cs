@@ -19,8 +19,8 @@ public class CoinTally : MonoBehaviour
     void Start()
     {
         //Get this before global stats tallys coins
-        prevCoinCount = GlobalStats.coins;
         coinBonus = GlobalStats.score / 5;
+        prevCoinCount = GlobalStats.coins - coinBonus;
 
         UpdateText();
     }

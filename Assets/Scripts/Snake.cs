@@ -84,21 +84,43 @@ public class Snake : MonoBehaviour
 
         //Change skins
         rend = GetComponent<Renderer>();
-        skinObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
-        ChangeSnakeSkin();
+
     }
 
     //Update the snake skin and colour variable. Called whenever the player swaps skins beforet the game starts.
     public void ChangeSnakeSkin()
     {
-        //Randomization seems to not occur sometimes, so make sure it happens if needed.
-        Skins.CheckForRandomization(true);
+        //Make sure object exists
+        if (!skinObject) skinObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
+        if (!rend) rend = GetComponent<Renderer>();
 
         //Update the skin, but not if it's random (index would be out of range)
         if (Skins.snakeSkin != Skins.SnakeSkins.RANDOM)
         {
+            Debug.Log("Changing to skin index " + Skins.snakeSkin);
             rend.material = skinObject.snakeSkins[(int)Skins.snakeSkin];
             GetComponent<DeathCheck>().regColor = rend.material.color;
+
+            //Recolour the link to be a darkened version of this skin
+            //0/103
+            //190/248
+            //118/71
+            if (Skins.snakeSkin != Skins.SnakeSkins.DEFAULT)
+            {
+                Renderer linkRend = segmentLinkReference.GetComponent<Renderer>();
+                linkRend.material.color = (rend.material.color * new Color(0.5f, 0.5f, 0.5f, 1.0f));
+                //Color darkenedCol = linkRend.material.color;
+                //darkenedCol = new Color(darkenedCol.r * 1.145f, darkenedCol.g * 0.766f, darkenedCol.b * 1.661f);
+                //linkRend.material.color = darkenedCol;
+
+            }
+        }
+        else
+        {
+            Debug.Log("Randomness failed");
+            //Out of index Failsafe for when its random but a skin hasnt been picked yet.
+            //Skins.CheckForRandomization(true);
+            //ChangeSnakeSkin();
         }
     }
 

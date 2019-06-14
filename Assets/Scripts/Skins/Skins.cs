@@ -51,7 +51,12 @@ public class Skins : MonoBehaviour
     public static bool randomTheme;
     public static bool randomSkin;
 
-    static bool firstTimeStartup = false;
+    static bool firstTimeStartup;
+
+    private void Awake()
+    {
+        firstTimeStartup = false;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +64,7 @@ public class Skins : MonoBehaviour
         //Initialize everything here but only the first time because static variables
         if (!firstTimeStartup)
         {
-        Debug.Log(Application.dataPath);
+        Debug.Log(Application.persistentDataPath);
         //By default randomizing isn't set. Unless the player wants random themes for each level.
         randomTheme = false;
 
@@ -92,6 +97,7 @@ public class Skins : MonoBehaviour
             GlobalStats.hud.UpdateHUD();
             firstTimeStartup = true;
         }
+        else CheckForRandomization();
     }
 
     //Get a list of all unlocked skins to choose from when randomizing skins.
@@ -106,24 +112,25 @@ public class Skins : MonoBehaviour
     }
 
     //Call this once every level spawns in.
-    public static void CheckForRandomization(bool snakeOnly = false)
+    public static void CheckForRandomization(bool themesOnly = false)
     {
-        if ((levelTheme == Themes.RANDOM || randomTheme) && !snakeOnly)
+        //Randomize level themes if needed. Snake can turn this off.
+        if ((levelTheme == Themes.RANDOM || randomTheme))
         {
             randomTheme = true;
             levelTheme = themePool[Random.Range(0, themePool.Count)];
             Debug.Log("Themes should be random now.");
         }
-
-        if (snakeSkin == SnakeSkins.RANDOM || randomSkin)
+        //Randomize snake skins if needed
+        if (snakeSkin == SnakeSkins.RANDOM || randomSkin && !themesOnly)
         {
             randomSkin = true;
             snakeSkin =  skinPool[Random.Range(0, skinPool.Count)];
             Debug.Log("Skins should be random now.");
 
             ////Make sure the snake is actually randomized
-            //Snake snake = GameObject.Find("Player").GetComponent<Snake>();
-            //if (snake) snake.ChangeSnakeSkin();
+           Snake snake = GameObject.Find("Player").GetComponent<Snake>();
+           if (snake) snake.ChangeSnakeSkin();
         }
     }
 

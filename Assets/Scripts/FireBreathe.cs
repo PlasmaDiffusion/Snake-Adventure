@@ -7,6 +7,7 @@ public class FireBreathe : MonoBehaviour
     public float activeTime;
     public float maxActiveTime;
 
+    public GameObject itemSpawnerReference;
 
    ParticleSystem particleSystem;
 
@@ -55,7 +56,21 @@ public class FireBreathe : MonoBehaviour
         }
         else if (other.tag == "Burnable")
         {
+            //Small chance for iceblocks to drop items
+            if (other.name[0] == 'I')
+            {
+                if (Random.Range(0, 3) == 0)
+                {
+                    GameObject newCollectableSpawner = Instantiate(itemSpawnerReference);
+                    newCollectableSpawner.transform.position = other.transform.position;
+                    Debug.Log("Thing spawned");
+                }
+            }
+
+            //Burn the object! (Spawn a special particle here?)
             Destroy(other.gameObject);
+
+
         }
     }
 }

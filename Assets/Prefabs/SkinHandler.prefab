@@ -50,9 +50,12 @@ MonoBehaviour:
   levelThemeWallMaterials:
   - {fileID: 2100000, guid: 5bce6d425638ae049afebe90ca9160bf, type: 2}
   - {fileID: 2100000, guid: 2871c2c939192f944aa3798597a2431a, type: 2}
+  - {fileID: 2100000, guid: 2266f38abc5b76b4c94d2a432970fcab, type: 2}
   levelThemeFloorMaterials:
   - {fileID: 2100000, guid: 01d7fb47618fba84d8f6efda0eea522a, type: 2}
+  - {fileID: 2100000, guid: 3e92b03d0258357408295ef085587534, type: 2}
   - {fileID: 2100000, guid: 3e92b03d0258357408295ef085587534, type: 2}
   levelThemeObjects:
   - {fileID: 2000637683906764754, guid: 6df557514ff44724fadfdc5f54ab65c4, type: 3}
   - {fileID: 9170965267779166155, guid: 1ec2b1b8601433b40a2f3e6a5077f856, type: 3}
+  - {fileID: 6519676012895536047, guid: 6ca447a4438a4194782bd790dd09544e, type: 3}
