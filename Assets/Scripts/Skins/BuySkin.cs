@@ -19,6 +19,9 @@ public class BuySkin : MonoBehaviour
 
     GlobalStats globalStats;
 
+    [Header("Skin Present Screen")]
+    public GameObject skinGetMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,16 +83,19 @@ public class BuySkin : MonoBehaviour
         //Update both pools
         skinObj.CreateRandomSkinPoolList();
 
+
         //Show feedback for what you just bought
+
+
         if (isSnake)
         {
-            text.text = "New Snake!\n";
-            text.text += ((Skins.SnakeSkins)randomIndex);
+            //text.text = "New Snake!\n";
+            text.text = ((Skins.SnakeSkins)randomIndex).ToString();
         }
         else
         {
-            text.text = "New Theme!\n";
-            text.text += ((Skins.Themes)randomIndex);
+            //text.text = "New Theme!\n";
+            text.text = ((Skins.Themes)randomIndex).ToString();
         }
         
         //Update coin count on HUD
@@ -98,9 +104,23 @@ public class BuySkin : MonoBehaviour
         //Recolour buttons
         UpdateButtons();
 
-        //Save game so skin is here for good.
-        GlobalStats.Save();
-        //globalStats.Save();
+        //-------------------------------------------------------------------------------------
+        //Open up the skin get screen here.
+        //Makes some of the above visual stuff kind of irrelevant but keep it just in case.
+        
+        SkinGet skinGetScript = skinGetMenu.GetComponent<SkinGet>();
+
+        if (isSnake)
+        {
+           skinGetScript.SetSnakeIcon(text.text, ((Skins.SnakeSkins)randomIndex));
+        }
+        else
+        {
+            skinGetScript.SetThemeIcon(text.text, ((Skins.Themes)randomIndex));
+        }
+
+        skinGetMenu.SetActive(true);
+        //-------------------------------------------------------------------------------------
     }
 
     //Go through the list of all themes yet to be unlocked.

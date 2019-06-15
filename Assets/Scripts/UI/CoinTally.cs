@@ -13,7 +13,8 @@ public class CoinTally : MonoBehaviour
     public Text bonusCoinsText;
     public GameObject gameOverObject;
     public GameObject continueButton;
-    
+
+    bool alreadyTallying;
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +23,29 @@ public class CoinTally : MonoBehaviour
         coinBonus = GlobalStats.score / 5;
         prevCoinCount = GlobalStats.coins - coinBonus;
 
+        alreadyTallying = false;
+
         UpdateText();
     }
 
     //Called when finally ending the game
    public void StartTallying()
     {
-        continueButton.SetActive(false); //Prevent repeats
+        if (!alreadyTallying)
+        {
+
+        continueButton.transform.GetChild(0).GetComponent<Text>().text = "Skip";
+        alreadyTallying = true;
+
 
         StartCoroutine(Countdown());
+
+        }
+        else
+        {
+         //Force skip
+         gameOverObject.GetComponent<DeathHandler>().RestartScene();
+        }
     }
 
     private IEnumerator Countdown()
@@ -47,11 +62,9 @@ public class CoinTally : MonoBehaviour
         UpdateText();
         yield return new WaitForSeconds(0.1f);
         }
-
-
         gameOverObject.GetComponent<DeathHandler>().RestartScene();
-         
 
+        yield break;
     }
 
     void UpdateText()
