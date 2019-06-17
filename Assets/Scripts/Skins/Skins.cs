@@ -64,40 +64,49 @@ public class Skins : MonoBehaviour
         //Initialize everything here but only the first time because static variables
         if (!firstTimeStartup)
         {
-        Debug.Log(Application.persistentDataPath);
-        //By default randomizing isn't set. Unless the player wants random themes for each level.
-        randomTheme = false;
+            Debug.Log(Application.persistentDataPath);
+            //By default randomizing isn't set. Unless the player wants random themes for each level.
+            randomTheme = false;
 
-        //Default level skins
-        snakeSkin = SnakeSkins.DEFAULT;
-        levelTheme = Themes.DEFAULT;
+            //Default level skins
+            snakeSkin = SnakeSkins.DEFAULT;
+            levelTheme = Themes.DEFAULT;
 
-        //Load the last selected theme here.
+            //Initialize unlock skin arrays
+            unlockedSnakeSkins = new bool[(int)SnakeSkins.RANDOM + 1];
+            unlockedLevelThemes = new bool[(int)Themes.RANDOM + 1];
 
+            unlockedSnakeSkins[(int)SnakeSkins.RANDOM] = true;
+            unlockedSnakeSkins[(int)SnakeSkins.DEFAULT] = true;
 
-        //Initialize unlock skin arrays
-        unlockedSnakeSkins = new bool[(int)SnakeSkins.RANDOM+1];
-        unlockedLevelThemes = new bool[(int)Themes.RANDOM+1];
-
-        unlockedSnakeSkins[(int)SnakeSkins.RANDOM] = true;
-        unlockedSnakeSkins[(int)SnakeSkins.DEFAULT] = true;
-
-        unlockedLevelThemes[(int)Themes.RANDOM] = true;
-        unlockedLevelThemes[(int)Themes.DEFAULT] = true;
+            unlockedLevelThemes[(int)Themes.RANDOM] = true;
+            unlockedLevelThemes[(int)Themes.DEFAULT] = true;
 
 
-        //Load in all unlocked skins here (And everything else)
-        GlobalStats.Load();
+            //Load in all unlocked skins here (And everything else)
+            GlobalStats.Load();
 
-        //Make a list of the unlocked skins for randomization
-        themePool = new List<Themes>();
-        skinPool = new List<SnakeSkins>();
-        CreateRandomSkinPoolList();
+            //Make a list of the unlocked skins for randomization
+            themePool = new List<Themes>();
+            skinPool = new List<SnakeSkins>();
+            CreateRandomSkinPoolList();
             CheckForRandomization();
             GlobalStats.hud.UpdateHUD();
             firstTimeStartup = true;
+            UpdatePlayerSkin();
         }
-        else CheckForRandomization();
+        else
+        {
+            CheckForRandomization();
+            UpdatePlayerSkin();
+        }
+    }
+
+    void UpdatePlayerSkin()
+    {
+        ////Make sure the snake is actually randomized
+        Snake snake = GameObject.Find("Player").GetComponent<Snake>();
+        if (snake) snake.ChangeSnakeSkin();
     }
 
     //Get a list of all unlocked skins to choose from when randomizing skins.
@@ -127,10 +136,6 @@ public class Skins : MonoBehaviour
             randomSkin = true;
             snakeSkin =  skinPool[Random.Range(0, skinPool.Count)];
             Debug.Log("Skins should be random now.");
-
-            ////Make sure the snake is actually randomized
-           Snake snake = GameObject.Find("Player").GetComponent<Snake>();
-           if (snake) snake.ChangeSnakeSkin();
         }
     }
 
@@ -144,9 +149,31 @@ public class Skins : MonoBehaviour
         Debug.Log("Checking to turn off random. Random Snakes: " + randomSkin.ToString() + " Random Themes: " + randomTheme.ToString());
     }
 
-    // Update is called once per frame
-    void Update()
+    public static bool HaveAllSnakeSkins()
     {
-        
+
+        foreach (bool unlockFlag in unlockedSnakeSkins)
+        {
+            if (!unlockFlag)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static bool HaveAllLevelThemes()
+    {
+
+        foreach (bool unlockFlag in unlockedLevelThemes)
+        {
+            if (!unlockFlag)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

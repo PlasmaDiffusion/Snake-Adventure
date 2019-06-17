@@ -30,40 +30,44 @@ public class BuySkin : MonoBehaviour
         button.onClick.AddListener(Buy);
         text = transform.GetChild(0).GetComponent<Text>();
 
+        //Auto set costs
         if (cost <= 0)
         {
             if (isTheme) cost = 50;
             else if (isSnake) cost = 40;
         }
 
-        globalStats = GameObject.Find("LevelSpawner").GetComponent<GlobalStats>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void Buy()
-    {
-        if (isSnake)
+        //Make sure there are actual skins/themes left to buy!
+        if (isTheme)
         {
-            if (GlobalStats.coins >= cost)
-            {
-                Purchase();
-            }
+            if (Skins.HaveAllLevelThemes()) GreyOutButton();
         }
         else
         {
+            if (Skins.HaveAllSnakeSkins()) GreyOutButton();
+        }
 
-            if (GlobalStats.coins >= cost)
+        globalStats = GameObject.Find("LevelSpawner").GetComponent<GlobalStats>();
+    }
+
+    //Disable buying cause the player owns everything already. :(
+    void GreyOutButton()
+    {
+        button.onClick.RemoveAllListeners();
+        if (isSnake) text.text = "Own all \nSnakes.";
+        else text.text = "Own all \nThemes.";
+
+        //Also actually grey out the button duh
+        button.GetComponent<Image>().color = Color.grey;
+    }
+
+    //Check if the player has the coins. If so then buy a random skin in Purchase().
+    void Buy()
+    {
+        if (GlobalStats.coins >= cost)
             {
                 Purchase();
             }
-
-        }
-
     }
 
     private void Purchase()

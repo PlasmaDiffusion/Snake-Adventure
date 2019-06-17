@@ -13,7 +13,7 @@ public class LightUpMaterial : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
 
-        float alphaModifier = 0.0f;
+        float alphaModifier = 1.0f;
 
         if (Skins.levelTheme == Skins.Themes.SNOW) { multiplier *= 0.5f; alphaModifier = 0.1f; }
 

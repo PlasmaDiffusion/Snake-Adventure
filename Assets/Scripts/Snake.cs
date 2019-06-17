@@ -82,9 +82,9 @@ public class Snake : MonoBehaviour
 
         camOffset = new Vector3(0.0f, 20.0f, 0.0f);
 
-        //Change skins
+        //Change skins to whatever is set.
         rend = GetComponent<Renderer>();
-
+        //ChangeSnakeSkin(); //Skins will call this instead.
     }
 
     //Update the snake skin and colour variable. Called whenever the player swaps skins beforet the game starts.

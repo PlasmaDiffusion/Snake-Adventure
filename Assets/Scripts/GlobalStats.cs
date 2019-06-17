@@ -10,7 +10,7 @@ public class GlobalStats : MonoBehaviour
 
     public static int score, requiredFood;
 
-    public static int coins = 60;
+    public static int coins = 35;
 
     static bool loadedSave = false;
 
