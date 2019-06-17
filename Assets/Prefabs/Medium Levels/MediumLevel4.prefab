@@ -2700,7 +2700,7 @@ PrefabInstance:
     - target: {fileID: 4004797985365705509, guid: b08e9b16118dbb446a9729216a30a372,
         type: 3}
       propertyPath: startingVel.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b08e9b16118dbb446a9729216a30a372, type: 3}
@@ -3592,18 +3592,12 @@ PrefabInstance:
       propertyPath: maxFoodRequired
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 8570738276784223242, guid: d4cc9a741317615429851a30a39a3002,
-        type: 3}
-      propertyPath: m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 6647182962dfe3a45856665434bd0917,
-        type: 3}
     - target: {fileID: 8570738276784223241, guid: d4cc9a741317615429851a30a39a3002,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6647182962dfe3a45856665434bd0917, type: 3}
-    - target: {fileID: 8570738277001780518, guid: d4cc9a741317615429851a30a39a3002,
+    - target: {fileID: 8570738276784223242, guid: d4cc9a741317615429851a30a39a3002,
         type: 3}
       propertyPath: m_Font
       value: 
@@ -3614,6 +3608,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6647182962dfe3a45856665434bd0917, type: 3}
+    - target: {fileID: 8570738277001780518, guid: d4cc9a741317615429851a30a39a3002,
+        type: 3}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6647182962dfe3a45856665434bd0917,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4cc9a741317615429851a30a39a3002, type: 3}
 --- !u!4 &146967634883766032 stripped

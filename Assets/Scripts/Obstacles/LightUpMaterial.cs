@@ -8,21 +8,34 @@ public class LightUpMaterial : MonoBehaviour
 
     public float multiplier;
 
+
     // Light up the material
     void Start()
     {
         rend = GetComponent<Renderer>();
+        
+        float rModifier = 0.1f;
+        float gModifier = 0.1f;
+        float bModifier = 0.1f;
 
-        float alphaModifier = 1.0f;
+        CheckForSpecificThemeModifiers(ref rModifier, ref gModifier, ref bModifier);
 
-        if (Skins.levelTheme == Skins.Themes.SNOW) { multiplier *= 0.5f; alphaModifier = 0.1f; }
-
-        rend.material.color += (new Color(0.1f, 0.1f, 0.1f, alphaModifier) * multiplier);
+        rend.material.color += (new Color(rModifier, gModifier, bModifier) * multiplier);
     }
 
-    // Update is called once per frame
-    void Update()
+    //Use this function to hardcode how much the material changes depending on what the theme is.
+    void CheckForSpecificThemeModifiers(ref float rModifier, ref float gModifier, ref float bModifier)
     {
-        
+
+        switch (Skins.levelTheme)
+        {
+            case Skins.Themes.DEFAULT:
+                bModifier = 0.2f;
+                break;
+
+            case Skins.Themes.SNOW:
+                multiplier *= -2.0f;
+                break;
+        }
     }
 }
