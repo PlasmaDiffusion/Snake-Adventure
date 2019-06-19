@@ -10,6 +10,7 @@ public class GlobalHUD : MonoBehaviour
     public GameObject boostMenuObject;
     public GameObject skinMenuObject;
     public GameObject themeMenuObject;
+    public GameObject helpMenuObject;
 
     //Text objects
     public GameObject scoreObject;
@@ -168,6 +169,12 @@ public class GlobalHUD : MonoBehaviour
             case 3: //Theme menu
 
                 themeMenuObject.SetActive(true);
+                HideChildren();
+
+                break;
+            case 4: //Help menu
+
+                helpMenuObject.SetActive(true);
                 HideChildren();
 
                 break;

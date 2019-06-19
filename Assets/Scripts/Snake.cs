@@ -16,7 +16,7 @@ public class Snake : MonoBehaviour
 
     [HideInInspector]
     public Vector3 lastGroundedPosition;
-    
+
     //Touch input
     Vector3 startSwipePos;
     Vector3 endSwipePos;
@@ -133,7 +133,7 @@ public class Snake : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            
+
             // Handle finger movements based on TouchPhase
             switch (touch.phase)
             {
@@ -177,7 +177,7 @@ public class Snake : MonoBehaviour
 
         //Camera moves with player except for the y
         cam.transform.position = transform.position + camOffset;
-        
+
 
         LerpToDirection();
 
@@ -208,12 +208,12 @@ public class Snake : MonoBehaviour
 
         return touch;
     }
-    
+
     //Movement updating
     void FixedUpdate()
     {
 
-        if(CheckIfPaused()) return;
+        if (CheckIfPaused()) return;
 
         //Every update check the direction and update the velocity. Also rotate to that direction.
         switch (currentDirection)
@@ -282,15 +282,15 @@ public class Snake : MonoBehaviour
             //Record last grounded position for when the player falls off the world... (Position from one of the last segments)
             if (rigidbody.velocity.y == 0.0f && prevPositions.Count > 2)
             {
-                    //Ideally 6 positions away would work but the player will need that many segments
-                    for (int i = 6; i > 2; i--)
+                //Ideally 6 positions away would work but the player will need that many segments
+                for (int i = 6; i > 2; i--)
+                {
+                    if (prevPositions.Count > i)
                     {
-                        if (prevPositions.Count > i)
-                        {
-                            lastGroundedPosition = prevPositions[prevPositions.Count - i];
-                            break;
-                        }
+                        lastGroundedPosition = prevPositions[prevPositions.Count - i];
+                        break;
                     }
+                }
             }
 
             //Record position for the snake segments
@@ -329,8 +329,8 @@ public class Snake : MonoBehaviour
 
         if (segments > 1) //For actual segments
         {
-        sl.targetObject = otherSegments[otherSegments.Count - 1];
-        sl.targetObject2 = otherSegments[otherSegments.Count - 2];
+            sl.targetObject = otherSegments[otherSegments.Count - 1];
+            sl.targetObject2 = otherSegments[otherSegments.Count - 2];
         }
         else //For linking a segment to this object.
         {
@@ -347,7 +347,7 @@ public class Snake : MonoBehaviour
     public void ZoomOutCamera()
     {
         if (camOffset.y < 30.0f)
-        camOffset += new Vector3(0.0f, 0.1f, 0.0f);
+            camOffset += new Vector3(0.0f, 0.1f, 0.0f);
     }
 
     //Change swipe directions
@@ -373,7 +373,7 @@ public class Snake : MonoBehaviour
         Left
     }
 
-    
+
     DraggedDirection GetDragDirection(Vector3 dragVector)
     {
         float positiveX = Mathf.Abs(dragVector.x);
@@ -399,7 +399,7 @@ public class Snake : MonoBehaviour
 
         //return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
     }
-    
+
     //Call to toggle pause
     public void Pause()
     {
@@ -411,7 +411,7 @@ public class Snake : MonoBehaviour
             GlobalStats.hud.boostMenuObject.SetActive(true);
 
             if (GlobalStats.paused)
-            pauseMenuObject.SetActive(true);
+                pauseMenuObject.SetActive(true);
             else
                 pauseMenuObject.SetActive(false);
         }
@@ -425,14 +425,14 @@ public class Snake : MonoBehaviour
         {
             timeRotating += Time.deltaTime * 8.0f;
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, timeRotating);
-            
+
         }
     }
 
     //------------------------------------------------
     // Boost functions below.
     //------------------------------------------------
-    
+
     //Tap the boost button to toggle boosting
     public void ToggleBoost()
     {
@@ -472,4 +472,17 @@ public class Snake : MonoBehaviour
     }
 
     public float GetBoostGuage() { return boostGuage; }
+
+
+    //public GUIStyle style;
+
+    //private void OnGUI()
+    //{
+    //        //GUI.color = Color.red;
+    //        //GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
+    //        //GUI.color = Color.blue;
+    //        GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + ((1.0f / Time.deltaTime)).ToString(), style);
+    //    GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
+    
+    //}
 }

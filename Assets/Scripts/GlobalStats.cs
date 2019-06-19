@@ -23,6 +23,7 @@ public class GlobalStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         score = 0;
         paused = true;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
