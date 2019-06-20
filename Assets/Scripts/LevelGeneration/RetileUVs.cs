@@ -10,6 +10,7 @@ public class RetileUVs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Skins.levelTheme != Skins.Themes.SNOW) //Dont change themes that AREN'T tiled.
         GetComponent<Renderer>().material.mainTextureScale = newUVScale;
     }
 

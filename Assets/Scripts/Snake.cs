@@ -194,6 +194,26 @@ public class Snake : MonoBehaviour
         SnakeFood.CheckScoreMultiplier();
 
         UpdateBoost();
+
+        //Every update check the direction and update the velocity. Also rotate to that direction.
+        switch (currentDirection)
+        {
+
+            case DraggedDirection.Up:
+                transform.position += (new Vector3(0.0f, rigidbody.velocity.y, speed * Time.deltaTime));
+                break;
+            case DraggedDirection.Down:
+                transform.position += (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
+                break;
+            case DraggedDirection.Left:
+                transform.position += (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+                break;
+            case DraggedDirection.Right:
+                transform.position += (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+                break;
+        }
+
+        transform.position = AlignToGrid(transform.position);
     }
 
     private Touch ForceEndSwipe(Touch touch)
@@ -210,38 +230,38 @@ public class Snake : MonoBehaviour
     }
 
     //Movement updating
-    void FixedUpdate()
-    {
+    //void FixedUpdate()
+    //{
 
-        if (CheckIfPaused()) return;
+    //    if (CheckIfPaused()) return;
 
-        //Every update check the direction and update the velocity. Also rotate to that direction.
-        switch (currentDirection)
-        {
+    //    //Every update check the direction and update the velocity. Also rotate to that direction.
+    //    switch (currentDirection)
+    //    {
 
-            case DraggedDirection.Up:
-                rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, speed * Time.deltaTime));
-                targetRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-            case DraggedDirection.Down:
-                rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
-                targetRotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-            case DraggedDirection.Left:
-                rigidbody.velocity = (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-                targetRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-            case DraggedDirection.Right:
-                rigidbody.velocity = (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-                targetRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                timeRotating = 0.0f;
-                break;
-        }
+    //        case DraggedDirection.Up:
+    //            rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, speed * Time.deltaTime));
+    //            targetRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+    //            timeRotating = 0.0f;
+    //            break;
+    //        case DraggedDirection.Down:
+    //            rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
+    //            targetRotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
+    //            timeRotating = 0.0f;
+    //            break;
+    //        case DraggedDirection.Left:
+    //            rigidbody.velocity = (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+    //            targetRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+    //            timeRotating = 0.0f;
+    //            break;
+    //        case DraggedDirection.Right:
+    //            rigidbody.velocity = (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
+    //            targetRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+    //            timeRotating = 0.0f;
+    //            break;
+    //    }
 
-    }
+    //}
 
     //Set vel to 0 if the game is paused. Also check for unpause.
     bool CheckIfPaused()
@@ -395,9 +415,9 @@ public class Snake : MonoBehaviour
     public Vector3 AlignToGrid(Vector3 oldPos)
     {
         //Change this to go back to snapping
-        return oldPos;
+        //return oldPos;
 
-        //return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
+        return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
     }
 
     //Call to toggle pause
