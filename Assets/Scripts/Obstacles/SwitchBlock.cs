@@ -40,12 +40,14 @@ public class SwitchBlock : MonoBehaviour
 
     void MakeSolid()
     {
+        tag = "Wall";
         boxCollider.isTrigger = false;
         material.color = onColour;
     }
 
     void MakeTrigger()
     {
+        tag = "Untagged";
         boxCollider.isTrigger = true;
         material.color = offColour;
     }

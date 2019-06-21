@@ -24,8 +24,6 @@ public class SnakeSegment : MonoBehaviour
         }
     }
 
-    
-
     private void OnTriggerExit(Collider other)
     {
         if (other.name == "Player")

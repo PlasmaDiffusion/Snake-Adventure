@@ -276,7 +276,6 @@ MonoBehaviour:
   themeAffectsMaterial: 0
   changesFloorMaterial: 0
   themeAffectsMesh: 1
-  alreadyChangedMesh: 0
 --- !u!1 &2733725092575371091
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +473,7 @@ GameObject:
   - component: {fileID: 3266572995560386110}
   m_Layer: 0
   m_Name: PalmTreeStem
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,7 +557,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3266572995560386110
 MonoBehaviour:
@@ -575,7 +574,6 @@ MonoBehaviour:
   themeAffectsMaterial: 0
   changesFloorMaterial: 0
   themeAffectsMesh: 1
-  alreadyChangedMesh: 1
 --- !u!1 &3442057059722228332
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,7 +56,9 @@ public class SnakeGate : MonoBehaviour
 
             GetComponent<Renderer>().material.color = new Color(0.2f, 0.0f, 0.6f, 0.5f);
 
-
+            //Make the collision possible and not solid now.
+            tag = "Untagged";
+            Destroy(transform.GetChild(6).gameObject);
 
         }
 

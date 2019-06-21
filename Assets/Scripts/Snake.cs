@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //The main player class.
-public class Snake : MonoBehaviour
+public class Snake : SnakeMovement
 {
 
     //Movement vars
-
-    public float speed;
+    
     public bool alive; //When not alive, the game is forced to be paused
-    DraggedDirection currentDirection;
-    DraggedDirection oldDirection;
-    Rigidbody rigidbody;
+
 
     [HideInInspector]
     public Vector3 lastGroundedPosition;
@@ -22,23 +19,11 @@ public class Snake : MonoBehaviour
     Vector3 endSwipePos;
     float timeSwipeHeld;
 
-    //Var for rotating
-    Quaternion targetRotation;
-    float timeRotating;
 
     //Boost
     float boostGuage;
     public static bool boosting;
 
-    //Other snake segments
-    int segments;
-    float positionRecordTime;
-    float timeBetweenPositions;
-    public List<Vector3> prevPositions;
-    [Header("Snake References to Copy")]
-    public GameObject segmentReference;
-    public GameObject segmentLinkReference;
-    List<GameObject> otherSegments;
 
     public GameObject cam;
     Vector3 camOffset;
@@ -58,7 +43,7 @@ public class Snake : MonoBehaviour
     void Start()
     {
         //Snake segment related
-        timeBetweenPositions = 0.275f;
+        timeBetweenPositions = 0.15f;
         positionRecordTime = 0.0f;
 
         //Input swipe related
@@ -76,15 +61,20 @@ public class Snake : MonoBehaviour
         //Movement related
         rigidbody = GetComponent<Rigidbody>();
         currentDirection = DraggedDirection.Up;
+        moveRate = 5.0f;
 
         alive = true;
         timeRotating = 1.0f;
+
+        InitSnakeMovement();
+        
 
         camOffset = new Vector3(0.0f, 20.0f, 0.0f);
 
         //Change skins to whatever is set.
         rend = GetComponent<Renderer>();
         //ChangeSnakeSkin(); //Skins will call this instead.
+
     }
 
     //Update the snake skin and colour variable. Called whenever the player swaps skins beforet the game starts.
@@ -179,7 +169,6 @@ public class Snake : MonoBehaviour
         cam.transform.position = transform.position + camOffset;
 
 
-        LerpToDirection();
 
         //Segment updating
 
@@ -188,32 +177,18 @@ public class Snake : MonoBehaviour
             otherSegments[i].transform.position = prevPositions[prevPositions.Count - (1 + i)]; //Error here
         }
 
-        RecordPositions();
+        //RecordPositions();
+
+        //Call this to actually move
+        MoveAndSnapToGrid();
+
+        LerpToDirection();
 
         //Update score multiplier powerup here.
         SnakeFood.CheckScoreMultiplier();
 
         UpdateBoost();
-
-        //Every update check the direction and update the velocity. Also rotate to that direction.
-        switch (currentDirection)
-        {
-
-            case DraggedDirection.Up:
-                transform.position += (new Vector3(0.0f, rigidbody.velocity.y, speed * Time.deltaTime));
-                break;
-            case DraggedDirection.Down:
-                transform.position += (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
-                break;
-            case DraggedDirection.Left:
-                transform.position += (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-                break;
-            case DraggedDirection.Right:
-                transform.position += (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-                break;
-        }
-
-        transform.position = AlignToGrid(transform.position);
+        
     }
 
     private Touch ForceEndSwipe(Touch touch)
@@ -321,47 +296,11 @@ public class Snake : MonoBehaviour
             {
                 prevPositions.RemoveAt(0);
             }
+            
         }
     }
 
-    //Add a snake segment. Capped at 100.
-    public void AddSegment()
-    {
-        if (segments >= 100) return;
 
-        //Make the new segment have the same material!
-        segmentReference.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
-
-        segments++;
-        otherSegments.Add(Instantiate(segmentReference));
-
-        //This segment can refer to the owner when the owner dies.
-        otherSegments[otherSegments.Count - 1].GetComponent<SnakeSegment>().snakeOwner = gameObject;
-
-        //The first segment you cant collide with cause collision problems
-        if (segments == 1)
-        {
-            otherSegments[0].name = "First Segment";
-        }
-
-        //Link segments together visually
-        SegmentLink sl = Instantiate(segmentLinkReference).GetComponent<SegmentLink>();
-
-        if (segments > 1) //For actual segments
-        {
-            sl.targetObject = otherSegments[otherSegments.Count - 1];
-            sl.targetObject2 = otherSegments[otherSegments.Count - 2];
-        }
-        else //For linking a segment to this object.
-        {
-            sl.targetObject = otherSegments[otherSegments.Count - 1];
-            sl.targetObject2 = gameObject;
-        }
-
-        //Force prevPositions to update
-        positionRecordTime = 99.0f;
-        RecordPositions();
-    }
 
     //Call this whenever the snake grows, but not limit it eventually.
     public void ZoomOutCamera()
@@ -382,16 +321,9 @@ public class Snake : MonoBehaviour
         Debug.Log(oldDirection);
         currentDirection = GetDragDirection(dragVectorDirection);
 
-        if (currentDirection != oldDirection) transform.position = AlignToGrid(transform.position);
+        //if (currentDirection != oldDirection) transform.position = AlignToGrid(transform.position);
     }
 
-    private enum DraggedDirection
-    {
-        Up,
-        Down,
-        Right,
-        Left
-    }
 
 
     DraggedDirection GetDragDirection(Vector3 dragVector)
@@ -411,14 +343,6 @@ public class Snake : MonoBehaviour
         return draggedDir;
     }
 
-    //Snap in place to grid so its like traditional snake
-    public Vector3 AlignToGrid(Vector3 oldPos)
-    {
-        //Change this to go back to snapping
-        //return oldPos;
-
-        return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
-    }
 
     //Call to toggle pause
     public void Pause()
@@ -439,15 +363,7 @@ public class Snake : MonoBehaviour
 
     public void MakeAlive() { alive = true; pauseMenuObject.SetActive(true); }
 
-    void LerpToDirection()
-    {
-        if (timeRotating < 1.0f)
-        {
-            timeRotating += Time.deltaTime * 8.0f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, timeRotating);
 
-        }
-    }
 
     //------------------------------------------------
     // Boost functions below.
@@ -458,12 +374,14 @@ public class Snake : MonoBehaviour
     {
         if (boostGuage >= 1.0f) //Turn on boost
         {
+            moveRate = 8.0f;
             boosting = true;
             speed = 360.0f;
             timeBetweenPositions = 0.175f;
         }
         else //Turn off boost
         {
+            moveRate = 5.0f;
             speed = 240.0f;
             timeBetweenPositions = 0.275f;
             boosting = false;

@@ -9,6 +9,7 @@ TagManager:
   - Segment
   - DirectionChanger
   - Burnable
+  - SolidCheck
   layers:
   - Default
   - TransparentFX
