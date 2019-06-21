@@ -49,7 +49,7 @@ public class SnakeMovement : MonoBehaviour
         transform.position = AlignToGrid(transform.position);
         targetPosition = transform.position;
         positionT = 1.0f;
-        moveRate = 5.0f;
+        moveRate = 8.0f;
         
 
         //Set collision boxes

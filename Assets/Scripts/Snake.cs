@@ -165,8 +165,6 @@ public class Snake : SnakeMovement
         if (Input.GetKeyDown(KeyCode.UpArrow)) currentDirection = DraggedDirection.Up;
         if (Input.GetKeyDown(KeyCode.DownArrow)) currentDirection = DraggedDirection.Down;
 
-        //Camera moves with player except for the y
-        cam.transform.position = transform.position + camOffset;
 
 
 
@@ -183,6 +181,9 @@ public class Snake : SnakeMovement
         MoveAndSnapToGrid();
 
         LerpToDirection();
+
+        //Camera moves with player except for the y
+        cam.transform.position = transform.position + camOffset;
 
         //Update score multiplier powerup here.
         SnakeFood.CheckScoreMultiplier();
@@ -374,14 +375,14 @@ public class Snake : SnakeMovement
     {
         if (boostGuage >= 1.0f) //Turn on boost
         {
-            moveRate = 8.0f;
+            moveRate = 12.0f;
             boosting = true;
             speed = 360.0f;
             timeBetweenPositions = 0.175f;
         }
         else //Turn off boost
         {
-            moveRate = 5.0f;
+            moveRate = 8.0f;
             speed = 240.0f;
             timeBetweenPositions = 0.275f;
             boosting = false;
