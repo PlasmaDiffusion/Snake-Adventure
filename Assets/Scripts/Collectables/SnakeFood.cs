@@ -9,6 +9,10 @@ public class SnakeFood : MonoBehaviour
     static int scoreMultiplier = 1;
     static float multiplierTime = 0.0f;
 
+    //Delegate for food spawner to react to when this is collected.
+    public delegate void OnCollect();
+    public OnCollect ExtraCollectEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,7 @@ public class SnakeFood : MonoBehaviour
         if (other.name == "Player")
         {
             //Add onto the score! There could be a score multiplier too.
-            GlobalStats.score+= scoreMultiplier;
+            GlobalStats.score += scoreMultiplier;
             GlobalStats.hud.UpdateHUD();
 
             //Add a snake segment
@@ -34,12 +38,17 @@ public class SnakeFood : MonoBehaviour
             snake.ZoomOutCamera();
             snake.IncreaseBoostGuage();
 
+            //If a classic snake collectable then notify the food spawner
+            if (ExtraCollectEvent != null)
+                ExtraCollectEvent();
 
             //Notify the gate this was collected
             transform.parent.Find("Gate").GetComponent<SnakeGate>().LowerGate();
             Destroy(gameObject);
         }
+        else if (other.name == "Marker") Destroy(other.gameObject); //Destroy a food marker if the food spawned from it.
     }
+
 
     //Call this to add a multiplier for a certain number of seconds. Can stack.
     public static void AddMultiplier()
@@ -64,6 +73,8 @@ public class SnakeFood : MonoBehaviour
             }
         }
 
+        
     }
+
 
 }

@@ -11,16 +11,31 @@ public class CheckIfSolid : MonoBehaviour
 
     public Vector3 offset;
 
+    Snake snake;
+
+    //When list contains something, solid flag will be true.
+    int overlappingSolidColliders;
+
+
     // Start is called before the first frame update
     void Start()
     {
         isSolid = false;
+        snake = GameObject.Find("Player").GetComponent<Snake>();
+        //overlappingSolidColliders = new List<Collider>();
     }
 
     //Move relative to the player, to the right, left, in front or behind them.
     void Update() //Maybe try snapping these collision boxes to the grid constantly?
     {
-        if(owner)transform.position = owner.transform.position + offset;
+        if (owner)
+        {
+            transform.position = owner.transform.position + offset;
+            transform.position = snake.AlignToGrid(transform.position);
+        }
+
+        //When there are no solid objects, solid flag will be false.
+        if (overlappingSolidColliders == 0) isSolid = false;
     }
 
     public bool GetIsSolid() { return isSolid; }
@@ -29,9 +44,8 @@ public class CheckIfSolid : MonoBehaviour
     {
         if (other.tag == "Wall" || other.tag == "Burnable")
         {
-            Debug.Log("SOLID ON: " + name);
             isSolid = true;
-            //owner.transform.position = owner.GetComponent<SnakeMovement>().AlignToGrid(owner.transform.position);
+            overlappingSolidColliders++;
         }
     }
 
@@ -39,8 +53,7 @@ public class CheckIfSolid : MonoBehaviour
     {
         if (other.tag == "Wall" || other.tag == "Burnable")
         {
-            Debug.Log("SOLID OFF: " + name);
-            isSolid = false;
+            overlappingSolidColliders--;
         }
     }
 }

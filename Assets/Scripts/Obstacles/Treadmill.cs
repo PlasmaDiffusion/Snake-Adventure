@@ -12,6 +12,8 @@ public class Treadmill : MonoBehaviour
 
     float offsetLimit;
 
+    Snake snake;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,15 +38,38 @@ public class Treadmill : MonoBehaviour
         //Set actual texture to move with the offset
         rend.material.SetTextureOffset("_MainTex", offset);
     }
-    
 
+    //Force player to move in a direction. First just set the player variable.
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "Player")
+        {
+            snake = other.GetComponent<Snake>();
+        }
+    }
+
+    //Then force the player to move constantly if they're still on it.
     private void OnTriggerStay(Collider other)
     {
         if (GlobalStats.paused) return;
 
-        if (other.name == "Player" || other.tag == "Burnable")
+        if (other.name == "Player")
+        {
+            snake.ForceDirection(pushVector);
+        }
+        else if (other.tag == "Burnable") //Older method that pushes rigid bodies.
         {
             other.transform.position += (pushVector * Time.deltaTime);
+
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.name == "Player")
+        {
+            snake.StopForcingDirection();
+        }
+    }
+
 }

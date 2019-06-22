@@ -11,6 +11,10 @@ public class SnakeMovement : MonoBehaviour
     protected DraggedDirection oldDirection;
     protected Rigidbody rigidbody;
 
+    //Force direction variables for treadmills
+    DraggedDirection forcedDirection;
+    bool forcingDirection;
+
     //Other snake segments
     protected int segments;
     protected float positionRecordTime;
@@ -50,7 +54,8 @@ public class SnakeMovement : MonoBehaviour
         targetPosition = transform.position;
         positionT = 1.0f;
         moveRate = 8.0f;
-        
+
+        forcingDirection = false;
 
         //Set collision boxes
         solidCheck = new CheckIfSolid[4];
@@ -127,7 +132,15 @@ public class SnakeMovement : MonoBehaviour
 
     protected void MoveAndSnapToGrid()
     {
+        //Reset targetLerp position when needed
         if (positionT >= 1.0f) preTargetPosition = transform.position;
+
+
+        //Force a direction?
+        if (forcingDirection)
+        {
+            currentDirection = forcedDirection;
+        }
 
         //Every update check the direction and update the velocity. Also rotate to that direction.
         switch (currentDirection)
@@ -159,6 +172,7 @@ public class SnakeMovement : MonoBehaviour
                 break;
         }
 
+
         //transform.position = AlignToGrid(transform.position);
     }
 
@@ -169,7 +183,7 @@ public class SnakeMovement : MonoBehaviour
         //return oldPos;
 
         return new Vector3(Mathf.Round(oldPos.x), transform.position.y, Mathf.Round(oldPos.z));
-        return new Vector3(Mathf.Floor(oldPos.x), transform.position.y, Mathf.Floor(oldPos.z));
+        //return new Vector3(Mathf.Floor(oldPos.x), transform.position.y, Mathf.Floor(oldPos.z));
     }
 
     protected void LerpToDirection()
@@ -196,6 +210,27 @@ public class SnakeMovement : MonoBehaviour
             }
         }
 
+    }
+
+    //Force movement from objects like treadmills
+    public void ForceDirection(Vector3 direction)
+    {
+        DraggedDirection newDirection = DraggedDirection.Up;
+
+        Debug.Log("Given the following direction vector: " + direction.ToString());
+
+        if (direction.x > 1.0f) newDirection = DraggedDirection.Right;
+        if (direction.x < -1.0f) newDirection = DraggedDirection.Left;
+        if (direction.z > 1.0f) newDirection = DraggedDirection.Up;
+        if (direction.z < -1.0f) newDirection = DraggedDirection.Down;
+
+        forcedDirection = newDirection;
+        forcingDirection = true;
+    }
+
+    public void StopForcingDirection()
+    {
+        forcingDirection = false;
     }
 
 }

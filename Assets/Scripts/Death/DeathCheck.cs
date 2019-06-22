@@ -29,7 +29,7 @@ public class DeathCheck : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         regColor = rend.material.color;
-        collisionTimeLimit = 1.0f;
+        collisionTimeLimit = 0.75f;
         collisionTimeInSegment = 0.0f;
 
         colliding = false;
