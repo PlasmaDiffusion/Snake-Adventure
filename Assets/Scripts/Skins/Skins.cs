@@ -9,6 +9,11 @@ public class Skins : MonoBehaviour
         DEFAULT,
         BLUE,
         CAMO,
+        SKIN4,
+        SKIN5,
+        SKIN6,
+        SKIN7,
+        SKIN8,
         RANDOM
     };
 
@@ -17,12 +22,11 @@ public class Skins : MonoBehaviour
         DEFAULT,
         SNOW,
         FACTORY,
-        //DESSERT,
-        //SKY,
-        //SEA,
-        //CANYON,
-        //FLOWER,
-        //TOY,
+        RUINS,
+        BOUNCY,
+        DESERT,
+        TOYBOX,
+        MOON,
         RANDOM
     };
 

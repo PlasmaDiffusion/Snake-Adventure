@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3255238562971012659}
   - component: {fileID: 8347722268551030602}
   - component: {fileID: 2165464814501619938}
+  - component: {fileID: 5090338536124423634}
   m_Layer: 0
   m_Name: SwitchBlock
   m_TagString: Wall
@@ -106,6 +107,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solid: 0
+--- !u!65 &5090338536124423634
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445734567104978301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2192597410083689769
 GameObject:
   m_ObjectHideFlags: 0

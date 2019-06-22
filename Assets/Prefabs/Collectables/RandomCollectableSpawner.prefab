@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540e12b7e79174e48b157479f97a1d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possiblePowerup: 0101010101
+  possiblePowerup: 0001010101
   collectables:
   - {fileID: 4691360507418889381, guid: c0a5e6d175b3e8d48a485367fda2130d, type: 3}
   - {fileID: 8942363812773083106, guid: 6f7e4fea74b528b489e79320c6aecc7a, type: 3}
