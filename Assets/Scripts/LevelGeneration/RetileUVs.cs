@@ -12,17 +12,21 @@ public class RetileUVs : MonoBehaviour
     {
         newUVScale = new Vector2(transform.localScale.x, transform.localScale.z);
 
+        SkrinkUVScale();
+
+
         if (Skins.levelTheme != Skins.Themes.SNOW) //Dont change themes that AREN'T tiled.
         {
             Renderer rend = GetComponent<Renderer>();
             rend.material.mainTextureScale = newUVScale;
             rend.material.mainTextureOffset = uvOffset;
         }
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void SkrinkUVScale()
     {
-        
+        if (Skins.levelTheme == Skins.Themes.DESERT) newUVScale *= 0.5f;
     }
 }

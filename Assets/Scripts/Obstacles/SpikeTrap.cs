@@ -45,7 +45,7 @@ public class SpikeTrap : MonoBehaviour
         opposite = true;
         collisionDebounce = 0.0f;
 
-        rigidbody.velocity = startingVel;
+        if(rigidbody)rigidbody.velocity = startingVel;
         oppositeVel = -startingVel;
 
         currentVel = -startingVel;
@@ -72,7 +72,7 @@ public class SpikeTrap : MonoBehaviour
     // Movement updating happens here
     void FixedUpdate()
     {
-        if (GlobalStats.paused) return;
+        if (GlobalStats.paused || !rigidbody) return;
         
         if (collisionDebounce > 0.0f) collisionDebounce -= Time.deltaTime;
 
