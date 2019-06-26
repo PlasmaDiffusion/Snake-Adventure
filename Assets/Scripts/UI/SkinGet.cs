@@ -88,6 +88,7 @@ public class SkinGet : MonoBehaviour
         newSkinName.text = name;
         isLevelTheme = true;
         Skins.levelTheme = theme;
+        Debug.Log("Theme icon set");
     }
     public void SetSnakeIcon(string name, Skins.SnakeSkins skin)
     {
@@ -99,6 +100,7 @@ public class SkinGet : MonoBehaviour
     //Player clicks continue button to try it out!
     void ClickOnTryIt()
     {
+        Debug.Log("Try it was clicked.");
 
         if (isLevelTheme)
         {
@@ -115,13 +117,15 @@ public class SkinGet : MonoBehaviour
 
         //Save game so skin is here for good.
         GlobalStats.Save();
-        
+
         //Get rid of this screen.
-        if (isLevelTheme) SceneManager.LoadScene(0);
-        else
+        if (!isLevelTheme)
         {
             GlobalStats.hud.ChangeMenuMode(1);
             gameObject.SetActive(false);
         }
+
+
+        SceneManager.LoadScene(0);
     }
 }

@@ -5038,7 +5038,7 @@ PrefabInstance:
     - target: {fileID: 8845045497342963846, guid: 8fe791944dc07c5438495a4b44aa0ac8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8845045497342963846, guid: 8fe791944dc07c5438495a4b44aa0ac8,
         type: 3}
@@ -7971,7 +7971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &601194622
 Transform:
   m_ObjectHideFlags: 0
@@ -14763,17 +14763,22 @@ PrefabInstance:
     - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
         type: 3}
       propertyPath: levelThemeWallMaterials.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
         type: 3}
       propertyPath: levelThemeFloorMaterials.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
         type: 3}
       propertyPath: levelThemeObjects.Array.size
-      value: 6
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: snakeSkins.Array.size
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
         type: 3}
@@ -14828,6 +14833,63 @@ PrefabInstance:
       propertyPath: levelThemeWallMaterials.Array.data[5]
       value: 
       objectReference: {fileID: 2100000, guid: eeb12c7d1973e0443aa95d203cfa4032, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: snakeSkins.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: snakeSkins.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: snakeSkins.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: snakeSkins.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: snakeSkins.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeWallMaterials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: eeb12c7d1973e0443aa95d203cfa4032, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeWallMaterials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: eeb12c7d1973e0443aa95d203cfa4032, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeFloorMaterials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 368bb84dff38c324980648abc7721371, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeFloorMaterials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 368bb84dff38c324980648abc7721371, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeObjects.Array.data[6]
+      value: 
+      objectReference: {fileID: 5738374359436440567, guid: 6f582c67dfae20b409eea707972d98fb,
+        type: 3}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeObjects.Array.data[7]
+      value: 
+      objectReference: {fileID: 5738374359436440567, guid: 6f582c67dfae20b409eea707972d98fb,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee4cad25033ad443a71c6364dcb72e5, type: 3}
 --- !u!1 &1045549059
@@ -24854,7 +24916,7 @@ PrefabInstance:
     - target: {fileID: 8845045497342963846, guid: 8fe791944dc07c5438495a4b44aa0ac8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8845045497342963846, guid: 8fe791944dc07c5438495a4b44aa0ac8,
         type: 3}
@@ -28851,7 +28913,7 @@ PrefabInstance:
     - target: {fileID: 1171142769667091698, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1171142769667091698, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
@@ -28861,7 +28923,7 @@ PrefabInstance:
     - target: {fileID: 1171142769667091698, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1171142769667091698, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
@@ -28876,7 +28938,7 @@ PrefabInstance:
     - target: {fileID: 1171142769667091698, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1171142769667091698, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
