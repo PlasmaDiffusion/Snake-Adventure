@@ -47,7 +47,7 @@ public class BestScores : MonoBehaviour
         }
         else if (coinBonus)
         {
-            int coinBonus = GlobalStats.score / 5;
+            int coinBonus = GlobalStats.score / 50;
             numberText.text = coinBonus.ToString();
         }
     }

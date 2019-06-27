@@ -51,6 +51,8 @@ public class FireBreathe : MonoBehaviour
         {
             SnakeSegment enemySegment = other.GetComponent<SnakeSegment>();
 
+            GlobalStats.AddScore(10, other.transform.position);
+
             Destroy(enemySegment.snakeOwner);
             
         }
@@ -66,6 +68,9 @@ public class FireBreathe : MonoBehaviour
                     Debug.Log("Thing spawned");
                 }
             }
+
+            //Bonus points
+            GlobalStats.AddScore(30, other.transform.position);
 
             //Burn the object! (Spawn a special particle here?)
             Destroy(other.gameObject);

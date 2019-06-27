@@ -29,8 +29,7 @@ public class SnakeFood : MonoBehaviour
         if (other.name == "Player")
         {
             //Add onto the score! There could be a score multiplier too.
-            GlobalStats.score += scoreMultiplier;
-            GlobalStats.hud.UpdateHUD();
+            GlobalStats.AddScore(scoreMultiplier * 10, transform.position);
 
             //Add a snake segment
             Snake snake = other.GetComponent<Snake>();

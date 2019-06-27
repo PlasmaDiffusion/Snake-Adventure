@@ -39,7 +39,11 @@ public class GlobalHUD : MonoBehaviour
 
     //Get values for fire powerup
     FireBreathe fireBreathe;
-    
+
+    //Score splash text reference for whenever you gain points
+    public GameObject scoreTextReference;
+    public GameObject cameraObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +61,7 @@ public class GlobalHUD : MonoBehaviour
 
         playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
         fireBreathe = GameObject.Find("Tongue").GetComponent<FireBreathe>();
+
         HideChildren();
     }
 
@@ -185,4 +190,16 @@ public class GlobalHUD : MonoBehaviour
     {
         Application.Quit();
     }
+
+    //Call to spawn arcade like score feedback
+    public void SpawnScoreText(int scoreAmount, Vector3 location)
+    {
+        GameObject scoreObj = Instantiate(scoreTextReference, gameObject.transform);
+        scoreObj.GetComponent<Text>().text = scoreAmount.ToString();
+
+
+        scoreObj.transform.position = cameraObject.GetComponent<Camera>().WorldToScreenPoint(location);
+
+    }
+    
 }

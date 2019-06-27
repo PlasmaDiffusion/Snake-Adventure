@@ -80,7 +80,7 @@ public class SnakeGate : MonoBehaviour
         {
             if (transform.parent.name != "StartingLevel")
             {
-                GlobalStats.score += 10;
+                GlobalStats.AddScore(100, other.transform.position);
             }
 
 

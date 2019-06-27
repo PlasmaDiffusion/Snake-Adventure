@@ -18,7 +18,6 @@ public class GlobalStats : MonoBehaviour
     static int hiscore, farthestLevel;
 
     public static GlobalHUD hud;
-  
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +32,14 @@ public class GlobalStats : MonoBehaviour
     void Update()
     {
         
+    }
+
+    //Call this whenever points are added to the score. It'll display the text from world to screen space and update the HUD.
+    public static void AddScore(int amount, Vector3 sourcePosition)
+    {
+        score += amount;
+        hud.SpawnScoreText(amount, sourcePosition);
+        hud.UpdateHUD();
     }
 
     public static bool CheckForHiScore()

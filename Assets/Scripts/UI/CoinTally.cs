@@ -20,7 +20,7 @@ public class CoinTally : MonoBehaviour
     void Start()
     {
         //Get this before global stats tallys coins
-        coinBonus = GlobalStats.score / 5;
+        coinBonus = GlobalStats.score / 50;
         prevCoinCount = GlobalStats.coins - coinBonus;
 
         alreadyTallying = false;
@@ -53,7 +53,7 @@ public class CoinTally : MonoBehaviour
 
 
         //Keep tallying counts every second until done.
-        while (coinBonus > 0)
+        while (coinBonus > 0 && prevCoinCount < GlobalStats.coins)
         {
             //Insert some coin sound here!!!!
 

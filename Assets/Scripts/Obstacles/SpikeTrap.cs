@@ -166,6 +166,11 @@ public class SpikeTrap : MonoBehaviour
 
     private void OnDestroy()
     {
+        //Find the emitter
+        GameObject emitter = GameObject.Find("DeathParticleEmitter");
+
+        if (emitter)Instantiate(emitter, transform.position, emitter.transform.rotation);
+
         Destroy(warningText);
     }
 }

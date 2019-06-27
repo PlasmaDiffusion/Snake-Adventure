@@ -73,7 +73,7 @@ public class DeathHandler : MonoBehaviour
     public void EndGame()
     {
         //Grant bonus coins
-        int coinBonus = GlobalStats.score / 5;
+        int coinBonus = GlobalStats.score / 50;
         
         endGameScreen.SetActive(true);
         

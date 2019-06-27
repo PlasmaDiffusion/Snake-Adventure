@@ -242,8 +242,14 @@ public class EnemySnake : MonoBehaviour
     //Remove child segments when dead
     private void OnDestroy()
     {
+        //Find the emitter
+        GameObject emitter = GameObject.Find("DeathParticleEmitter");
+
+        if (emitter) Instantiate(emitter, transform.position, emitter.transform.rotation);
+
         for (int i = otherSegments.Count-1; i >= 0; i--)
         {
+            if (emitter) Instantiate(emitter, otherSegments[i].transform.position, emitter.transform.rotation);
             //Insert death particle here
             Destroy(otherSegments[i]);
             otherSegments.RemoveAt(i);
