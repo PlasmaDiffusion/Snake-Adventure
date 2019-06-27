@@ -242,7 +242,7 @@ public class EnemySnake : MonoBehaviour
     //Remove child segments when dead
     private void OnDestroy()
     {
-        //Find the emitter
+        //Spawn death particles
         GameObject emitter = GameObject.Find("DeathParticleEmitter");
 
         if (emitter) Instantiate(emitter, transform.position, emitter.transform.rotation);

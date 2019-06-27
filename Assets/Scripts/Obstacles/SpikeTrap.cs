@@ -112,13 +112,12 @@ public class SpikeTrap : MonoBehaviour
         }
     }
     
+    //Atempt to kill the player (Won't if incinvincinle.) Also destroy this object.
     void KillPlayer(DeathCheck deathCheck)
     {
         deathCheck.Die();
-
-        rigidbody.velocity = new Vector3(0.0f, 10.0f, 0.0f);
-
         hideWarningText = true;
+        Destroy(gameObject);
     }
 
 
