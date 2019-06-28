@@ -112,7 +112,7 @@ public class SpikeTrap : MonoBehaviour
         }
     }
     
-    //Atempt to kill the player (Won't if incinvincinle.) Also destroy this object.
+    //Atempt to kill the player (Won't if incinvincinle). Also destroy this object.
     void KillPlayer(DeathCheck deathCheck)
     {
         deathCheck.Die();
