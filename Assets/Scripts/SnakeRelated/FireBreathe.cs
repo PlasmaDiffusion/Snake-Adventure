@@ -53,10 +53,17 @@ public class FireBreathe : MonoBehaviour
 
             GlobalStats.AddScore(10, other.transform.position);
 
+
+            //Spawn death particles
+            GameObject emitter = GameObject.Find("DeathParticleEmitter");
+
+            if (emitter) Instantiate(emitter, other.transform.position, emitter.transform.rotation);
+
+
             Destroy(enemySegment.snakeOwner);
             
         }
-        else if (other.tag == "Burnable")
+        else if (other.tag == "Burnable" || other.tag == "BurnableNotSolid")
         {
             //Small chance for iceblocks to drop items
             if (other.name[0] == 'I')
@@ -71,6 +78,12 @@ public class FireBreathe : MonoBehaviour
 
             //Bonus points
             GlobalStats.AddScore(30, other.transform.position);
+
+            //Spawn death particles
+            GameObject emitter = GameObject.Find("DeathParticleEmitter");
+
+            if (emitter) Instantiate(emitter, other.transform.position, emitter.transform.rotation);
+
 
             //Burn the object! (Spawn a special particle here?)
             Destroy(other.gameObject);

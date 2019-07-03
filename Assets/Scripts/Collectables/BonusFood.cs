@@ -13,7 +13,9 @@ public class BonusFood : MonoBehaviour
     //Instantiate an empty child food object
     void Start()
     {
-        //Instantiate(otherFoodBonuses[(int)Skins.levelTheme], transform);
+        //Make invisible in game but visible in the editor.
+        GetComponent<MeshRenderer>().enabled = false;
+        Instantiate(otherFoodBonuses[(int)Skins.levelTheme], transform);
     }
 
     private void Update()

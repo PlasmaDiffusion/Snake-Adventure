@@ -44,11 +44,8 @@ public class CheckIfSolid : MonoBehaviour
     {
         if (other.tag == "Wall" || other.tag == "Burnable") 
         {
-            if (other.name[0] != 'S') //Ignore spike traps
-            { 
             isSolid = true;
             overlappingSolidColliders++;
-            }
         }
     }
 
@@ -56,10 +53,7 @@ public class CheckIfSolid : MonoBehaviour
     {
         if (other.tag == "Wall" || other.tag == "Burnable")
         {
-            if (other.name[0] != 'S') //Ignore spike traps
-            {
-                overlappingSolidColliders--;
-            }
+            overlappingSolidColliders--;
         }
     }
 }

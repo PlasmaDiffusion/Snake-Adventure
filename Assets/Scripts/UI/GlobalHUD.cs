@@ -114,6 +114,8 @@ public class GlobalHUD : MonoBehaviour
         { 
         scoreText.text = GlobalStats.score.ToString();
         requiredFoodText.text = GlobalStats.requiredFood.ToString();
+            if (requiredFoodText.text == "0") { requiredFoodText.text = "Gate opened!"; requiredFoodText.fontSize = 12; }
+            else requiredFoodText.fontSize = 24;
         coinText.text = GlobalStats.coins.ToString();
         }
     }

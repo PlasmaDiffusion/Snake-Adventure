@@ -10,6 +10,7 @@ TagManager:
   - DirectionChanger
   - Burnable
   - SolidCheck
+  - BurnableNotSolid
   layers:
   - Default
   - TransparentFX

@@ -88,8 +88,11 @@ public class DeathCheck : MonoBehaviour
         snake.alive = true;
         snake.MakeAlive();
 
-        if (gameObject.transform.position.y < deathY) transform.position = snake.lastGroundedPosition;
-
+        if (gameObject.transform.position.y < deathY)
+        {
+            transform.position = snake.lastGroundedPosition;
+            snake.PrepRespawnFromFalling();
+        }
         //Respawn with some invincibility
         MakeInvincible(4.0f);
         StopCheck();

@@ -36,12 +36,17 @@ public class ChangeByTheme : MonoBehaviour
         if (themeAffectsMaterial || changesFloorMaterial)
         {
 
+            //Random colours for specific themes go here
+            if (Skins.levelTheme == Skins.Themes.TOYBOX && !changesFloorMaterial) PickRandomColour();
+            else
+            { 
+
             if (changesFloorMaterial)
                 rend.material = skinChangerObject.levelThemeFloorMaterials[(int)Skins.levelTheme];
             else
                 rend.material = skinChangerObject.levelThemeWallMaterials[(int)Skins.levelTheme];
+            }
         }
-
 
         if(themeAffectsMesh && Skins.levelTheme != Skins.Themes.DEFAULT)
         {
@@ -59,5 +64,24 @@ public class ChangeByTheme : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
+    private void PickRandomColour()
+    {
+        switch (Random.Range(0, 4))
+        {
+            case 0:
+                rend.material.color = Color.red;
+                break;
+            case 1:
+                rend.material.color = Color.green;
+                break;
+            case 2:
+                rend.material.color = Color.blue;
+                break;
+            case 3:
+                rend.material.color = Color.yellow;
+                break;
+        }
+        rend.material.color *= 0.5f;
+    }
 }

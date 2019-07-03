@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 4004797985365705510}
   m_Layer: 0
   m_Name: SpikeTrap
-  m_TagString: Burnable
+  m_TagString: BurnableNotSolid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,7 +353,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f70ec9c980456b4e969d7a46d983555, type: 2}
+  - {fileID: 2100000, guid: bdeecb49e2794b343a869b9ee3449bbd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

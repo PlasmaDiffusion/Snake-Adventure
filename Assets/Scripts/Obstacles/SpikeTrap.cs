@@ -14,7 +14,7 @@ public class SpikeTrap : MonoBehaviour
     Vector3 oppositeVel;
 
     //"!" Text that shows when a nearby trap is offscreen.
-    Text warningText;
+    Image warningText;
     Camera cam;
 
     //Prevent constant collisions
@@ -28,7 +28,7 @@ public class SpikeTrap : MonoBehaviour
     void Start()
     {
         hideWarningText = false;
-        warningText = Instantiate(GameObject.Find("WarningText"), GameObject.Find("Canvas").transform).GetComponent<Text>();
+        warningText = Instantiate(GameObject.Find("WarningText"), GameObject.Find("Canvas").transform).GetComponent<Image>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 
         //If a child then use the parent rigid body
@@ -117,6 +117,14 @@ public class SpikeTrap : MonoBehaviour
     {
         deathCheck.Die();
         hideWarningText = true;
+
+
+        //Spawn death particles
+        GameObject emitter = GameObject.Find("DeathParticleEmitter");
+
+        if (emitter) Instantiate(emitter, transform.position, emitter.transform.rotation);
+
+
         Destroy(gameObject);
     }
 
@@ -165,11 +173,6 @@ public class SpikeTrap : MonoBehaviour
 
     private void OnDestroy()
     {
-        //Find the emitter
-        GameObject emitter = GameObject.Find("DeathParticleEmitter");
-
-        if (emitter)Instantiate(emitter, transform.position, emitter.transform.rotation);
-
         Destroy(warningText);
     }
 }

@@ -233,4 +233,10 @@ public class SnakeMovement : MonoBehaviour
         forcingDirection = false;
     }
 
+    //For when the character needs to teleport somewhere else
+    protected void ResetLerpPositions()
+    {
+        targetPosition = transform.position;
+        preTargetPosition = transform.position;
+    }
 }

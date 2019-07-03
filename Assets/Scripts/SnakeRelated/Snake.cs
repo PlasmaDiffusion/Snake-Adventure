@@ -10,9 +10,10 @@ public class Snake : SnakeMovement
     
     public bool alive; //When not alive, the game is forced to be paused
 
-
+    //Vars for respawning after falling
     [HideInInspector]
     public Vector3 lastGroundedPosition;
+    float timeGrounded;
 
     //Touch input
     Vector3 startSwipePos;
@@ -67,7 +68,9 @@ public class Snake : SnakeMovement
         timeRotating = 1.0f;
 
         InitSnakeMovement();
-        
+
+        lastGroundedPosition = transform.position;
+        timeGrounded = 0.0f;
 
         camOffset = new Vector3(0.0f, 20.0f, 0.0f);
 
@@ -189,7 +192,11 @@ public class Snake : SnakeMovement
         SnakeFood.CheckScoreMultiplier();
 
         UpdateBoost();
-        
+
+        //Grounded position updating. If velocity remains 0 then record the position
+        if (rigidbody.velocity.y == 0.0f) timeGrounded += Time.deltaTime;
+        else timeGrounded = 0.0f;
+        if (rigidbody.velocity.y == 0.0f && timeGrounded > 1.0f) lastGroundedPosition = transform.position;
     }
 
     private Touch ForceEndSwipe(Touch touch)
@@ -276,19 +283,19 @@ public class Snake : SnakeMovement
             positionRecordTime = 0.0f;
 
             //Record last grounded position for when the player falls off the world... (Position from one of the last segments)
-            if (rigidbody.velocity.y == 0.0f && prevPositions.Count > 2)
-            {
-                //Ideally 6 positions away would work but the player will need that many segments
-                for (int i = 6; i > 2; i--)
-                {
-                    if (prevPositions.Count > i)
-                    {
-                        lastGroundedPosition = prevPositions[prevPositions.Count - i];
-                        break;
-                    }
-                }
-            }
-
+            //if (rigidbody.velocity.y == 0.0f && prevPositions.Count > 2)
+            //{
+            //    //Ideally 6 positions away would work but the player will need that many segments
+            //    for (int i = 6; i > 2; i--)
+            //    {
+            //        if (prevPositions.Count > i)
+            //        {
+            //            lastGroundedPosition = prevPositions[prevPositions.Count - i];
+            //            break;
+            //        }
+            //    }
+            //}
+            
             //Record position for the snake segments
             prevPositions.Add(AlignToGrid(transform.position));
 
@@ -308,6 +315,12 @@ public class Snake : SnakeMovement
     {
         if (camOffset.y < 30.0f)
             camOffset += new Vector3(0.0f, 0.1f, 0.0f);
+    }
+
+    public void PrepRespawnFromFalling()
+    {
+        cam.transform.position = transform.position + camOffset;
+        ResetLerpPositions();
     }
 
     //Change swipe directions
@@ -375,16 +388,17 @@ public class Snake : SnakeMovement
     {
         if (boostGuage >= 1.0f) //Turn on boost
         {
+            GlobalStats.AddScore(50, transform.position);
             moveRate = 12.0f;
             boosting = true;
             speed = 360.0f;
-            timeBetweenPositions = 0.175f;
+            //timeBetweenPositions = 0.175f;
         }
         else //Turn off boost
         {
             moveRate = 8.0f;
             speed = 240.0f;
-            timeBetweenPositions = 0.275f;
+            //timeBetweenPositions = 0.275f;
             boosting = false;
         }
     }

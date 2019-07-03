@@ -105,12 +105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherFoodBonuses:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
   scoreBonuses: 1e0000001e0000003c00000032000000280000001e0000001e0000001e000000
