@@ -40,10 +40,14 @@ public class CoinObjective : MonoBehaviour
             Debug.Log("Setting objective");
 
             //Don't show it the first time
-            Destroy(gameObject);
+            Destroy(claimRewardButton.transform.parent.gameObject);
         }
 
+
+        Debug.Log(((Objective)objectiveID).ToString());
+
         UpdateUI();
+
     }
 
     /*
@@ -198,7 +202,7 @@ public class CoinObjective : MonoBehaviour
         OverwriteDescription();
         descriptionText.text = descriptions[objectiveID] + progressAmount.ToString() + " / " + goalAmount.ToString();
 
-        achieved = true;
+        //achieved = true;
         //Enable button to cash in winnings
         if (achieved)
         {

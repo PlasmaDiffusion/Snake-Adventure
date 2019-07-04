@@ -7650,6 +7650,7 @@ MonoBehaviour:
   - Beat . * themed levels!
   - Destroy . obstacles with fire!
   - Boost . times!
+  - Collect a power up while boosting . times!
   - Find . * powerups!
 --- !u!1 &575604759
 GameObject:
