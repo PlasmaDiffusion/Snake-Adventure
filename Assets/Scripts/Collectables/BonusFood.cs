@@ -29,6 +29,7 @@ public class BonusFood : MonoBehaviour
         if (other.name == "Player")
         {
             GlobalStats.AddScore(scoreBonuses[(int)Skins.levelTheme], transform.position);
+            CoinObjective.CheckForObjective((int)CoinObjective.Objective.GET_BONUS_FOOD);
             Destroy(gameObject);
         }
     }

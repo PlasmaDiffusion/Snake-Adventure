@@ -44,7 +44,7 @@ public class Snake : SnakeMovement
     void Start()
     {
         //Snake segment related
-        timeBetweenPositions = 0.15f;
+        timeBetweenPositions = 0.175f;
         positionRecordTime = 0.0f;
 
         //Input swipe related
@@ -393,6 +393,7 @@ public class Snake : SnakeMovement
             boosting = true;
             speed = 360.0f;
             //timeBetweenPositions = 0.175f;
+            CoinObjective.CheckForObjective((int)CoinObjective.Objective.BOOST);
         }
         else //Turn off boost
         {
@@ -425,6 +426,7 @@ public class Snake : SnakeMovement
     }
 
     public float GetBoostGuage() { return boostGuage; }
+
 
 
     //public GUIStyle style;

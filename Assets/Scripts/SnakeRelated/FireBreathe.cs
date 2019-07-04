@@ -59,6 +59,7 @@ public class FireBreathe : MonoBehaviour
 
             if (emitter) Instantiate(emitter, other.transform.position, emitter.transform.rotation);
 
+            CoinObjective.CheckForObjective((int)CoinObjective.Objective.DESTROY_WITH_FIRE);
 
             Destroy(enemySegment.snakeOwner);
             
@@ -84,6 +85,7 @@ public class FireBreathe : MonoBehaviour
 
             if (emitter) Instantiate(emitter, other.transform.position, emitter.transform.rotation);
 
+            CoinObjective.CheckForObjective((int)CoinObjective.Objective.DESTROY_WITH_FIRE);
 
             //Burn the object! (Spawn a special particle here?)
             Destroy(other.gameObject);

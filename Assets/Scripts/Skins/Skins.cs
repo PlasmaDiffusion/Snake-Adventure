@@ -9,8 +9,8 @@ public class Skins : MonoBehaviour
         DEFAULT,
         BLUE,
         CAMO,
-        SKIN4,
-        SKIN5,
+        SCALES,
+        RUSTY,
         SKIN6,
         SKIN7,
         SKIN8,
@@ -180,4 +180,6 @@ public class Skins : MonoBehaviour
 
         return true;
     }
+
+    public static List<Themes> GetThemePool() { return themePool; }
 }

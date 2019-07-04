@@ -3630,7 +3630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToActivate: 0
-  skinToActivate: 0
+  skinToActivate: 7
   isLevelTheme: 0
 --- !u!114 &269909892
 MonoBehaviour:
@@ -7202,6 +7202,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2071192937110322449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &575192534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5546566486646613219, guid: 5ea96ff81f675034fac6504407ff302e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8728353179320875064}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &575192535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575192534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3008f9f44a1d249ba8e71cae48295b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descriptions:
+  - Get . food items!
+  - Beat . * themed levels!
+  - Destroy . obstacles with fire!
+  - Boost . times!
+  - Find . * powerups!
 --- !u!1 &575604759
 GameObject:
   m_ObjectHideFlags: 0
@@ -7472,7 +7496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToActivate: 0
-  skinToActivate: 0
+  skinToActivate: 6
   isLevelTheme: 0
 --- !u!114 &581586439
 MonoBehaviour:
@@ -8728,7 +8752,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6647182962dfe3a45856665434bd0917, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -10326,7 +10350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '------'
+  m_Text: Wavy
 --- !u!222 &736096359
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11351,7 +11375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToActivate: 0
-  skinToActivate: 0
+  skinToActivate: 3
   isLevelTheme: 0
 --- !u!114 &797840244
 MonoBehaviour:
@@ -13922,8 +13946,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 64d0fc149cbbc4e4a90a1e2a073e980d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -14590,8 +14614,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 64d0fc149cbbc4e4a90a1e2a073e980d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15103,136 +15127,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeWallMaterials.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeFloorMaterials.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeObjects.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: snakeSkins.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeFloorMaterials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: a7589b7e70a74df4d8002c3872355001, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeWallMaterials.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e42e55a858fe0249ab1809dd569b353, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeFloorMaterials.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: 467965da2a89d464cb7e238dd1cba482, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeObjects.Array.data[3]
-      value: 
-      objectReference: {fileID: 7966641488237355665, guid: 5b7b17c0e16d7fe479c1cc2a5b3d098e,
-        type: 3}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeObjects.Array.data[4]
-      value: 
-      objectReference: {fileID: 3743884785297918582, guid: e94850585ad2d3847871550fd497793a,
-        type: 3}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeFloorMaterials.Array.data[4]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9a3127123c398af40a212af287da48da, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeWallMaterials.Array.data[4]
-      value: 
-      objectReference: {fileID: 2100000, guid: afd23889a77263749978e2fba4f707f0, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeObjects.Array.data[5]
-      value: 
-      objectReference: {fileID: 5738374359436440567, guid: 6f582c67dfae20b409eea707972d98fb,
-        type: 3}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeFloorMaterials.Array.data[5]
-      value: 
-      objectReference: {fileID: 2100000, guid: 368bb84dff38c324980648abc7721371, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeWallMaterials.Array.data[5]
-      value: 
-      objectReference: {fileID: 2100000, guid: eeb12c7d1973e0443aa95d203cfa4032, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: snakeSkins.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: snakeSkins.Array.data[4]
-      value: 
-      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: snakeSkins.Array.data[5]
-      value: 
-      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: snakeSkins.Array.data[6]
-      value: 
-      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: snakeSkins.Array.data[7]
-      value: 
-      objectReference: {fileID: 2100000, guid: f816eb11b60e1864395d0c0b5bf4294f, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeWallMaterials.Array.data[6]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5bce6d425638ae049afebe90ca9160bf, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeWallMaterials.Array.data[7]
-      value: 
-      objectReference: {fileID: 2100000, guid: eeb12c7d1973e0443aa95d203cfa4032, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeFloorMaterials.Array.data[6]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5488a002d6093844aac4c509a6420761, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeFloorMaterials.Array.data[7]
-      value: 
-      objectReference: {fileID: 2100000, guid: 368bb84dff38c324980648abc7721371, type: 2}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeObjects.Array.data[6]
-      value: 
-      objectReference: {fileID: 7082799460166655898, guid: ec5d53f9c88240341a6bb86ed978697f,
-        type: 3}
-    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
-        type: 3}
-      propertyPath: levelThemeObjects.Array.data[7]
-      value: 
-      objectReference: {fileID: 5738374359436440567, guid: 6f582c67dfae20b409eea707972d98fb,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee4cad25033ad443a71c6364dcb72e5, type: 3}
 --- !u!1 &1045549059
@@ -15538,7 +15432,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6647182962dfe3a45856665434bd0917, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -15660,7 +15554,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '------'
+  m_Text: Scales
 --- !u!222 &1051882257
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16019,7 +15913,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6647182962dfe3a45856665434bd0917, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -18586,8 +18480,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 64d0fc149cbbc4e4a90a1e2a073e980d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -18657,7 +18551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToActivate: 0
-  skinToActivate: 0
+  skinToActivate: 4
   isLevelTheme: 0
 --- !u!114 &1243334848
 MonoBehaviour:
@@ -20740,7 +20634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToActivate: 0
-  skinToActivate: 0
+  skinToActivate: 5
   isLevelTheme: 0
 --- !u!114 &1416412450
 MonoBehaviour:
@@ -34416,7 +34310,7 @@ PrefabInstance:
     - target: {fileID: 1416034864655657794, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 32
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 1416034864655657794, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
@@ -34441,7 +34335,7 @@ PrefabInstance:
     - target: {fileID: 4182312449064573891, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 32
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 8568025063417320263, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
@@ -34456,7 +34350,7 @@ PrefabInstance:
     - target: {fileID: 8568025063417320263, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 32
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 3229623050477135280, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
@@ -34471,7 +34365,7 @@ PrefabInstance:
     - target: {fileID: 3229623050477135280, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 32
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 1368760473144449370, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
@@ -34486,7 +34380,7 @@ PrefabInstance:
     - target: {fileID: 1368760473144449370, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 10.374001
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 1368760473144449370, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
@@ -34506,7 +34400,7 @@ PrefabInstance:
     - target: {fileID: 1792294692019690331, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 10.37
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 1792294692019690331, guid: 43279e8902c35b740ab46ebf989343ef,
         type: 3}

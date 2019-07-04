@@ -81,6 +81,7 @@ public class SnakeGate : MonoBehaviour
             if (transform.parent.name != "StartingLevel")
             {
                 GlobalStats.AddScore(100, other.transform.position);
+                CoinObjective.CheckForObjective((int)CoinObjective.Objective.BEAT_THEMED_LEVELS, (int)Skins.levelTheme);
             }
 
 

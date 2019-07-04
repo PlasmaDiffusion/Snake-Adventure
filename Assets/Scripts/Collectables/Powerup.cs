@@ -49,23 +49,31 @@ public class Powerup : MonoBehaviour
     {
         DeathCheck snake = other.GetComponent<DeathCheck>();
         snake.MakeInvincible(8.0f);
+        CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 0);
     }
 
     void PickupPointMultiplier(Collider other)
     {
         SnakeFood.AddMultiplier();
+        CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 1);
     }
 
     void PickupFire(Collider other)
     {
         other.gameObject.transform.Find("Tongue").GetComponent<FireBreathe>().ActivateFire();
+        CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 2);
     }
 
     //Player collects powerup and a function is called.
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.name == "Player")
         {
+            //Toggle boost with powerup objective
+            if (other.GetComponent<Snake>().GetBoostGuage() > 0.0f) CoinObjective.CheckForObjective((int)CoinObjective.Objective.BOOST_POWERUP);
+
+
             functionToCall.Invoke(other);
 
             Destroy(gameObject);

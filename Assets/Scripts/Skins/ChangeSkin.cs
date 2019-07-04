@@ -12,7 +12,6 @@ public class ChangeSkin : MonoBehaviour
     Button button;
     Image image;
     Image childImage;
-
     public Skins.Themes themeToActivate;
     public Skins.SnakeSkins skinToActivate;
 
@@ -25,7 +24,6 @@ public class ChangeSkin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         skinObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
 
         button = GetComponent<Button>();
