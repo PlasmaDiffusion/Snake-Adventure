@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Extra coin objective class. Like random "daily" tasks that reward bonus coins.
 public class CoinObjective : MonoBehaviour
@@ -14,14 +15,35 @@ public class CoinObjective : MonoBehaviour
     static int progressAmount;
     static int goalAmount;
     static bool achieved;
-    
+
+    static bool objectiveSet = false;
+
+    //UI Variables
+    public GameObject panelObject;
+    public Image progressBar;
+    public Text descriptionText;
+    public Button claimRewardButton;
+    public GameObject coinBonusGroup;
 
     // Start is called before the first frame update
-    void Awake()
-    {
-        achieved = false;
-        PickRandomObjective();
 
+    void Start()
+    {
+
+        //Set the objective once upon starting the game. Set it again only when the objective is finished.
+        if (!objectiveSet)
+        {
+
+            achieved = false;
+            PickRandomObjective();
+            objectiveSet = true;
+            Debug.Log("Setting objective");
+
+            //Don't show it the first time
+            Destroy(gameObject);
+        }
+
+        UpdateUI();
     }
 
     /*
@@ -50,6 +72,7 @@ public class CoinObjective : MonoBehaviour
     //Call this once when the game opens or the current objective is cleared.
     void PickRandomObjective()
     {
+
         //Reset progress/goal variables
         progressAmount = 0;
         goalAmount = 0;
@@ -65,7 +88,7 @@ public class CoinObjective : MonoBehaviour
             List<Skins.Themes> themesAvailable = Skins.GetThemePool();
 
             //Now select a random element from that list of unlocked themes
-            subObjectiveID = (int)themesAvailable[Random.Range(0, themesAvailable.Capacity)];
+            subObjectiveID = (int)themesAvailable[Random.Range(0, themesAvailable.Count)];
         }
 
 
@@ -91,6 +114,9 @@ public class CoinObjective : MonoBehaviour
                 goalAmount = 3;
                 break;
         }
+
+
+        objectiveSet = true;
     }
 
     //Call this to check if an objective is being met or progressed. If that objectiveID is the current task, then increase the progress on it.
@@ -100,7 +126,7 @@ public class CoinObjective : MonoBehaviour
         if (objectiveID == objectiveChecked)
         {
             //If needed, is the right subobjective set?
-            if (subObjectiveCheked != -1 && subObjectiveCheked == subObjectiveID)
+            if (subObjectiveCheked == -1 || subObjectiveCheked == subObjectiveID)
             {
                 Debug.Log("Objective progressed!");
                 progressAmount++;
@@ -115,9 +141,11 @@ public class CoinObjective : MonoBehaviour
 
     public void CashInPrize()
     {
-        GlobalStats.coins += 20;
+        Debug.Log("PRIZE LOL");
+        coinBonusGroup.SetActive(true);
         achieved = false;
         PickRandomObjective();
+        UpdateUI();
     }
 
     void OverwriteDescription()
@@ -142,7 +170,7 @@ public class CoinObjective : MonoBehaviour
 
         //Level theme objective
         if (objectiveID == (int)Objective.BEAT_THEMED_LEVELS)
-            descriptions[objectiveID] = descriptions[objectiveID].Replace("*", Skins.Themes.BOUNCY.ToString().ToLower());
+            descriptions[objectiveID] = descriptions[objectiveID].Replace("*", ((Skins.Themes)subObjectiveID).ToString().ToLower());
 
         //Powerup objective
         if (objectiveID == (int)Objective.FIND_POWERUP)
@@ -153,6 +181,32 @@ public class CoinObjective : MonoBehaviour
                 descriptions[objectiveID] = descriptions[objectiveID].Replace("*", "Pellet Multiplier");
             else if (subObjectiveID == 2)
                 descriptions[objectiveID] = descriptions[objectiveID].Replace("*", "Fire");
+
+            Debug.Log("Powerup objective picked. Here's the subobjective id: " + subObjectiveID.ToString());
+        }
+
+
+    }
+
+    private void UpdateUI()
+    {
+
+        //Add in progress
+        progressBar.fillAmount = (float)progressAmount / (float)goalAmount;
+
+        //Prepare description text
+        OverwriteDescription();
+        descriptionText.text = descriptions[objectiveID] + progressAmount.ToString() + " / " + goalAmount.ToString();
+
+        achieved = true;
+        //Enable button to cash in winnings
+        if (achieved)
+        {
+            claimRewardButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            claimRewardButton.gameObject.SetActive(false);
         }
     }
 }
