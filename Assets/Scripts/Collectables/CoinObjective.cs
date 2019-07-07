@@ -25,6 +25,11 @@ public class CoinObjective : MonoBehaviour
     public Button claimRewardButton;
     public GameObject coinBonusGroup;
 
+    //Lerp into view vars
+    float t;
+    Vector3 targetPos;
+    Vector3 startingPos;
+
     // Start is called before the first frame update
 
     void Start()
@@ -47,6 +52,12 @@ public class CoinObjective : MonoBehaviour
         Debug.Log(((Objective)objectiveID).ToString());
 
         UpdateUI();
+
+        //Lerp stuff
+        targetPos = panelObject.transform.position;
+        startingPos =  new Vector3(targetPos.x * -2.0f, targetPos.y, targetPos.z);
+        t = -2.0f;
+
 
     }
 
@@ -196,11 +207,11 @@ public class CoinObjective : MonoBehaviour
     {
 
         //Add in progress
-        progressBar.fillAmount = (float)progressAmount / (float)goalAmount;
+        progressBar.fillAmount = (float)progressAmount / goalAmount;
 
         //Prepare description text
         OverwriteDescription();
-        descriptionText.text = descriptions[objectiveID] + progressAmount.ToString() + " / " + goalAmount.ToString();
+        descriptionText.text = descriptions[objectiveID] + " " + progressAmount.ToString() + " / " + goalAmount.ToString();
 
         //achieved = true;
         //Enable button to cash in winnings
@@ -211,6 +222,18 @@ public class CoinObjective : MonoBehaviour
         else
         {
             claimRewardButton.gameObject.SetActive(false);
+        }
+    }
+
+    //Lerp into view
+    private void Update()
+    {
+        if (t < 1.0f && panelObject)
+        {
+            t += Time.deltaTime;
+            if (t > 1.0f) t = 1.0f;
+
+            panelObject.transform.position = Vector3.Lerp(startingPos, targetPos, t);
         }
     }
 }

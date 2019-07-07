@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class FireBreathe : MonoBehaviour
 {
+    [Header("Variables for powerup duration.")]
     public float activeTime;
     public float maxActiveTime;
 
-    public GameObject itemSpawnerReference;
-
+    [Header("Variables for spawning projectile.")]
+    public GameObject projectileReference;
+    public float fireWaitTime;
+    float fireTime;
    ParticleSystem particleSystem;
 
     // Start is called before the first frame update
@@ -17,6 +20,7 @@ public class FireBreathe : MonoBehaviour
         activeTime = 0.0f;
         particleSystem = GetComponent<ParticleSystem>();
         particleSystem.Stop();
+        fireTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -24,6 +28,7 @@ public class FireBreathe : MonoBehaviour
     {
         if (GlobalStats.paused) return;
 
+        //Powerup duration updating
         if (activeTime > 0.0f && !Snake.boosting)
         {
             activeTime -= Time.deltaTime;
@@ -33,64 +38,26 @@ public class FireBreathe : MonoBehaviour
                 activeTime = 0.0f;
                 particleSystem.Stop();
             }
+
+        }
+
+        //Fire projectile updating
+        if (activeTime > 0.0f)
+        {
+            fireTime -= Time.deltaTime;
+            if (fireTime <= 0.0f)
+            {
+                fireTime = fireWaitTime;
+                Instantiate(projectileReference, transform.position, transform.rotation);
+            }
         }
     }
     
     public void ActivateFire()
     {
-        particleSystem.Play();
+        //particleSystem.Play();
         activeTime = maxActiveTime;
+        fireTime = fireWaitTime;
     }
 
-    //Burn enemies or anything that's tagged as burnable!
-    private void OnTriggerEnter(Collider other)
-    {
-        if (activeTime <= 0.0f) return;
-        
-        if (other.tag == "Segment" && other.name[0] == 'E') //Destroy all of a snake
-        {
-            SnakeSegment enemySegment = other.GetComponent<SnakeSegment>();
-
-            GlobalStats.AddScore(10, other.transform.position);
-
-
-            //Spawn death particles
-            GameObject emitter = GameObject.Find("DeathParticleEmitter");
-
-            if (emitter) Instantiate(emitter, other.transform.position, emitter.transform.rotation);
-
-            CoinObjective.CheckForObjective((int)CoinObjective.Objective.DESTROY_WITH_FIRE);
-
-            Destroy(enemySegment.snakeOwner);
-            
-        }
-        else if (other.tag == "Burnable" || other.tag == "BurnableNotSolid")
-        {
-            //Small chance for iceblocks to drop items
-            if (other.name[0] == 'I')
-            {
-                if (Random.Range(0, 3) == 0)
-                {
-                    GameObject newCollectableSpawner = Instantiate(itemSpawnerReference);
-                    newCollectableSpawner.transform.position = other.transform.position;
-                    Debug.Log("Thing spawned");
-                }
-            }
-
-            //Bonus points
-            GlobalStats.AddScore(30, other.transform.position);
-
-            //Spawn death particles
-            GameObject emitter = GameObject.Find("DeathParticleEmitter");
-
-            if (emitter) Instantiate(emitter, other.transform.position, emitter.transform.rotation);
-
-            CoinObjective.CheckForObjective((int)CoinObjective.Objective.DESTROY_WITH_FIRE);
-
-            //Burn the object! (Spawn a special particle here?)
-            Destroy(other.gameObject);
-
-
-        }
-    }
 }

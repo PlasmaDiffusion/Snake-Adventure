@@ -257,8 +257,8 @@ public class Snake : SnakeMovement
         }
         else if (GlobalStats.paused) //If paused and the player is alive...
         {
-            //Resume the game upon swiping to move (AND on the main menu/ game over/ pause screen
-            if (timeSwipeHeld > 0.10f && (mainMenuObject.activeSelf || gameOverMenuObject.activeSelf || pauseMenuObject.activeSelf))
+            //Resume the game upon swiping to move (AND on the game over/ pause screen
+            if (timeSwipeHeld > 0.10f && (gameOverMenuObject.activeSelf || pauseMenuObject.activeSelf))
             {
                 Pause();
             }

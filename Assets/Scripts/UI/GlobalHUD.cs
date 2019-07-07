@@ -130,7 +130,7 @@ public class GlobalHUD : MonoBehaviour
     
     void HideChildren()
     {
-        for (int i = transform.childCount - 1; i> 0; i--)
+        for (int i = transform.childCount - 1; i>= 0; i--)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -139,7 +139,7 @@ public class GlobalHUD : MonoBehaviour
     //Show main HUD and hide menu
     public void ShowChildren()
     {
-        for (int i = transform.childCount - 1; i > 0; i--)
+        for (int i = transform.childCount - 1; i >= 0; i--)
         {
             transform.GetChild(i).gameObject.SetActive(true);
         }
