@@ -47,7 +47,7 @@ public class Spring : MonoBehaviour
 
         Rigidbody rigidbody = other.GetComponent<Rigidbody>();
 
-        if (rigidbody && other.tag != "SolidCheck")
+        if (rigidbody && other.tag != "SolidCheck" && other.name[0] != 'F')
         {
             rigidbody.velocity = (new Vector3(rigidbody.velocity.x, bounce, rigidbody.velocity.z));
 

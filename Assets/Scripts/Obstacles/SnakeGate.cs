@@ -38,8 +38,11 @@ public class SnakeGate : MonoBehaviour
         GlobalStats.requiredFood = requirement;
         if (GlobalStats.hud)GlobalStats.hud.UpdateHUD();
 
+        if (transform.childCount > 7)
+        { 
         arrowToShow = transform.GetChild(7).gameObject;
         arrowToShow.SetActive(false);
+        }
     }
 
     //Called whenever snake food is destroyed
@@ -58,7 +61,7 @@ public class SnakeGate : MonoBehaviour
             //Now the door shall open!
             GetComponent<BoxCollider>().isTrigger = true;
             open = true;
-            arrowToShow.SetActive(true);
+            if (transform.childCount > 7)arrowToShow.SetActive(true);
 
             GetComponent<Renderer>().material.color = new Color(0.2f, 0.0f, 0.6f, 0.5f);
 

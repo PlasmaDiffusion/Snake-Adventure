@@ -24,6 +24,14 @@ public class DeathCheck : MonoBehaviour
     public float invincibility;
     public float maxInvincibility;
 
+    //Death animation
+    float deathT;
+    float increasingT;
+    Vector3 minScale;
+    Vector3 maxScale;
+    Snake snake;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +44,20 @@ public class DeathCheck : MonoBehaviour
         deathY = -10.0f;
         invincibility = 0.0f;
         maxInvincibility = 1.0f;
+        snake = GetComponent<Snake>();
+
+        //Store scale for death animation
+        deathT = 0.0f;
+        increasingT = 0.0f;
+        minScale = new Vector3(0.2f, 0.2f, 0.2f);
+        maxScale = transform.localScale;
     }
 
     //If you're touching nothing you'll gain your time back
     void Update()
     {
+        DeathLerpAnimation();
+
         if (GlobalStats.paused) return;
 
         if (!colliding && collisionTimeInSegment > 0.0f)
@@ -76,6 +93,7 @@ public class DeathCheck : MonoBehaviour
 
         GlobalStats.paused = true;
 
+        increasingT = 1.0f;
         died = true;
     }
 
@@ -95,6 +113,7 @@ public class DeathCheck : MonoBehaviour
         }
         //Respawn with some invincibility
         MakeInvincible(4.0f);
+        increasingT = -1.0f;
         StopCheck();
     }
 
@@ -127,5 +146,22 @@ public class DeathCheck : MonoBehaviour
     {
         invincibility = time;
         maxInvincibility = time;
+    }
+
+    //Flatten or inflate the snake's y scale.
+    void DeathLerpAnimation()
+    {
+        if (increasingT == 0.0f) return;
+
+        deathT += Time.deltaTime * increasingT;
+
+        //If t is over 1 or under 0 then stop the animation
+        if (deathT > 1.0f) { deathT = 1.0f; increasingT = 0.0f; }
+        else if (deathT < 0.0f) {deathT = 0.0f; increasingT = 0.0f; }
+
+        transform.localScale = Vector3.Lerp(maxScale, minScale, deathT);
+
+        //Resize the snake segments too
+        snake.RescaleSegments();
     }
 }

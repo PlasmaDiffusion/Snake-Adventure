@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7694120952430079242}
   - component: {fileID: 3667566875800118631}
   - component: {fileID: 1208707844}
+  - component: {fileID: 575192535}
   m_Layer: 0
   m_Name: LevelSpawner
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MonoBehaviour:
   - {fileID: 5782532341100966075, guid: 59b6e33fbf934b9418f2a88791d32212, type: 3}
   - {fileID: 2961554988183916655, guid: de8d08f22ca0b674d94e649f68de3e35, type: 3}
   - {fileID: 6092918153316793382, guid: a47ce0b325c07ae4fa0ed700769e8891, type: 3}
+  - {fileID: 6450035239480339601, guid: 5cc42f193233395439d24645961d891a, type: 3}
   mediumLevels:
   - {fileID: 433688780143107614, guid: a1282612d4fc2e2478ca7035f4cec766, type: 3}
   - {fileID: 5401193623577243686, guid: 4ad0b4e2b896b9a4a9f94ac97e6c1eb3, type: 3}
@@ -68,16 +70,25 @@ MonoBehaviour:
   - {fileID: 5883211584173270565, guid: f1175c7687fdaf84f8348c15ba314d4a, type: 3}
   - {fileID: 766354768657978474, guid: 596f7f011a6254541bd6e4a27bb27375, type: 3}
   - {fileID: 1917172609905424274, guid: e181a952fc4da1a4aad92146eb5136a2, type: 3}
+  - {fileID: 4928048532085321714, guid: 79481abb4a434284e99b9f924cc2826a, type: 3}
+  - {fileID: 5292536007457407828, guid: 6368806dc23245a4fa0e34f403784025, type: 3}
+  - {fileID: 2773019491044143849, guid: 33cdbbed4fdf1bc46a2392e0fa1281f6, type: 3}
   hardLevels:
   - {fileID: 2453181497729849173, guid: b55cb0405497b5a4992369363166c96e, type: 3}
   - {fileID: 689604352973324798, guid: ccbc12618e1090949a249fcb53622595, type: 3}
   - {fileID: 6555117729362702018, guid: d59db0d7544f0a04f94daa3447523574, type: 3}
   - {fileID: 1405821002402278944, guid: fe75f85c0df467f4db66451d0ca896e1, type: 3}
   - {fileID: 4528910216686055303, guid: 027a3303f6d297540b818cce6717abf8, type: 3}
+  - {fileID: 6880781106164643463, guid: 9e7ae71189aaaad439dc468f21f653ea, type: 3}
+  - {fileID: 2054324112499739456, guid: 3814bf124f7eef6479560529510ae79b, type: 3}
+  - {fileID: 8588451789424752026, guid: b0d779bd85e2b004ab29b7e556d3d2b8, type: 3}
+  - {fileID: 3859153588631615773, guid: db0889ce4d3ca034d8b6a8f5c37065c9, type: 3}
   testing: 0
   testLevels:
-  - {fileID: 2961554988183916655, guid: de8d08f22ca0b674d94e649f68de3e35, type: 3}
-  - {fileID: 1405821002402278944, guid: fe75f85c0df467f4db66451d0ca896e1, type: 3}
+  - {fileID: 8588451789424752026, guid: b0d779bd85e2b004ab29b7e556d3d2b8, type: 3}
+  - {fileID: 3859153588631615773, guid: db0889ce4d3ca034d8b6a8f5c37065c9, type: 3}
+  - {fileID: 5292536007457407828, guid: 6368806dc23245a4fa0e34f403784025, type: 3}
+  - {fileID: 2773019491044143849, guid: 33cdbbed4fdf1bc46a2392e0fa1281f6, type: 3}
   lastEasyLevel: 6
   lastMediumLevel: 12
 --- !u!114 &1208707844
@@ -92,3 +103,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df40b9c7591e874081c1ecaeba2476b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &575192535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546566486646613219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3008f9f44a1d249ba8e71cae48295b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelObject: {fileID: 0}
+  progressBar: {fileID: 0}
+  descriptionText: {fileID: 0}
+  claimRewardButton: {fileID: 0}
+  coinBonusGroup: {fileID: 0}
+  descriptions:
+  - Get . food items!
+  - Beat . * themed levels!
+  - Destroy . obstacles with fire!
+  - Boost . times!
+  - Collect a power up while boosting . times!
+  - Find . * powerups!

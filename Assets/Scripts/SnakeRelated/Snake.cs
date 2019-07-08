@@ -24,7 +24,7 @@ public class Snake : SnakeMovement
     //Boost
     float boostGuage;
     public static bool boosting;
-
+    ParticleSystem boostEmitter;
 
     public GameObject cam;
     Vector3 camOffset;
@@ -58,6 +58,7 @@ public class Snake : SnakeMovement
         //Boost mechanic related
         boostGuage = 0.0f;
         boosting = false;
+        boostEmitter = GetComponent<ParticleSystem>();
 
         //Movement related
         rigidbody = GetComponent<Rigidbody>();
@@ -308,7 +309,14 @@ public class Snake : SnakeMovement
         }
     }
 
-
+    //Call this when in the middle of the dying animation.
+    public void RescaleSegments()
+    {
+        foreach (GameObject segment in otherSegments)
+        {
+            segment.transform.localScale = transform.localScale;
+        }
+    }
 
     //Call this whenever the snake grows, but not limit it eventually.
     public void ZoomOutCamera()
@@ -389,17 +397,17 @@ public class Snake : SnakeMovement
         if (boostGuage >= 1.0f) //Turn on boost
         {
             GlobalStats.AddScore(50, transform.position);
-            moveRate = 12.0f;
+            moveRate = 10.0f;
             boosting = true;
             speed = 360.0f;
-            //timeBetweenPositions = 0.175f;
+            boostEmitter.Play();
             CoinObjective.CheckForObjective((int)CoinObjective.Objective.BOOST);
         }
         else //Turn off boost
         {
             moveRate = 8.0f;
             speed = 240.0f;
-            //timeBetweenPositions = 0.275f;
+            boostEmitter.Stop();
             boosting = false;
         }
     }

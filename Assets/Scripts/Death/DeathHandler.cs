@@ -21,6 +21,7 @@ public class DeathHandler : MonoBehaviour
 
     int coinCostMultiplier;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +29,7 @@ public class DeathHandler : MonoBehaviour
         watchedAd = false;
         payedCoins = false;
 
-        
-
-         coinButtonText = coinButton.transform.GetChild(0).GetComponent<Text>();
+        coinButtonText = coinButton.transform.GetChild(0).GetComponent<Text>();
     }
     
     //Call Die() to prompt a game over menu. 

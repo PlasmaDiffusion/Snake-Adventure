@@ -19,7 +19,7 @@ public class CollectableSpawner : MonoBehaviour
 
         List<GameObject> canSpawn = new List<GameObject>();
 
-        //Make a list of all possible powerups.s
+        //Make a list of all possible powerups
         for (int i = 0; i < possiblePowerup.Length; i++)
             if (possiblePowerup[i]) canSpawn.Add(collectables[i]);
 

@@ -12,14 +12,14 @@ public class FireBreathe : MonoBehaviour
     public GameObject projectileReference;
     public float fireWaitTime;
     float fireTime;
-   ParticleSystem particleSystem;
+   //ParticleSystem particleSystem;
 
     // Start is called before the first frame update
     void Start()
     {
         activeTime = 0.0f;
-        particleSystem = GetComponent<ParticleSystem>();
-        particleSystem.Stop();
+        //particleSystem = GetComponent<ParticleSystem>();
+        //particleSystem.Stop();
         fireTime = 0.0f;
     }
 
@@ -36,7 +36,7 @@ public class FireBreathe : MonoBehaviour
             if (activeTime <= 0.0f)
             {
                 activeTime = 0.0f;
-                particleSystem.Stop();
+                //particleSystem.Stop();
             }
 
         }
@@ -48,7 +48,11 @@ public class FireBreathe : MonoBehaviour
             if (fireTime <= 0.0f)
             {
                 fireTime = fireWaitTime;
+                //Spawn in three projectiles
+                //[Fire Sound here]
                 Instantiate(projectileReference, transform.position, transform.rotation);
+                Instantiate(projectileReference, transform.position, transform.rotation * Quaternion.Euler(0, -45, 0));
+                Instantiate(projectileReference, transform.position, transform.rotation * Quaternion.Euler(0, 45, 0));
             }
         }
     }
