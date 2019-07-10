@@ -10,7 +10,7 @@ public class GlobalHUD : MonoBehaviour
     public GameObject boostMenuObject;
     public GameObject skinMenuObject;
     public GameObject themeMenuObject;
-    public GameObject helpMenuObject;
+    public GameObject optionsMenuObject;
 
     //Text objects
     public GameObject scoreObject;
@@ -70,7 +70,7 @@ public class GlobalHUD : MonoBehaviour
     {
         //Hide coins after a second
         if (coinsVisibleTime > 0 && coinsVisibleTime != 10.0f) coinsVisibleTime -= Time.deltaTime;
-        else coinText.rectTransform.Translate(0.0f, 8.0f * Time.deltaTime, 0.0f);
+        else if (coinsVisibleTime != 10.0f) coinText.rectTransform.Translate(0.0f, 8.0f * Time.deltaTime, 0.0f);
 
         float scoreTime = SnakeFood.GetMultiplierTime();
 
@@ -163,6 +163,7 @@ public class GlobalHUD : MonoBehaviour
 
                 skinMenuObject.SetActive(false);
                 themeMenuObject.SetActive(false);
+                optionsMenuObject.SetActive(false);
                 
                 break;
 
@@ -179,9 +180,9 @@ public class GlobalHUD : MonoBehaviour
                 HideChildren();
 
                 break;
-            case 4: //Help menu
+            case 4: //Options menu
 
-                helpMenuObject.SetActive(true);
+                optionsMenuObject.SetActive(true);
                 HideChildren();
 
                 break;
