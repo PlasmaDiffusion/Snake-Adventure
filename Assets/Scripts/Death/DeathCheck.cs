@@ -90,7 +90,7 @@ public class DeathCheck : MonoBehaviour
         if (died || invincibility > 0.0f) return;
         deathMenu.SetActive(true);
         gameObject.GetComponent<Snake>().alive = false;
-
+        GlobalStats.hud.DisplayCoins(true);
         GlobalStats.paused = true;
 
         increasingT = 1.0f;
