@@ -54,11 +54,6 @@ public class GlobalStats : MonoBehaviour
     
     public static int GetHiScore() { return hiscore; }
     public static int GetFarthestLevel() { return farthestLevel; }
-    public static void ResetScores()
-    {
-        hiscore = 0;
-        farthestLevel = 0;
-    }
 
     public static bool CheckForFarthestLevel()
     {

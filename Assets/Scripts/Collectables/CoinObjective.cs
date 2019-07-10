@@ -29,7 +29,6 @@ public class CoinObjective : MonoBehaviour
     float t;
     Vector3 targetPos;
     Vector3 startingPos;
-    float tMultiplier;
 
     // Start is called before the first frame update
 
@@ -43,20 +42,22 @@ public class CoinObjective : MonoBehaviour
             achieved = false;
             PickRandomObjective();
             objectiveSet = true;
-            //Debug.Log("Setting objective");
-            
+            Debug.Log("Setting objective");
+
+            //Don't show it the first time
+            Destroy(claimRewardButton.transform.parent.gameObject);
         }
 
-        //Debug.Log(((Objective)objectiveID).ToString());
+
+        Debug.Log(((Objective)objectiveID).ToString());
 
         UpdateUI();
 
         //Lerp stuff
         targetPos = panelObject.transform.position;
         startingPos =  new Vector3(targetPos.x * -2.0f, targetPos.y, targetPos.z);
-        t = 0.0f;
-        tMultiplier = 0.0f;
-        panelObject.transform.position = startingPos;
+        t = -2.0f;
+
 
     }
 
@@ -227,20 +228,12 @@ public class CoinObjective : MonoBehaviour
     //Lerp into view
     private void Update()
     {
-        if (t < 1.0f && panelObject && tMultiplier != 0.0f)
+        if (t < 1.0f && panelObject)
         {
-            t += Time.deltaTime * tMultiplier;
+            t += Time.deltaTime;
             if (t > 1.0f) t = 1.0f;
-            else if (t < 0.0f) { t = 0.0f; tMultiplier = 0.0f; }
 
             panelObject.transform.position = Vector3.Lerp(startingPos, targetPos, t);
         }
-    }
-
-    public void ToggleView()
-    {
-        if (tMultiplier == 0.0f) tMultiplier = 1.0f;
-        else if (tMultiplier == 1.0f) { tMultiplier = -1.0f; t = 0.9f; }
-        else if (tMultiplier == -1.0f) tMultiplier = 1.0f;
     }
 }
