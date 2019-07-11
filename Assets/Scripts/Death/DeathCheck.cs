@@ -84,10 +84,10 @@ public class DeathCheck : MonoBehaviour
 
         }
 
-    //Pop up the game over screen and make the snake stop moving.
-    public void Die()
+    //Pop up the game over screen and make the snake stop moving. Return true if died for other objects to know.
+    public bool Die()
     {
-        if (died || invincibility > 0.0f) return;
+        if (died || invincibility > 0.0f) return false;
         deathMenu.SetActive(true);
         gameObject.GetComponent<Snake>().alive = false;
         GlobalStats.hud.DisplayCoins(true);
@@ -95,6 +95,7 @@ public class DeathCheck : MonoBehaviour
 
         increasingT = 1.0f;
         died = true;
+        return true;
     }
 
     //Call this to make the snake alive and await a swipe to resume the game.

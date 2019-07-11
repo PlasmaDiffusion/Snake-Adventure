@@ -16988,6 +16988,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeWallMaterials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 471eaa28bc09b0149a1b19a6da6c93b9, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeObjects.Array.data[7]
+      value: 
+      objectReference: {fileID: 4631916624284482842, guid: ef5ef784101d71e4aa7f58b0416e4600,
+        type: 3}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: levelThemeFloorMaterials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 645511b10bd43634eb2b00afd7a8df2c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee4cad25033ad443a71c6364dcb72e5, type: 3}
 --- !u!1 &1045549059
@@ -18184,7 +18200,6 @@ GameObject:
   - component: {fileID: 1099661462}
   - component: {fileID: 1099661461}
   - component: {fileID: 1099661460}
-  - component: {fileID: 1099661459}
   m_Layer: 5
   m_Name: ButtonDeleteSkins
   m_TagString: Untagged
@@ -18212,22 +18227,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.0000076293945}
   m_SizeDelta: {x: 244.4, y: 42.399994}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1099661459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099661457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9296a5d4d845a247bb88b7ff2ce0721, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  confirmObject: {fileID: 0}
-  yesButton: {fileID: 0}
-  titleText: {fileID: 0}
-  descText: {fileID: 0}
 --- !u!114 &1099661460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44188,6 +44187,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
+        type: 3}
+      propertyPath: testLevels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
+        type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
+        type: 3}
+      propertyPath: testLevels.Array.data[0]
+      value: 
+      objectReference: {fileID: 689604352973324798, guid: ccbc12618e1090949a249fcb53622595,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ea96ff81f675034fac6504407ff302e, type: 3}
 --- !u!1 &8845045496109827752 stripped

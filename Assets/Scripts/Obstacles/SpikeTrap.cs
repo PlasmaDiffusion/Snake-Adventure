@@ -112,12 +112,27 @@ public class SpikeTrap : MonoBehaviour
         }
     }
     
-    //Atempt to kill the player (Won't if incinvincinle). Also destroy this object.
+    //Atempt to kill the player (Won't if incinvincinle).
     void KillPlayer(DeathCheck deathCheck)
     {
-        deathCheck.Die();
+        bool died = deathCheck.Die();
         hideWarningText = true;
 
+        //Destroy this object if the player died to it. Don't if invincible.
+        if (died)
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        //Only the parent can explode
+        if (startingVel.x == 0.0f && startingVel.z == 0.0f)
+        {
+            transform.parent.GetComponent<SpikeTrap>().Explode();
+            return;
+        }
 
         //Spawn death particles
         GameObject emitter = GameObject.Find("DeathParticleEmitter");
@@ -127,7 +142,6 @@ public class SpikeTrap : MonoBehaviour
 
         Destroy(gameObject);
     }
-
 
     void BounceOffWall()
     {
