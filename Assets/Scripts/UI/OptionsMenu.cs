@@ -113,7 +113,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void RemoveAds()
     {
-
+        GetComponent<ShopPurchaser.Purchaser>().BuyNonConsumable();
         confirmObject.SetActive(false);
     }
 

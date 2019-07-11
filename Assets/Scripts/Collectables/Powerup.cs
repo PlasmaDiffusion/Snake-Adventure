@@ -41,6 +41,7 @@ public class Powerup : MonoBehaviour
     void  PickupCoin(Collider other)
     {
         GlobalStats.coins+= 5;
+        if(GlobalStats.disabledAds) GlobalStats.coins += 5; //Coin pickups x2 if ads were removed
         GlobalStats.hud.UpdateHUD();
         GlobalStats.hud.DisplayCoins(false);
     }

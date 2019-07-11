@@ -19,12 +19,15 @@ public class GlobalStats : MonoBehaviour
 
     public static GlobalHUD hud;
 
+    public static bool disabledAds;
+
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
         score = 0;
         paused = true;
+        disabledAds = false;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
     }
 
@@ -95,6 +98,8 @@ public class GlobalStats : MonoBehaviour
         data.randomSnake = Skins.randomSkin;
         data.randomTheme = Skins.randomTheme;
 
+        data.adRemovalPurchased = disabledAds;
+
         bf.Serialize(file, data);
         file.Close();
     }
@@ -125,6 +130,7 @@ public class GlobalStats : MonoBehaviour
 
             Skins.randomSkin = data.randomSnake;
             Skins.randomTheme = data.randomTheme;
+            disabledAds = data.adRemovalPurchased;
         }
         else
         {
@@ -150,5 +156,7 @@ public class GlobalStats : MonoBehaviour
 
         public bool randomSnake;
         public bool randomTheme;
+
+        public bool adRemovalPurchased;
     }
 }

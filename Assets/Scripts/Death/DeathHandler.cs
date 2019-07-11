@@ -30,6 +30,11 @@ public class DeathHandler : MonoBehaviour
         payedCoins = false;
 
         coinButtonText = coinButton.transform.GetChild(0).GetComponent<Text>();
+
+        if (GlobalStats.disabledAds)
+        {
+            adButton.transform.GetChild(0).GetComponent<Text>().text = "Free Revive";
+        }
     }
     
     //Call Die() to prompt a game over menu. 
@@ -105,7 +110,13 @@ public class DeathHandler : MonoBehaviour
 
     public void ShowRewardedAd()
     {
-        if (Advertisement.IsReady("rewardedVideo"))
+        //If the player supported the game, they skip the ad
+        if (GlobalStats.disabledAds)
+        {
+            watchedAd = true;
+            Revive();
+        }
+        else if (Advertisement.IsReady("rewardedVideo"))
         {
             var options = new ShowOptions { resultCallback = HandleShowResult };
             Advertisement.Show("rewardedVideo", options);
