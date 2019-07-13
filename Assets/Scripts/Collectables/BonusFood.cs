@@ -30,6 +30,7 @@ public class BonusFood : MonoBehaviour
         {
             GlobalStats.AddScore(scoreBonuses[(int)Skins.levelTheme], transform.position);
             CoinObjective.CheckForObjective((int)CoinObjective.Objective.GET_BONUS_FOOD);
+            SoundManager.PlaySound(SoundManager.Sounds.FOOD_PICKUP);
             Destroy(gameObject);
         }
     }

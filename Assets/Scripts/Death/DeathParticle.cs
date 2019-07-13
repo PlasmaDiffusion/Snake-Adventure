@@ -13,13 +13,14 @@ public class DeathParticle : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
 
-        //The original object will not destroy itself.
-        if (name != "DeathParticleEmitter")
+        //The original object will not destroy itself. Check if a copy or not.
+        if (name != "DeathParticleEmitter") //Is a copy
         {
             original = false;
             ps.Play();
+            SoundManager.PlaySound(SoundManager.Sounds.EXPLODE);
         }
-        else
+        else //Is the original
         {
             original = true;
             ps.Stop();

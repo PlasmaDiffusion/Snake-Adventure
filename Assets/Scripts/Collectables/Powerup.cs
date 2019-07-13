@@ -44,6 +44,7 @@ public class Powerup : MonoBehaviour
         if(GlobalStats.disabledAds) GlobalStats.coins += 5; //Coin pickups x2 if ads were removed
         GlobalStats.hud.UpdateHUD();
         GlobalStats.hud.DisplayCoins(false);
+        SoundManager.PlaySound(SoundManager.Sounds.COIN);
     }
 
     void PickupGhost(Collider other)
@@ -51,18 +52,21 @@ public class Powerup : MonoBehaviour
         DeathCheck snake = other.GetComponent<DeathCheck>();
         snake.MakeInvincible(8.0f);
         CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 0);
+        SoundManager.PlaySound(SoundManager.Sounds.POWERUP);
     }
 
     void PickupPointMultiplier(Collider other)
     {
         SnakeFood.AddMultiplier();
         CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 1);
+        SoundManager.PlaySound(SoundManager.Sounds.POWERUP, 1.5f);
     }
 
     void PickupFire(Collider other)
     {
         other.gameObject.transform.Find("Tongue").GetComponent<FireBreathe>().ActivateFire();
         CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 2);
+        SoundManager.PlaySound(SoundManager.Sounds.POWERUP, 0.5f);
     }
 
     //Player collects powerup and a function is called.

@@ -76,7 +76,9 @@ public class DeathCheck : MonoBehaviour
 
         if (gameObject.transform.position.y < deathY)
         {
-            Debug.Log("Dying because under y level " + deathY.ToString());
+            //Debug.Log("Dying because under y level " + deathY.ToString());
+            invincibility = 0.0f;
+            UpdateColour();
             Die();
         }
 
@@ -92,6 +94,8 @@ public class DeathCheck : MonoBehaviour
         gameObject.GetComponent<Snake>().alive = false;
         GlobalStats.hud.DisplayCoins(true);
         GlobalStats.paused = true;
+
+        SoundManager.PlaySound(SoundManager.Sounds.DIE);
 
         increasingT = 1.0f;
         died = true;
@@ -124,6 +128,7 @@ public class DeathCheck : MonoBehaviour
         if (invincibility > 0.0f) return;
 
         collisionTimeInSegment += Time.deltaTime;
+        if (collisionTimeInSegment > collisionTimeLimit * 0.25f) SoundManager.PlaySound(SoundManager.Sounds.HURT, 1.0f - collisionTimeInSegment);
         if (collisionTimeInSegment > collisionTimeLimit) Die();
 
         UpdateColour();
@@ -139,8 +144,10 @@ public class DeathCheck : MonoBehaviour
 
     void UpdateColour()
     {
-        //Tint yellow to show near death
-        rend.material.color = new Color(regColor.r + (1.0f-regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility/maxInvincibility));
+        //Tint yellow to show near death (Or another colour if the skin doesn't work with adding to the red value)
+        if (Skins.snakeSkin == Skins.SnakeSkins.DOTTED) rend.material.color = new Color(rend.material.color.r,regColor.g + (1.0f - regColor.g) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
+        else if(Skins.snakeSkin == Skins.SnakeSkins.DICE) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
+        else rend.material.color = new Color(regColor.r + (1.0f - regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
     }
 
     public void MakeInvincible(float time)

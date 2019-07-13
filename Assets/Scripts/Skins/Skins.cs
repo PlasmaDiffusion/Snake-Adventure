@@ -11,8 +11,8 @@ public class Skins : MonoBehaviour
         CAMO,
         SCALES,
         RUSTY,
-        SKIN6,
-        SKIN7,
+        DICE,
+        DOTTED,
         SKIN8,
         RANDOM
     };

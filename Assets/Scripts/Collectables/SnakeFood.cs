@@ -9,6 +9,9 @@ public class SnakeFood : MonoBehaviour
     static int scoreMultiplier = 1;
     static float multiplierTime = 0.0f;
 
+    //Sound effect pitch variable
+    static float currentPitch = 1.0f;
+
     //Delegate for food spawner to react to when this is collected.
     public delegate void OnCollect();
     public OnCollect ExtraCollectEvent;
@@ -30,6 +33,11 @@ public class SnakeFood : MonoBehaviour
         {
             //Add onto the score! There could be a score multiplier too.
             GlobalStats.AddScore(scoreMultiplier * 10, transform.position);
+
+            //Play the grow sound and up the pitch each time
+            SoundManager.PlaySound(SoundManager.Sounds.GROW, currentPitch);
+            currentPitch+= 0.1f;
+            if (currentPitch > 2.0f) currentPitch = 1.0f;
 
             //Add a snake segment
             Snake snake = other.GetComponent<Snake>();
