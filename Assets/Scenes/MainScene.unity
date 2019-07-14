@@ -6740,7 +6740,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '------'
+  m_Text: Dotted
 --- !u!222 &417226502
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7597,7 +7597,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '------'
+  m_Text: Checkered
 --- !u!222 &454536269
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18181,6 +18181,11 @@ PrefabInstance:
       propertyPath: snakeSkins.Array.data[6]
       value: 
       objectReference: {fileID: 2100000, guid: 5b4efc01e0dbe934082cf0924352e907, type: 2}
+    - target: {fileID: 8696292504044610070, guid: 4ee4cad25033ad443a71c6364dcb72e5,
+        type: 3}
+      propertyPath: snakeSkins.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ca02777c71acf04cb1aa9b7068438f8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee4cad25033ad443a71c6364dcb72e5, type: 3}
 --- !u!1 &1045549059
@@ -43128,7 +43133,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Camo
+  m_Text: Mechanical
 --- !u!222 &2059421524
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45962,14 +45967,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
         type: 3}
+      propertyPath: hardLevels.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
+        type: 3}
       propertyPath: testing
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
         type: 3}
       propertyPath: testLevels.Array.data[0]
       value: 
-      objectReference: {fileID: 689604352973324798, guid: ccbc12618e1090949a249fcb53622595,
+      objectReference: {fileID: 6486195421992982905, guid: 67040ab9daeef11438c81472ec125ac1,
+        type: 3}
+    - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
+        type: 3}
+      propertyPath: hardLevels.Array.data[9]
+      value: 
+      objectReference: {fileID: 6486195421992982905, guid: 67040ab9daeef11438c81472ec125ac1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ea96ff81f675034fac6504407ff302e, type: 3}

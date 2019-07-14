@@ -8,12 +8,12 @@ public class Skins : MonoBehaviour
     {
         DEFAULT,
         BLUE,
-        CAMO,
+        MECHANICAL,
         SCALES,
         RUSTY,
         DICE,
         DOTTED,
-        SKIN8,
+        CHECKERED,
         RANDOM
     };
 

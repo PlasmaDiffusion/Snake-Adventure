@@ -19,6 +19,20 @@ public class SnakeFood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ChangeSkin();
+    }
+
+    private void OnEnable()
+    {
+        ChangeSkin();
+    }
+
+    //Match the player's skin
+    public void ChangeSkin()
+    {
+        Skins skinObject = GameObject.Find("SkinHandler").GetComponent<Skins>();
+
+        GetComponent<Renderer>().material = skinObject.snakeSkins[(int)Skins.snakeSkin];
     }
 
     // Update is called once per frame

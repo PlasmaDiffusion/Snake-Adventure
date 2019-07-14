@@ -95,6 +95,14 @@ public class Snake : SnakeMovement
             rend.material = skinObject.snakeSkins[(int)Skins.snakeSkin];
             GetComponent<DeathCheck>().regColor = rend.material.color;
 
+            //Update food objects too
+            GameObject[] foodObjects = GameObject.FindGameObjectsWithTag("Food");
+
+            foreach (GameObject item in foodObjects)
+            {
+                item.GetComponent<SnakeFood>().ChangeSkin();
+            }
+
             //Recolour the link to be a darkened version of this skin
             //0/103
             //190/248
