@@ -10,6 +10,7 @@ namespace ShopPurchaser
     // Deriving the Purchaser class from IStoreListener enables it to receive messages from Unity Purchasing.
     public class Purchaser : MonoBehaviour, IStoreListener
     {
+        OptionsMenu options;
         private static IStoreController m_StoreController;          // The Unity Purchasing system.
         private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
@@ -23,7 +24,7 @@ namespace ShopPurchaser
         // when defining the Product Identifiers on the store. Except, for illustration purposes, the 
         // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
         // specific mapping to Unity Purchasing's AddProduct, below.
-        public static string kProductIDConsumable = "disable_ads";
+        public static string kProductIDConsumable = "";
         public static string kProductIDNonConsumable = "disable_ads";
         public static string kProductIDSubscription = "subscription";
 
@@ -35,6 +36,8 @@ namespace ShopPurchaser
 
         void Start()
         {
+
+            options = gameObject.GetComponent<OptionsMenu>();
             // If we haven't set up the Unity Purchasing reference
             if (m_StoreController == null)
             {
@@ -200,6 +203,7 @@ namespace ShopPurchaser
         {
             // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
             Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+            //options.ShowResult(4, "Initialization Failure: " + error.ToString());
         }
 
 
@@ -208,29 +212,32 @@ namespace ShopPurchaser
             // A consumable product has been purchased by this user.
             if (String.Equals(args.purchasedProduct.definition.id, kProductIDConsumable, StringComparison.Ordinal))
             {
-                Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+                Debug.Log(string.Format("ProcessPurchase: Consumable PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
+
             }
             // Or ... a non-consumable product has been purchased by this user.
             else if (String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable, StringComparison.Ordinal))
             {
-                Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-                
+                Debug.Log(string.Format("ProcessPurchase: Non-Consumable PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 
                 //Remove ads for the player here!
                 GlobalStats.disabledAds = true;
                 GlobalStats.Save();
+                SoundManager.PlaySound(SoundManager.Sounds.COIN);
+                options.ShowResult(3);
             }
             // Or ... a subscription product has been purchased by this user.
             else if (String.Equals(args.purchasedProduct.definition.id, kProductIDSubscription, StringComparison.Ordinal))
             {
-                Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+                Debug.Log(string.Format("ProcessPurchase: Subscription PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // TODO: The subscription item has been successfully purchased, grant this to the player.
             }
             // Or ... an unknown product has been purchased by this user. Fill in additional products here....
             else
             {
                 Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
+                options.ShowResult(4, "ProcessPurchase: FAIL. Unrecognized product: '{0}'" + args.purchasedProduct.definition.id);
             }
 
             // Return a flag indicating whether this product has completely been received, or if the application needs 
@@ -245,6 +252,7 @@ namespace ShopPurchaser
             // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
             // this reason with the user to guide their troubleshooting actions.
             Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+            options.ShowResult(4, failureReason.ToString());
         }
     }
 }

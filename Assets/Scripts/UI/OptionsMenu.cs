@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//UI Script for both the options AND SHOP MENU.
 public class OptionsMenu : MonoBehaviour
 {
     //Ui variables
     public GameObject confirmObject;
     public Button yesButton;
+    public Button noButton;
     public Text titleText;
     public Text descText;
 
@@ -28,7 +30,11 @@ public class OptionsMenu : MonoBehaviour
 
     public void ShowConfirmation(int buttonID)
     {
-        switch(buttonID)
+        //Ready buttons for result window
+        yesButton.gameObject.SetActive(true);
+        noButton.transform.GetChild(0).GetComponent<Text>().text = "No";
+
+        switch (buttonID)
         {
             case 0:
                 yesButton.onClick.AddListener(DeleteSkins);
@@ -81,7 +87,7 @@ public class OptionsMenu : MonoBehaviour
         GlobalStats.Save();
 
         deletedData = true;
-        confirmObject.SetActive(false);
+        ShowResult(0);
     }
 
     public void DeleteThemes()
@@ -99,7 +105,7 @@ public class OptionsMenu : MonoBehaviour
         GlobalStats.Save();
 
         deletedData = true;
-        confirmObject.SetActive(false);
+        ShowResult(1);
     }
 
     public void DeleteScores()
@@ -108,13 +114,60 @@ public class OptionsMenu : MonoBehaviour
         GlobalStats.Save();
 
         deletedData = true;
-        confirmObject.SetActive(false);
+        ShowResult(2);
     }
 
     public void RemoveAds()
     {
-        GetComponent<ShopPurchaser.Purchaser>().BuyNonConsumable();
-        confirmObject.SetActive(false);
+        //Don't buy if already owned
+        if (GlobalStats.disabledAds)
+        {
+            ShowResult(5);
+        }
+        else
+        {
+            //Buy with IAP
+            GetComponent<ShopPurchaser.Purchaser>().BuyNonConsumable();
+        }
+        
+    }
+
+    //Repurpose confirm menu to show results of what just happened.
+    public void ShowResult(int resultID, string error = "")
+    {
+        confirmObject.SetActive(true);
+
+        //Ready buttons for result window
+        yesButton.gameObject.SetActive(false);
+        noButton.transform.GetChild(0).GetComponent<Text>().text = "OK";
+
+        switch (resultID)
+        {
+            case 0:
+                titleText.text = "Deleted!";
+                descText.text = "All Snake Skins deleted.";
+                break;
+            case 1:
+                titleText.text = "Deleted!";
+                descText.text = "All Level Themes deleted.";
+                break;
+            case 2:
+                titleText.text = "Deleted!";
+                descText.text = "Best score and level deleted.";
+                break;
+            case 3:
+                titleText.text = "Ads Removed!";
+                descText.text = "Purchase successful. Enjoy no ads and double coin pickups!";
+                break;
+            case 4:
+                titleText.text = "Purchase Failed";
+                descText.text = error;
+                break;
+            case 5:
+                titleText.text = "Already Bought";
+                descText.text = "Ads were already removed.";
+                break;
+        }
     }
 
 }

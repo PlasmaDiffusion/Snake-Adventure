@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3543636800539204153}
   - component: {fileID: 3543636800539204152}
   - component: {fileID: 7048443555661691326}
-  - component: {fileID: 8897047465225414785}
   m_Layer: 0
   m_Name: BevelCube
   m_TagString: Untagged
@@ -94,17 +93,3 @@ MonoBehaviour:
   themeAffectsMaterial: 1
   changesFloorMaterial: 0
   themeAffectsMesh: 0
---- !u!64 &8897047465225414785
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3543636800539204156}
-  m_Material: {fileID: 13400000, guid: 2d6a0ca60a423b74cb0c90260aec86d3, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2432090755550338912, guid: eb3ecad75de83fa488271482e9695485, type: 3}
