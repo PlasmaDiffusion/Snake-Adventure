@@ -107,14 +107,19 @@ public class Snake : SnakeMovement
             //0/103
             //190/248
             //118/71
+            Renderer linkRend = segmentLinkReference.GetComponent<Renderer>();
             if (Skins.snakeSkin != Skins.SnakeSkins.DEFAULT)
             {
-                Renderer linkRend = segmentLinkReference.GetComponent<Renderer>();
+                
                 linkRend.material.color = (rend.material.color * new Color(0.5f, 0.5f, 0.5f, 1.0f));
                 //Color darkenedCol = linkRend.material.color;
                 //darkenedCol = new Color(darkenedCol.r * 1.145f, darkenedCol.g * 0.766f, darkenedCol.b * 1.661f);
                 //linkRend.material.color = darkenedCol;
 
+            }
+            else //Default colour isn't quite a darkened version of the default snake. Set it here.
+            {
+                linkRend.material.color = new Color(0.0f, 190.0f / 255.0f, 118.0f / 255.0f);
             }
         }
         else
