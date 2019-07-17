@@ -21,12 +21,14 @@ public class GlobalStats : MonoBehaviour
 
     public static bool disabledAds;
     public static bool readPrivacyPolicy;
+    public static float initialSoundVolume;
 
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
         score = 0;
+        initialSoundVolume = 1.0f;
         paused = true;
         disabledAds = false;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
@@ -101,6 +103,7 @@ public class GlobalStats : MonoBehaviour
 
         data.adRemovalPurchased = disabledAds;
         data.readPrivacyPolicy = readPrivacyPolicy;
+        data.soundVolume = initialSoundVolume;
 
         bf.Serialize(file, data);
         file.Close();
@@ -135,6 +138,8 @@ public class GlobalStats : MonoBehaviour
 
             disabledAds = data.adRemovalPurchased;
             readPrivacyPolicy = data.readPrivacyPolicy;
+            initialSoundVolume = data.soundVolume;
+            SoundManager.SetVolume(initialSoundVolume);
         }
         else
         {
@@ -163,5 +168,6 @@ public class GlobalStats : MonoBehaviour
 
         public bool adRemovalPurchased;
         public bool readPrivacyPolicy;
+        public float soundVolume;
     }
 }

@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        soundVolume = 1.0f;
+        soundVolume = GlobalStats.initialSoundVolume;
 
         currentSounds = GetComponents<AudioSource>();
         soundList = soundAssets;
@@ -75,6 +75,7 @@ public class SoundManager : MonoBehaviour
     public static void SetVolume(float amount)
     {
         soundVolume = amount;
+        GlobalStats.initialSoundVolume = amount;
     }
     public static float GetVolume()
     {

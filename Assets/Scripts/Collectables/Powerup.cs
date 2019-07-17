@@ -35,7 +35,7 @@ public class Powerup : MonoBehaviour
     // Rotate the powerups to give them some life.
     void Update()
     {
-        transform.Rotate(new Vector3(0.0f, 15.0f * Time.deltaTime, 0.0f));
+        transform.Rotate(new Vector3(0.0f, 0.0f, 15.0f * Time.deltaTime));
     }
 
     void  PickupCoin(Collider other)

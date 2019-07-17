@@ -7,8 +7,8 @@ public class PrivacyPolicyMenu : MonoBehaviour
 {
     private void Start()
     {
-        if (!GlobalStats.readPrivacyPolicy)
-            gameObject.SetActive(true);
+        if (GlobalStats.readPrivacyPolicy)
+            gameObject.SetActive(false);
     }
 
     public void Accept()
