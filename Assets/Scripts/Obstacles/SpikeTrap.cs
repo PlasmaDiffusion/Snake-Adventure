@@ -150,7 +150,8 @@ public class SpikeTrap : MonoBehaviour
         //Reverse the velocity, also store the new velocity for pausing purposes
         if (!opposite) { rigidbody.velocity = oppositeVel; currentVel = oppositeVel; }
         else { rigidbody.velocity = startingVel; currentVel = startingVel; }
-        
+
+        SoundManager.PlaySound(SoundManager.Sounds.TRAP_COLLIDE);
 
         //Don't let collision happen constantly
         collisionDebounce = 0.5f;

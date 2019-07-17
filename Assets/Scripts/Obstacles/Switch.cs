@@ -52,11 +52,13 @@ public class Switch : MonoBehaviour
             {
                 transform.localScale = pressedScale;
                 rend.material.color = pressedColor;
+                SoundManager.PlaySound(SoundManager.Sounds.SWITCH_ON);
             }
             else
             {
                 transform.localScale = normalScale;
                 rend.material.color = regColor;
+                SoundManager.PlaySound(SoundManager.Sounds.SWITCH_OFF);
             }
 
         SwitchBlock[] switchBlocks= transform.parent.GetComponentsInChildren<SwitchBlock>();

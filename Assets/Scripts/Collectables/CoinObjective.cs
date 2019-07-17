@@ -142,12 +142,15 @@ public class CoinObjective : MonoBehaviour
             //If needed, is the right subobjective set?
             if (subObjectiveCheked == -1 || subObjectiveCheked == subObjectiveID)
             {
-                Debug.Log("Objective progressed!");
                 progressAmount++;
                 if (progressAmount >= goalAmount)
                 {
-                    Debug.Log("Objective met!");
+                    SoundManager.PlaySound(SoundManager.Sounds.OBJECTIVE_ACHIEVED, 1.0f, -1);
                     achieved = true;
+                }
+                else
+                {
+                    SoundManager.PlaySound(SoundManager.Sounds.OBJECTIVE_PROGRESSED, 1.0f, -1);
                 }
             }
         }
@@ -155,8 +158,9 @@ public class CoinObjective : MonoBehaviour
 
     public void CashInPrize()
     {
-        Debug.Log("PRIZE LOL");
+        //Debug.Log("PRIZE LOL");
         coinBonusGroup.SetActive(true);
+        SoundManager.PlaySound(SoundManager.Sounds.COIN, 1.5f);
         achieved = false;
         PickRandomObjective();
         UpdateUI();

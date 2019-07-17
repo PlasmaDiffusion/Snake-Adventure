@@ -20,6 +20,7 @@ public class GlobalStats : MonoBehaviour
     public static GlobalHUD hud;
 
     public static bool disabledAds;
+    public static bool readPrivacyPolicy;
 
     // Start is called before the first frame update
     void Start()
@@ -99,6 +100,7 @@ public class GlobalStats : MonoBehaviour
         data.randomTheme = Skins.randomTheme;
 
         data.adRemovalPurchased = disabledAds;
+        data.readPrivacyPolicy = readPrivacyPolicy;
 
         bf.Serialize(file, data);
         file.Close();
@@ -130,7 +132,9 @@ public class GlobalStats : MonoBehaviour
 
             Skins.randomSkin = data.randomSnake;
             Skins.randomTheme = data.randomTheme;
+
             disabledAds = data.adRemovalPurchased;
+            readPrivacyPolicy = data.readPrivacyPolicy;
         }
         else
         {
@@ -158,5 +162,6 @@ public class GlobalStats : MonoBehaviour
         public bool randomTheme;
 
         public bool adRemovalPurchased;
+        public bool readPrivacyPolicy;
     }
 }

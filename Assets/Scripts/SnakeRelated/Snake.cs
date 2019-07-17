@@ -415,6 +415,7 @@ public class Snake : SnakeMovement
             speed = 360.0f;
             boostEmitter.Play();
             CoinObjective.CheckForObjective((int)CoinObjective.Objective.BOOST);
+            SoundManager.PlaySound(SoundManager.Sounds.BOOST);
         }
         else //Turn off boost
         {

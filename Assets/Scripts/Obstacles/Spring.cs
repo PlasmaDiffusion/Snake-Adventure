@@ -53,6 +53,7 @@ public class Spring : MonoBehaviour
 
             t = 0.0f;
             increasing = true;
+            SoundManager.PlaySound(SoundManager.Sounds.BOUNCE);
         }
     }
 }

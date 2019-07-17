@@ -49,7 +49,7 @@ public class FireBreathe : MonoBehaviour
             {
                 fireTime = fireWaitTime;
                 //Spawn in three projectiles
-                //[Fire Sound here]
+                SoundManager.PlaySound(SoundManager.Sounds.FIRE);
                 Instantiate(projectileReference, transform.position, transform.rotation);
                 Instantiate(projectileReference, transform.position, transform.rotation * Quaternion.Euler(0, -45, 0));
                 Instantiate(projectileReference, transform.position, transform.rotation * Quaternion.Euler(0, 45, 0));

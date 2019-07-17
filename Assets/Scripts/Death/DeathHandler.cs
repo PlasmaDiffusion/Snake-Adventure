@@ -8,28 +8,32 @@ using UnityEngine.SceneManagement;
 //Class that is basically the game over screen.
 public class DeathHandler : MonoBehaviour
 {
-    bool watchedAd;
+    int watchedAds;
     bool payedCoins;
 
     public GameObject player;
     public GameObject adButton;
     public GameObject coinButton;
-    public GameObject continueText;
+    public GameObject continueTextObject;
     public GameObject endGameScreen;
-    
+
+    Text continueText;
     Text coinButtonText;
 
     int coinCostMultiplier;
 
+    int lives;
 
     // Start is called before the first frame update
     void Start()
     {
         coinCostMultiplier = 1;
-        watchedAd = false;
+        watchedAds = 0;
+        lives = 3;
         payedCoins = false;
 
         coinButtonText = coinButton.transform.GetChild(0).GetComponent<Text>();
+        continueText = continueTextObject.GetComponent<Text>();
 
         if (GlobalStats.disabledAds)
         {
@@ -42,29 +46,36 @@ public class DeathHandler : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-
+        if (GlobalStats.hud)
         GlobalStats.hud.DisplayCoins(true);
 
-        //Give player a button to watch an ad to continue here. (Life 2)
-        if (watchedAd)
+        if (!continueText) { continueText = continueTextObject.GetComponent<Text>(); lives = 3; }
+
+        continueText.text = "Watch an ad or pay coins to continue!\n" +
+            "Revives Remaining: " + lives.ToString();
+        
+        //Give player a button to watch an ad to continue here.
+        if (watchedAds > 2 || lives == 0)
         {
             adButton.SetActive(false);
         }
 
-        //Also let them pay 10 coins. (Life 3)
-        if(payedCoins)
+        //Also let them pay coins.
+        if(payedCoins || lives == 0)
         {
             coinButton.SetActive(false);
         }
 
-        if (watchedAd && payedCoins)
+        if (lives == 0)
         {
-            continueText.SetActive(false);
+            continueTextObject.SetActive(false);
         }
     }
      //Continue game and exit menu.
     void Revive()
     {
+        lives--;
+
         //Hide the coins gradually.
         GlobalStats.hud.DisplayCoins(false);
         GlobalStats.hud.UpdateHUD();
@@ -90,11 +101,13 @@ public class DeathHandler : MonoBehaviour
         {
             GameObject textObj = endGameScreen.transform.Find("NewBestScoreText").gameObject;
             textObj.GetComponent<Text>().text = "New Best!";
+            SoundManager.PlaySound(SoundManager.Sounds.HISCORE);
         }
         if (GlobalStats.CheckForFarthestLevel())
         {
             GameObject textObj = endGameScreen.transform.Find("NewBestLevelText").gameObject;
             textObj.GetComponent<Text>().text = "New Best!";
+            SoundManager.PlaySound(SoundManager.Sounds.HISCORE);
 
         }
     }
@@ -113,7 +126,7 @@ public class DeathHandler : MonoBehaviour
         //If the player supported the game, they skip the ad
         if (GlobalStats.disabledAds)
         {
-            watchedAd = true;
+            watchedAds += 2; //1 life has to be with coins
             Revive();
         }
         else if (Advertisement.IsReady("rewardedVideo"))
@@ -133,13 +146,13 @@ public class DeathHandler : MonoBehaviour
                 //
                 // YOUR CODE TO REWARD THE GAMER
                 // Give coins etc.
-                watchedAd = true;
+                watchedAds++;
                 Revive();
 
                 break;
             case ShowResult.Skipped:
                 Debug.Log("The ad was skipped before reaching the end.");
-                watchedAd = true; //No more chances if they skip :P
+                watchedAds++; //No more chances if they skip :P
 
                 break;
             case ShowResult.Failed:

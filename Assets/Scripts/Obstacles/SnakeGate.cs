@@ -95,6 +95,7 @@ public class SnakeGate : MonoBehaviour
                 CoinObjective.CheckForObjective((int)CoinObjective.Objective.BEAT_THEMED_LEVELS, (int)Skins.levelTheme);
             }
 
+            SoundManager.PlaySound(SoundManager.Sounds.ENTER_GATE);
 
             //Ranzomide level theme if that is set
             Skins.CheckForRandomization(true);

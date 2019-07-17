@@ -55,7 +55,7 @@ public class CoinTally : MonoBehaviour
         //Keep tallying counts every second until done.
         while (coinBonus > 0 && prevCoinCount < GlobalStats.coins)
         {
-            //Insert some coin sound here!!!!
+        SoundManager.PlaySound(SoundManager.Sounds.COIN);
 
         prevCoinCount++;
         coinBonus--;
