@@ -127,6 +127,7 @@ public class OptionsMenu : MonoBehaviour
         else
         {
             //Buy with IAP
+            titleText.text = "Purchasing...";
             GetComponent<ShopPurchaser.Purchaser>().BuyNonConsumable();
         }
         
