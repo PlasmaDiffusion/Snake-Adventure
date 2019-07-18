@@ -51,7 +51,7 @@ public class ChangeSkin : MonoBehaviour
         if (SkinIsUnlocked())
         {
             button.onClick.AddListener(ChangeToDifferentSkin);
-            image.color = unlockedColour; childImage.color = Color.white;
+            image.color = unlockedColour;
         }
         else { image.color = Color.grey; childImage.color = Color.grey; }
     }
