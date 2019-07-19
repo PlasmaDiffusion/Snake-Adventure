@@ -100,6 +100,8 @@ public class SnakeGate : MonoBehaviour
             //Ranzomide level theme if that is set
             Skins.CheckForRandomization(true);
 
+            other.GetComponent<Snake>().IncreaseSpeed();
+
             //Spawn in more level here. Despawn the oldest level, but not the one being exited.
             entered = true;
             LevelSpawner spawner = GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>();

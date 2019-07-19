@@ -53,7 +53,8 @@ public class SnakeMovement : MonoBehaviour
         transform.position = AlignToGrid(transform.position);
         targetPosition = transform.position;
         positionT = 1.0f;
-        moveRate = 8.0f;
+        moveRate = 7.0f;
+        speed = 7.0f;
 
         forcingDirection = false;
 

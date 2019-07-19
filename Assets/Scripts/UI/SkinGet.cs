@@ -46,6 +46,8 @@ public class SkinGet : MonoBehaviour
         newSkinName.transform.localScale = new Vector2(0.0f, 0.0f);
 
         isLevelTheme = false;
+
+        SoundManager.PlaySound(SoundManager.Sounds.FOOD_PICKUP, 1.5f);
     }
 
     // Update is called once per frame

@@ -63,7 +63,7 @@ public class Snake : SnakeMovement
         //Movement related
         rigidbody = GetComponent<Rigidbody>();
         currentDirection = DraggedDirection.Up;
-        moveRate = 5.0f;
+        moveRate = 7.0f;
 
         alive = true;
         timeRotating = 1.0f;
@@ -398,6 +398,16 @@ public class Snake : SnakeMovement
 
     public void MakeAlive() { alive = true; pauseMenuObject.SetActive(true); }
 
+    //Every level the snake can slightly speed up. Cap the speed though to make it not impossible to control. 
+    public void IncreaseSpeed()
+    {
+        if (speed < 8.0f)
+        {
+            speed += 0.1f;
+            if (speed > 8.0f) speed = 8.0f;
+            if(!boosting) moveRate = speed;
+        }
+    }
 
 
     //------------------------------------------------
@@ -412,15 +422,15 @@ public class Snake : SnakeMovement
             GlobalStats.AddScore(50, transform.position);
             moveRate = 10.0f;
             boosting = true;
-            speed = 360.0f;
+            
             boostEmitter.Play();
             CoinObjective.CheckForObjective((int)CoinObjective.Objective.BOOST);
             SoundManager.PlaySound(SoundManager.Sounds.BOOST);
         }
         else //Turn off boost
         {
-            moveRate = 8.0f;
-            speed = 240.0f;
+            moveRate = speed;
+
             boostEmitter.Stop();
             boosting = false;
         }
@@ -448,8 +458,6 @@ public class Snake : SnakeMovement
     }
 
     public float GetBoostGuage() { return boostGuage; }
-
-
 
     //public GUIStyle style;
 
