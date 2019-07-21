@@ -2294,6 +2294,7 @@ MonoBehaviour:
   skinMenuObject: {fileID: 0}
   themeMenuObject: {fileID: 0}
   optionsMenuObject: {fileID: 0}
+  shopMenuObject: {fileID: 0}
   scoreObject: {fileID: 0}
   requiredFoodObject: {fileID: 0}
   coinObject: {fileID: 0}
@@ -5169,6 +5170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   confirmObject: {fileID: 0}
   yesButton: {fileID: 0}
+  noButton: {fileID: 0}
   titleText: {fileID: 0}
   descText: {fileID: 0}
 --- !u!114 &372769350
@@ -15058,13 +15060,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.70710677}
-  m_LocalPosition: {x: -0.59, y: 20, z: -12.2}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.59, y: 5.5, z: 6.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
 --- !u!45 &963194229
 Skybox:
   m_ObjectHideFlags: 0
@@ -25724,6 +25726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   confirmObject: {fileID: 2042582249}
   yesButton: {fileID: 575604761}
+  noButton: {fileID: 0}
   titleText: {fileID: 1467348253}
   descText: {fileID: 1682614865}
 --- !u!1 &1303870050
@@ -28517,7 +28520,7 @@ MonoBehaviour:
   player: {fileID: 0}
   adButton: {fileID: 0}
   coinButton: {fileID: 0}
-  continueText: {fileID: 0}
+  continueTextObject: {fileID: 0}
   endGameScreen: {fileID: 0}
 --- !u!114 &1465525687
 MonoBehaviour:

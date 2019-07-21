@@ -161,7 +161,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.PlasmaShadowGames.HypeSnake
   buildNumber: {}
-  AndroidBundleVersionCode: 7
+  AndroidBundleVersionCode: 8
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1

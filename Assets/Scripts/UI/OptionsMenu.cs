@@ -53,7 +53,7 @@ public class OptionsMenu : MonoBehaviour
                 break;
             case 3:
                 yesButton.onClick.AddListener(RemoveAds);
-                titleText.text = "Remove Ads + X2 Coin Pickups \n $2.99 CAD";
+                titleText.text = "Remove Ads + X2 Coin\n Pickups ($2.99 CAD)";
                 descText.text = "Support the game and remove the need to watch an ad for a free respawn. As an extra bonus, coin pickups will be worth double!\nWant to buy this?";
                 break;
         }

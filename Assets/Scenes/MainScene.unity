@@ -3912,7 +3912,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -86.4}
-  m_SizeDelta: {x: 210.5, y: 102.899994}
+  m_SizeDelta: {x: 288.71, y: 102.899994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &218944384
 MonoBehaviour:
@@ -3956,7 +3956,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 8
     m_MaxSize: 254
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -11590,7 +11590,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 340, y: 30}
+  m_SizeDelta: {x: 340, y: 63.6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &660467117
 MonoBehaviour:
@@ -20689,9 +20689,76 @@ MonoBehaviour:
   alive: 0
   lastGroundedPosition: {x: 0, y: 0, z: 0}
   cam: {fileID: 963194225}
-  mainMenuObject: {fileID: 0}
+  mainMenuObject: {fileID: 865469349}
   gameOverMenuObject: {fileID: 1465525684}
   pauseMenuObject: {fileID: 1377846974}
+  style:
+    m_Name: thing
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
 --- !u!54 &1137524160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -43214,7 +43281,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.2916667}
   m_AnchorMax: {x: 0.5, y: 0.2916667}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 338, y: 187.4}
+  m_SizeDelta: {x: 338, y: 231.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990524363
 MonoBehaviour:
@@ -47314,6 +47381,10 @@ PrefabInstance:
       propertyPath: coinBonusGroup
       value: 
       objectReference: {fileID: 401864245}
+    - target: {fileID: 575192535, guid: 5ea96ff81f675034fac6504407ff302e, type: 3}
+      propertyPath: descriptions.Array.data[4]
+      value: Collect . power ups while boosting!
+      objectReference: {fileID: 0}
     - target: {fileID: 7694120952430079242, guid: 5ea96ff81f675034fac6504407ff302e,
         type: 3}
       propertyPath: m_LocalPosition.x
