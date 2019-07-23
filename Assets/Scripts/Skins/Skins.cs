@@ -10,7 +10,7 @@ public class Skins : MonoBehaviour
         BLUE,
         MECHANICAL,
         SCALES,
-        RUSTY,
+        WAVY,
         DICE,
         DOTTED,
         CHECKERED,
@@ -56,6 +56,9 @@ public class Skins : MonoBehaviour
     public static bool randomSkin;
 
     static bool firstTimeStartup;
+
+    public static int skinCost;
+    public static int themeCost;
 
     private void Awake()
     {
@@ -104,6 +107,18 @@ public class Skins : MonoBehaviour
             CheckForRandomization();
             UpdatePlayerSkin();
         }
+
+        CalculateCosts();
+    }
+
+    void CalculateCosts()
+    {
+        skinCost = 35;
+        themeCost = 45;
+
+        for (int i = 0; i < (int)Themes.RANDOM; i++) if (unlockedLevelThemes[i]) themeCost += 5;
+
+        for (int i = 0; i < (int)SnakeSkins.RANDOM; i++) if (unlockedSnakeSkins[i]) skinCost += 5;
     }
 
     void UpdatePlayerSkin()

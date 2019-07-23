@@ -12,8 +12,7 @@ public class Snake : SnakeMovement
 
     //Vars for respawning after falling
     [HideInInspector]
-    public Vector3 lastGroundedPosition;
-    float timeGrounded;
+    public Vector3 lastSpawnPosition;
 
     //Touch input
     Vector3 startSwipePos;
@@ -70,8 +69,7 @@ public class Snake : SnakeMovement
 
         InitSnakeMovement();
 
-        lastGroundedPosition = transform.position;
-        timeGrounded = 0.0f;
+        lastSpawnPosition = transform.position;
 
         camOffset = new Vector3(0.0f, 20.0f, 0.0f);
 
@@ -217,10 +215,7 @@ public class Snake : SnakeMovement
 
         UpdateBoost();
 
-        //Grounded position updating. If velocity remains 0 then record the position
-        if (rigidbody.velocity.y == 0.0f) timeGrounded += Time.deltaTime;
-        else timeGrounded = 0.0f;
-        if (rigidbody.velocity.y == 0.0f && timeGrounded > 1.0f) lastGroundedPosition = transform.position;
+
     }
 
     private Touch ForceEndSwipe(Touch touch)
@@ -366,6 +361,7 @@ public class Snake : SnakeMovement
         Debug.Log(oldDirection);
         currentDirection = GetDragDirection(dragVectorDirection);
 
+        //SoundManager.PlaySound(SoundManager.Sounds.TRAP_COLLIDE, 0.5f);
         //if (currentDirection != oldDirection) transform.position = AlignToGrid(transform.position);
     }
 
@@ -469,23 +465,23 @@ public class Snake : SnakeMovement
 
     public float GetBoostGuage() { return boostGuage; }
 
-    public GUIStyle style;
+    //public GUIStyle style;
 
-    private void OnGUI()
-    {
+    //private void OnGUI()
+    //{
 
 
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), touch.position.x.ToString(), style);
-        }
+    //    if (Input.touchCount > 0)
+    //    {
+    //        Touch touch = Input.GetTouch(0);
+    //        GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), touch.position.x.ToString(), style);
+    //    }
 
-        //GUI.color = Color.red;
-        //GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
-        //GUI.color = Color.blue;
-        //GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + ((1.0f / Time.deltaTime)).ToString(), style);
-        //GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
+    //    //GUI.color = Color.red;
+    //    //GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
+    //    //GUI.color = Color.blue;
+    //    //GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + ((1.0f / Time.deltaTime)).ToString(), style);
+    //    //GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
 
-    }
+    //}
 }

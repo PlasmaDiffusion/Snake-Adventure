@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 575192535}
   - component: {fileID: 544727836}
   - component: {fileID: 544727837}
+  - component: {fileID: 9073081893939176104}
   - component: {fileID: 544727832}
   m_Layer: 0
   m_Name: LevelSpawner
@@ -76,6 +77,7 @@ MonoBehaviour:
   - {fileID: 4928048532085321714, guid: 79481abb4a434284e99b9f924cc2826a, type: 3}
   - {fileID: 5292536007457407828, guid: 6368806dc23245a4fa0e34f403784025, type: 3}
   - {fileID: 2773019491044143849, guid: 33cdbbed4fdf1bc46a2392e0fa1281f6, type: 3}
+  - {fileID: 6245653877909374350, guid: 327b9a0eb698f0f428aff0f10a2c3f67, type: 3}
   hardLevels:
   - {fileID: 2453181497729849173, guid: b55cb0405497b5a4992369363166c96e, type: 3}
   - {fileID: 689604352973324798, guid: ccbc12618e1090949a249fcb53622595, type: 3}
@@ -87,9 +89,11 @@ MonoBehaviour:
   - {fileID: 8588451789424752026, guid: b0d779bd85e2b004ab29b7e556d3d2b8, type: 3}
   - {fileID: 3859153588631615773, guid: db0889ce4d3ca034d8b6a8f5c37065c9, type: 3}
   - {fileID: 6486195421992982905, guid: 67040ab9daeef11438c81472ec125ac1, type: 3}
+  - {fileID: 8317711724595411568, guid: 433cebe21eb886d4b84e711ff176a4b2, type: 3}
   testing: 0
   testLevels:
-  - {fileID: 6486195421992982905, guid: 67040ab9daeef11438c81472ec125ac1, type: 3}
+  - {fileID: 8317711724595411568, guid: 433cebe21eb886d4b84e711ff176a4b2, type: 3}
+  - {fileID: 6245653877909374350, guid: 327b9a0eb698f0f428aff0f10a2c3f67, type: 3}
   lastEasyLevel: 6
   lastMediumLevel: 12
 --- !u!114 &1208707844
@@ -126,7 +130,7 @@ MonoBehaviour:
   - Beat . * themed levels!
   - Destroy . obstacles with fire!
   - Boost . times!
-  - Collect a power up while boosting . times!
+  - Collect . power ups while boosting!
   - Find . * powerups!
 --- !u!82 &544727836
 AudioSource:
@@ -149,7 +153,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -245,7 +249,103 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &9073081893939176104
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546566486646613219}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -339,5 +439,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4d3a6b92211159241b51227051f5e75d, type: 3}
   - {fileID: 8300000, guid: 4fea41b821259f34696283d4bf4cceb7, type: 3}
   - {fileID: 8300000, guid: d065754a08b01374c9c3cd50f3f0fe92, type: 3}
-  - {fileID: 8300000, guid: 3245193bf687ed8479632f3e4b93a571, type: 3}
+  - {fileID: 8300000, guid: 460e104f924eb6042a0cfdeab15175c4, type: 3}
   - {fileID: 8300000, guid: 390998763ab1a3d47a97a498ffc8fe4e, type: 3}
+  - {fileID: 8300000, guid: 119f977b602485349b91751181d2f388, type: 3}
+  - {fileID: 8300000, guid: 6073dcb542bee70489b1e049f4de4936, type: 3}
+  - {fileID: 8300000, guid: 46ef784623446f341b7ca859e6a84901, type: 3}
+  - {fileID: 8300000, guid: ce051de8fb826ee43af90a01caf17d24, type: 3}
+  - {fileID: 8300000, guid: d0b9f31c131ec2847a8b2dbf070481f9, type: 3}
+  - {fileID: 8300000, guid: 3d35efc3fe858974ab5244f88ecc2cef, type: 3}
+  - {fileID: 8300000, guid: 8bf9a2210923d5043849b82a34969ee5, type: 3}
+  - {fileID: 8300000, guid: 6fd3d0ac44a00414ea81a605dc5fa705, type: 3}
+  - {fileID: 8300000, guid: fcf8ea6db5936424da40a186a1f8997b, type: 3}
+  - {fileID: 8300000, guid: 5ccf1b5630b50ac4bb804ca23d1d705e, type: 3}

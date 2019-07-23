@@ -58,10 +58,10 @@ public class SoundManager : MonoBehaviour
             sourceIndex = 0;
         }
 
-        //Play the sound on the second audio source if the first is used up.
-        if (currentSounds[sourceIndex].isPlaying && sourceIndex == 0)
+        //Play the sound on the second/third audio source if the first is used up.
+        if (currentSounds[sourceIndex].isPlaying && sourceIndex < 2)
         {
-            PlaySound(soundToPlay, pitch, 1);
+            PlaySound(soundToPlay, pitch, sourceIndex+1);
             return;
         }
 

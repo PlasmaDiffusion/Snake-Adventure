@@ -58,6 +58,8 @@ public class CoinObjective : MonoBehaviour
         tMultiplier = 0.0f;
         panelObject.transform.position = startingPos;
 
+        if (GlobalStats.disabledAds) claimRewardButton.transform.GetChild(0).GetComponent<Text>().text = "+40 Coins";
+
     }
 
     /*
@@ -93,7 +95,7 @@ public class CoinObjective : MonoBehaviour
         subObjectiveID = -1;
 
         //Pick a random objective
-        objectiveID = Random.Range(0, (int)Objective.FIND_POWERUP +1);
+       objectiveID = Random.Range(0, (int)Objective.FIND_POWERUP +1);
 
         //Make sure theme is unlocked when using a beat level theme objective
         if (objectiveID == (int)Objective.BEAT_THEMED_LEVELS)
@@ -159,11 +161,18 @@ public class CoinObjective : MonoBehaviour
     public void CashInPrize()
     {
         //Debug.Log("PRIZE LOL");
-        coinBonusGroup.SetActive(true);
+        //coinBonusGroup.SetActive(true);
         SoundManager.PlaySound(SoundManager.Sounds.COIN, 1.5f);
         achieved = false;
         PickRandomObjective();
         UpdateUI();
+
+        if (GlobalStats.disabledAds) GlobalStats.coins += 40;
+        else GlobalStats.coins += 20;
+
+        GlobalStats.hud.DisplayCoins(false);
+
+        GlobalStats.Save();
     }
 
     void OverwriteDescription()

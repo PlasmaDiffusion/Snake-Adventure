@@ -33,8 +33,8 @@ public class BuySkin : MonoBehaviour
         //Auto set costs
         if (cost <= 0)
         {
-            if (isTheme) cost = 50;
-            else if (isSnake) cost = 40;
+            if (isTheme) cost = Skins.themeCost;
+            else if (isSnake) cost = Skins.skinCost;
         }
 
         //Make sure there are actual skins/themes left to buy!
@@ -48,14 +48,17 @@ public class BuySkin : MonoBehaviour
         }
 
         globalStats = GameObject.Find("LevelSpawner").GetComponent<GlobalStats>();
+
+        //Update price tag
+        text.text = text.text.Replace(".", cost.ToString());
     }
 
     //Disable buying cause the player owns everything already. :(
     void GreyOutButton()
     {
         button.onClick.RemoveAllListeners();
-        if (isSnake) text.text = "Own all \nSnakes.";
-        else text.text = "Own all \nThemes.";
+        if (isSnake) text.text = "Own all \nSnakes!";
+        else text.text = "Own all \nThemes!";
 
         //Also actually grey out the button duh
         button.GetComponent<Image>().color = Color.grey;

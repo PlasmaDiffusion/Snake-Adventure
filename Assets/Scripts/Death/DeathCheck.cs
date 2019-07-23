@@ -113,7 +113,7 @@ public class DeathCheck : MonoBehaviour
 
         if (gameObject.transform.position.y < deathY)
         {
-            transform.position = snake.lastGroundedPosition;
+            transform.position = snake.lastSpawnPosition;
             snake.PrepRespawnFromFalling();
         }
         //Respawn with some invincibility

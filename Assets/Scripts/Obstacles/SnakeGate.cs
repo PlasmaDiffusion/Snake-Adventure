@@ -97,16 +97,27 @@ public class SnakeGate : MonoBehaviour
 
             SoundManager.PlaySound(SoundManager.Sounds.ENTER_GATE);
 
+
+            //Remove any obstacles so they stop with the damn spike trap sounds :P
+            GameObject[] hazardsToKill = GameObject.FindGameObjectsWithTag("BurnableNotSolid");
+            for (int i = hazardsToKill.Length - 1; i >= 0; i--)
+            {
+                Destroy(hazardsToKill[i]);
+            }
+
             //Ranzomide level theme if that is set
             Skins.CheckForRandomization(true);
 
-            other.GetComponent<Snake>().IncreaseSpeed();
+            Snake snake = other.GetComponent<Snake>();
+            snake.IncreaseSpeed();
+            snake.lastSpawnPosition = transform.position;
 
             //Spawn in more level here. Despawn the oldest level, but not the one being exited.
             entered = true;
             LevelSpawner spawner = GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>();
             spawner.EndLevel(transform.position);
 
+            
 
         }
         else if (other.tag == "Wall") //Alternatively if a level is spawned in, despawn any walls that would  be in the way of the door.

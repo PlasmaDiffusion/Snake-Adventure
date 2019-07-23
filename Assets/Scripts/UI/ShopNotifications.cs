@@ -34,9 +34,9 @@ public class ShopNotifications : MonoBehaviour
         haveAllLevelThemes = Skins.HaveAllLevelThemes();
 
         //Notify the player if they can buy a new skin
-        if (GlobalStats.coins > 40 && !haveAllSnakeSkins) snakeSkinNotification.SetActive(true);
+        if (GlobalStats.coins > Skins.skinCost && !haveAllSnakeSkins) snakeSkinNotification.SetActive(true);
         else snakeSkinNotification.SetActive(false);
-        if (GlobalStats.coins > 50 && !haveAllLevelThemes) levelThemeNotification.SetActive(true);
+        if (GlobalStats.coins > Skins.themeCost && !haveAllLevelThemes) levelThemeNotification.SetActive(true);
         else levelThemeNotification.SetActive(false);
 
     }

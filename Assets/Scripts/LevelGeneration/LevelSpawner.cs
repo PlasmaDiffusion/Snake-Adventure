@@ -28,6 +28,14 @@ public class LevelSpawner : MonoBehaviour
     public int lastEasyLevel = 5;
     public int lastMediumLevel = 12;
 
+    //Bg colour changing variables
+    Camera cam;
+    Color prevColor;
+    Color currentColor;
+    float colorT;
+
+    public Color[] bgColors;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +50,15 @@ public class LevelSpawner : MonoBehaviour
         hardLevelPool.AddRange(hardLevels);
 
         currentLevel = GameObject.Find("StartingLevel");
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        colorT = 1.0f;
+        currentColor = bgColors[0];
+    }
 
+    private void Update()
+    {
+        if (colorT < 1.0f)
+        LerpToColour();
     }
 
     public int GetLevel() { return level; }
@@ -137,6 +153,19 @@ public class LevelSpawner : MonoBehaviour
         prevLevel = currentLevel;
         currentLevel = newLevel;
 
+        //Change bg color
+        colorT = 0.0f;
+        prevColor = currentColor;
+
+        currentColor = bgColors[(int)Skins.levelTheme];
+    }
+
+    void LerpToColour()
+    {
+        colorT += Time.deltaTime;
+        if (colorT > 1.0f) colorT = 1.0f;
+
+        cam.backgroundColor = Color.Lerp(prevColor, currentColor, colorT);
     }
 
     void DespawnOldLevel()
