@@ -32,9 +32,14 @@ public class LevelSpawner : MonoBehaviour
     Camera cam;
     Color prevColor;
     Color currentColor;
+    public Color[] bgColors;
+
+    Light light;
+    public Color[] lightColors;
+    Color prevLightColor;
+    Color currentLightColor;
     float colorT;
 
-    public Color[] bgColors;
 
     // Start is called before the first frame update
     void Start()
@@ -51,8 +56,10 @@ public class LevelSpawner : MonoBehaviour
 
         currentLevel = GameObject.Find("StartingLevel");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        light = GameObject.Find("Directional Light").GetComponent<Light>();
         colorT = 1.0f;
         currentColor = bgColors[0];
+        currentLightColor = lightColors[0];
     }
 
     private void Update()
@@ -156,8 +163,9 @@ public class LevelSpawner : MonoBehaviour
         //Change bg color
         colorT = 0.0f;
         prevColor = currentColor;
-
         currentColor = bgColors[(int)Skins.levelTheme];
+        prevLightColor = currentLightColor;
+        currentLightColor = lightColors[(int)Skins.levelTheme];
     }
 
     void LerpToColour()
@@ -166,6 +174,7 @@ public class LevelSpawner : MonoBehaviour
         if (colorT > 1.0f) colorT = 1.0f;
 
         cam.backgroundColor = Color.Lerp(prevColor, currentColor, colorT);
+        light.color = Color.Lerp(prevLightColor, currentLightColor, colorT);
     }
 
     void DespawnOldLevel()
