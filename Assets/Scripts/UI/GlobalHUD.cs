@@ -12,6 +12,7 @@ public class GlobalHUD : MonoBehaviour
     public GameObject themeMenuObject;
     public GameObject optionsMenuObject;
     public GameObject shopMenuObject;
+    public GameObject helpMenuObject;
 
     //Text objects
     public GameObject scoreObject;
@@ -113,9 +114,9 @@ public class GlobalHUD : MonoBehaviour
     {
         if (scoreText && requiredFoodText && coinText) //Make sure they all exist
         { 
-        scoreText.text = GlobalStats.score.ToString();
+        scoreText.text = " " + GlobalStats.score.ToString();
         requiredFoodText.text = GlobalStats.requiredFood.ToString();
-            if (requiredFoodText.text == "0") { requiredFoodText.text = "Gate opened!"; requiredFoodText.fontSize = 12; }
+            if (requiredFoodText.text == "0") { requiredFoodText.text = "GATE OPEN"; requiredFoodText.fontSize = 14; }
             else requiredFoodText.fontSize = 24;
         coinText.text = GlobalStats.coins.ToString();
         }
@@ -166,6 +167,7 @@ public class GlobalHUD : MonoBehaviour
                 themeMenuObject.SetActive(false);
                 optionsMenuObject.SetActive(false);
                 shopMenuObject.SetActive(false);
+                helpMenuObject.SetActive(false);
 
                 break;
 
@@ -191,6 +193,12 @@ public class GlobalHUD : MonoBehaviour
             case 5: //Shop menu
 
                 shopMenuObject.SetActive(true);
+                HideChildren();
+
+                break;
+            case 6: //Help menu
+
+                helpMenuObject.SetActive(true);
                 HideChildren();
 
                 break;

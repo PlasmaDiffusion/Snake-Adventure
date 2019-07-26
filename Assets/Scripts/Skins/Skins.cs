@@ -10,7 +10,7 @@ public class Skins : MonoBehaviour
         BLUE,
         MECHANICAL,
         SCALES,
-        WAVY,
+        SPOTS,
         DICE,
         DOTTED,
         CHECKERED,

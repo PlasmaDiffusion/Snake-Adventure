@@ -103,13 +103,15 @@ public class LevelSpawner : MonoBehaviour
     List<GameObject> DetermineLevelPool()
     {
 
-        //Determine the difficulty to lean towards
-        int difficultyBias = 1;
+        //Determine the difficulty to lean towards.
+        int difficultyBias = 0;
 
         if (level > lastEasyLevel) difficultyBias = 2;
-        else if (level > lastMediumLevel) difficultyBias = 3;
+        if (level > lastMediumLevel) difficultyBias = 3;
 
-        //1 in 3 chance for difficulty to be 1 level higher
+        if (difficultyBias == 0 && Random.Range(0, 3) > 0) difficultyBias = 1; //Early game has a smaller chance (about 22%) for medium levels
+
+        //33% for difficulty to be 1 level higher
         if (Random.Range(0, 3) == 0)
         {
             difficultyBias++;

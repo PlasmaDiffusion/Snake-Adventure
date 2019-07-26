@@ -62,7 +62,7 @@ public class Snake : SnakeMovement
         //Movement related
         rigidbody = GetComponent<Rigidbody>();
         currentDirection = DraggedDirection.Up;
-        moveRate = 7.0f;
+        moveRate = speed;
 
         alive = true;
         timeRotating = 1.0f;
