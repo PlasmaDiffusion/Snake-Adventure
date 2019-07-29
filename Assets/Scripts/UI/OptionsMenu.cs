@@ -21,6 +21,7 @@ public class OptionsMenu : MonoBehaviour
     void Start()
     {
         deletedData = false;
+        ChangeControlButtonText();
     }
 
     private void OnEnable()
@@ -131,6 +132,30 @@ public class OptionsMenu : MonoBehaviour
             GetComponent<ShopPurchaser.Purchaser>().BuyNonConsumable();
         }
         
+    }
+
+    //Toggle control type
+    public void ChangeControls()
+    {
+        GlobalStats.swipeControls = !GlobalStats.swipeControls;
+
+        ChangeControlButtonText();
+
+        GlobalStats.Save();
+    }
+
+    //Update the control button's text
+    private void ChangeControlButtonText()
+    {
+        GameObject controlsButonObj = GameObject.Find("ControlsText");
+        if (!controlsButonObj) return; //Do nothing if in the shop menu
+
+        Text newBtnText = controlsButonObj.GetComponent<Text>();
+
+        if (GlobalStats.swipeControls)
+            newBtnText.text = "Swipe Screen";
+        else
+            newBtnText.text = "Arrow Buttons";
     }
 
     //Repurpose confirm menu to show results of what just happened.

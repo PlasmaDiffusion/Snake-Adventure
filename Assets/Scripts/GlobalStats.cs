@@ -19,9 +19,11 @@ public class GlobalStats : MonoBehaviour
 
     public static GlobalHUD hud;
 
+    //Flags and seetings
     public static bool disabledAds;
     public static bool readPrivacyPolicy;
     public static float initialSoundVolume;
+    public static bool swipeControls;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class GlobalStats : MonoBehaviour
         initialSoundVolume = 1.0f;
         paused = true;
         disabledAds = false;
+        swipeControls = false;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
     }
 
@@ -44,8 +47,11 @@ public class GlobalStats : MonoBehaviour
     public static void AddScore(int amount, Vector3 sourcePosition)
     {
         score += amount;
+        if (hud)
+        {
         hud.SpawnScoreText(amount, sourcePosition);
         hud.UpdateHUD();
+        }
     }
 
     public static bool CheckForHiScore()
@@ -104,6 +110,7 @@ public class GlobalStats : MonoBehaviour
         data.adRemovalPurchased = disabledAds;
         data.readPrivacyPolicy = readPrivacyPolicy;
         data.soundVolume = initialSoundVolume;
+        data.swipeControls = swipeControls;
 
         bf.Serialize(file, data);
         file.Close();
@@ -139,6 +146,7 @@ public class GlobalStats : MonoBehaviour
             disabledAds = data.adRemovalPurchased;
             readPrivacyPolicy = data.readPrivacyPolicy;
             initialSoundVolume = data.soundVolume;
+            swipeControls = data.swipeControls;
             SoundManager.SetVolume(initialSoundVolume);
         }
         else
@@ -169,5 +177,6 @@ public class GlobalStats : MonoBehaviour
         public bool adRemovalPurchased;
         public bool readPrivacyPolicy;
         public float soundVolume;
+        public bool swipeControls;
     }
 }

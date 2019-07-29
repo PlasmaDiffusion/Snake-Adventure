@@ -87,6 +87,9 @@ public class DeathHandler : MonoBehaviour
     //End the game here along with highscores, rewards, etc.
     public void EndGame()
     {
+        //Hide warning signs so they don't block the screen
+        SpikeTrap.hideAllWarningSigns = true;
+
         //Grant bonus coins
         int coinBonus = GlobalStats.score / 50;
         

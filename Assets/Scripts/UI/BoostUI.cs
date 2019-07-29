@@ -23,6 +23,18 @@ public class BoostUI : MonoBehaviour
         currentGuageFill = 0.0f;
     }
 
+    private void OnEnable()
+    {
+        if (!GlobalStats.swipeControls)
+        {
+            RectTransform rectTransform = GetComponent<RectTransform>();
+            rectTransform.anchorMin = new Vector2(1.0f, 0.0f);
+            rectTransform.anchorMax = new Vector2(1.0f, 0.0f);
+            rectTransform.pivot = new Vector2(1.0f, 0.0f);
+           transform.position = new Vector2(transform.position.x, 0.0f);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

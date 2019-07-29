@@ -68,8 +68,11 @@ public class EnemySnake : MonoBehaviour
         if (!canMove || GlobalStats.paused)
         {
             rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            if (GlobalStats.paused) rigidbody.useGravity = false;
             return;
         }
+
+        rigidbody.useGravity = true;
 
 
         switch (currentDirection)

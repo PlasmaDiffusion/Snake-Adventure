@@ -135,7 +135,7 @@ public class Snake : SnakeMovement
         //-----------------------------------------------------------------------------------
         //Detect Touch Input here!
         //-----------------------------------------------------------------------------------
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && GlobalStats.swipeControls)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -182,8 +182,13 @@ public class Snake : SnakeMovement
                 if (touch.deltaPosition.magnitude > 2.0f) ForceEndSwipe(touch);
             }
         }
-
-        if (CheckIfPaused()) return;
+        //Dont move and turn gravity off when paused
+        if (CheckIfPaused())
+        {
+            rigidbody.useGravity = false;
+            return;
+        }
+        else rigidbody.useGravity = true;
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) currentDirection = DraggedDirection.Left;
         if (Input.GetKeyDown(KeyCode.RightArrow)) currentDirection = DraggedDirection.Right;
@@ -229,6 +234,11 @@ public class Snake : SnakeMovement
         }
 
         return touch;
+    }
+
+    public void ChangeSnakeDirection(int directionID)
+    {
+        currentDirection = (DraggedDirection)directionID;
     }
 
     //Movement updating

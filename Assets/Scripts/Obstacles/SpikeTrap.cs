@@ -24,6 +24,8 @@ public class SpikeTrap : MonoBehaviour
     Vector3 currentVel;
     bool wasPaused;
 
+    public static bool hideAllWarningSigns;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,8 @@ public class SpikeTrap : MonoBehaviour
 
         currentVel = -startingVel;
         wasPaused = false;
+
+        hideAllWarningSigns = false;
     }
 
     //Pausing code happens here
@@ -59,6 +63,9 @@ public class SpikeTrap : MonoBehaviour
         {
             rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
             wasPaused = true;
+
+            if (hideAllWarningSigns) warningText.transform.position = new Vector3(1000.0f, 1000.0f);
+
             return;
         }
         else if (wasPaused && !hideWarningText)
@@ -93,7 +100,7 @@ public class SpikeTrap : MonoBehaviour
 
         Vector3 newRectTransform = new Vector3(0.0f, 0.0f, 0.0f);
 
-        bool visible = true;
+        bool visible = false;
 
         if (screenPos.x > cam.pixelWidth) { newRectTransform += new Vector3(cam.pixelWidth - 32.0f, screenPos.y, 0.0f); visible = true;}
         else if (screenPos.y > cam.pixelHeight) {newRectTransform += new Vector3(screenPos.x, cam.pixelHeight - 32.0f, 0.0f); ; visible = true;}
