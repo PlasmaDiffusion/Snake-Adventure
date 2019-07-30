@@ -210,10 +210,18 @@ public class SnakeMovement : MonoBehaviour
                 RecordPositions();
             }
         }
-        else //Snap the player to the solid wall to prevent collision bugs
-        {
-            transform.position = GetComponent<Snake>().AlignToGrid(transform.position);
-        }
+        //else //Snap the player to the solid wall to prevent collision bugs
+        //{
+        //    DeathCheck deathCheck = GetComponent<DeathCheck>();
+
+        //    if (deathCheck.GetCollisionTimeInSegment() > 0.5f)
+        //    {
+
+        //        Snake snake = GetComponent<Snake>();
+        //        transform.position = AlignToGrid(transform.position);
+        //    }
+
+        //}
 
     }
 

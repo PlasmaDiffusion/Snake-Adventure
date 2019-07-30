@@ -102,6 +102,8 @@ public class DeathCheck : MonoBehaviour
         return true;
     }
 
+    public float GetCollisionTimeInSegment() { return collisionTimeInSegment; }
+
     //Call this to make the snake alive and await a swipe to resume the game.
     public void Respawn()
     {
@@ -147,7 +149,7 @@ public class DeathCheck : MonoBehaviour
         //Tint yellow to show near death (Or another colour if the skin doesn't work with adding to the red value)
         if (Skins.snakeSkin == Skins.SnakeSkins.DOTTED) rend.material.color = new Color(rend.material.color.r,regColor.g + (1.0f - regColor.g) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else if(Skins.snakeSkin == Skins.SnakeSkins.DICE) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
-        else if (Skins.snakeSkin == Skins.SnakeSkins.SPOTS || Skins.snakeSkin == Skins.SnakeSkins.CHECKERED) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
+        else if (Skins.snakeSkin == Skins.SnakeSkins.CHECKERED) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else rend.material.color = new Color(regColor.r + (1.0f - regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
     }
 

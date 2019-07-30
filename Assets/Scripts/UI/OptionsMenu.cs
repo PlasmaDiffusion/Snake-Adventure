@@ -183,7 +183,7 @@ public class OptionsMenu : MonoBehaviour
                 break;
             case 3:
                 titleText.text = "Ads Removed!";
-                descText.text = "Purchase successful. Enjoy no ads and double coin pickups!";
+                descText.text = "Enjoy no ads and double coin pickups! You can now revive twice for free.";
                 break;
             case 4:
                 titleText.text = "Purchase Failed";

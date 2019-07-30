@@ -51,7 +51,7 @@ public class SoundManager : MonoBehaviour
     //Call this whenever a sound needs to be played, and provide the right enum. This uses two audio sources to mimic limited sound channels.
     public static void PlaySound(Sounds soundToPlay, float pitch = 1.0f, int sourceIndex = 0)
     {
-
+        
         //Prevent any crash if audio source is out of index
         if (sourceIndex >= currentSounds.Length) return;
 

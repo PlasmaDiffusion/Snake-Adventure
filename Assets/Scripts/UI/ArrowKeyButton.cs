@@ -31,8 +31,8 @@ public class ArrowKeyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     void Update()
     {
         //Hide buttons if snake is dead
-        if (!snake.alive) transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
-        else transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        if (!snake.alive) transform.parent.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        else transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
 
 

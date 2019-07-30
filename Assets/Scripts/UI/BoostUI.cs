@@ -25,6 +25,7 @@ public class BoostUI : MonoBehaviour
 
     private void OnEnable()
     {
+        //Move boost ui to the right if arrow buttons exist
         if (!GlobalStats.swipeControls)
         {
             RectTransform rectTransform = GetComponent<RectTransform>();
@@ -32,6 +33,11 @@ public class BoostUI : MonoBehaviour
             rectTransform.anchorMax = new Vector2(1.0f, 0.0f);
             rectTransform.pivot = new Vector2(1.0f, 0.0f);
            transform.position = new Vector2(transform.position.x, 0.0f);
+
+            RectTransform boostRect = boostButton.GetComponent<RectTransform>();
+            boostRect.anchorMin = new Vector3(1.0f, 0.5f);
+            boostRect.anchorMax = new Vector3(1.0f, 0.5f);
+            boostRect.pivot = new Vector3(1.0f, 0.5f);
         }
     }
 
