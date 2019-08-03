@@ -33,7 +33,7 @@ public class GlobalStats : MonoBehaviour
         initialSoundVolume = 1.0f;
         paused = true;
         disabledAds = false;
-        swipeControls = false;
+        swipeControls = true;
         hud = GameObject.Find("HUD_Panel").GetComponent<GlobalHUD>();
     }
 

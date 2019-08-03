@@ -103,13 +103,13 @@ public class DeathHandler : MonoBehaviour
         if (GlobalStats.CheckForHiScore())
         {
             GameObject textObj = endGameScreen.transform.Find("NewBestScoreText").gameObject;
-            textObj.GetComponent<Text>().text = "New Best!";
+            textObj.GetComponent<Text>().text = "New Best! ";
             SoundManager.PlaySound(SoundManager.Sounds.HISCORE);
         }
         if (GlobalStats.CheckForFarthestLevel())
         {
             GameObject textObj = endGameScreen.transform.Find("NewBestLevelText").gameObject;
-            textObj.GetComponent<Text>().text = "New Best!";
+            textObj.GetComponent<Text>().text = "New Best! ";
             SoundManager.PlaySound(SoundManager.Sounds.HISCORE);
 
         }
