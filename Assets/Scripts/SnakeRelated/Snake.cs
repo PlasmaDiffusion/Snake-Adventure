@@ -38,7 +38,6 @@ public class Snake : SnakeMovement
     public GameObject gameOverMenuObject;
     public GameObject pauseMenuObject;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -474,6 +473,7 @@ public class Snake : SnakeMovement
     }
 
     public float GetBoostGuage() { return boostGuage; }
+    public bool GetBoosting() { return boosting; }
 
     //public GUIStyle style;
 

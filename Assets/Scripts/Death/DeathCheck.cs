@@ -31,6 +31,7 @@ public class DeathCheck : MonoBehaviour
     Vector3 maxScale;
     Snake snake;
 
+    int lives;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,8 @@ public class DeathCheck : MonoBehaviour
         increasingT = 0.0f;
         minScale = new Vector3(0.2f, 0.2f, 0.2f);
         maxScale = transform.localScale;
+
+        lives = 3;
     }
 
     //If you're touching nothing you'll gain your time back
@@ -60,6 +63,7 @@ public class DeathCheck : MonoBehaviour
 
         if (GlobalStats.paused) return;
 
+        //Change colour and record when colliding
         if (!colliding && collisionTimeInSegment > 0.0f)
         {
             collisionTimeInSegment -= Time.deltaTime;
@@ -90,7 +94,6 @@ public class DeathCheck : MonoBehaviour
     public bool Die()
     {
         if (died || invincibility > 0.0f) return false;
-        deathMenu.SetActive(true);
         gameObject.GetComponent<Snake>().alive = false;
         GlobalStats.hud.DisplayCoins(true);
         GlobalStats.paused = true;
@@ -99,8 +102,28 @@ public class DeathCheck : MonoBehaviour
 
         increasingT = 1.0f;
         died = true;
+
         return true;
     }
+
+    private void RespawnOrGameOver()
+    {
+        //Die -> respawn or game over?
+        RemoveLife();
+        if (lives > 0)
+        {
+            Respawn();
+        }
+        else
+        {
+            deathMenu.SetActive(true);
+        }
+    }
+
+    //Life management. Can only increment or decrement.
+    public void AddLife() {lives++; GlobalStats.hud.UpdateLifeHUD(); }
+    void RemoveLife() { lives--; GlobalStats.hud.UpdateLifeHUD(); }
+    public int GetLives() { return lives; }
 
     public float GetCollisionTimeInSegment() { return collisionTimeInSegment; }
 
@@ -146,6 +169,7 @@ public class DeathCheck : MonoBehaviour
 
     void UpdateColour()
     {
+
         //Tint yellow to show near death (Or another colour if the skin doesn't work with adding to the red value)
         if (Skins.snakeSkin == Skins.SnakeSkins.DOTTED) rend.material.color = new Color(rend.material.color.r,regColor.g + (1.0f - regColor.g) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else if(Skins.snakeSkin == Skins.SnakeSkins.DICE) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
@@ -167,7 +191,10 @@ public class DeathCheck : MonoBehaviour
         deathT += Time.deltaTime * increasingT;
 
         //If t is over 1 or under 0 then stop the animation
-        if (deathT > 1.0f) { deathT = 1.0f; increasingT = 0.0f; }
+        if (deathT > 1.0f) { deathT = 1.0f; increasingT = 0.0f;
+
+            RespawnOrGameOver();
+        }
         else if (deathT < 0.0f) {deathT = 0.0f; increasingT = 0.0f; }
 
         transform.localScale = Vector3.Lerp(maxScale, minScale, deathT);

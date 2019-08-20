@@ -43,8 +43,16 @@ public class GlobalHUD : MonoBehaviour
     FireBreathe fireBreathe;
 
     //Score splash text reference for whenever you gain points
+    [HeaderAttribute("Score References")]
     public GameObject scoreTextReference;
     public GameObject cameraObject;
+
+    [Header("Lives")]
+    [SerializeField] GameObject livesHolder;
+    [SerializeField] Sprite middleOfLivesSprite;
+    [SerializeField] Sprite endOfLivesSprite;
+    [SerializeField] Sprite snakeHeadConnectedSprite;
+    [SerializeField] Sprite snakeHeadOnlySprite;
 
     // Start is called before the first frame update
     void Start()
@@ -218,6 +226,46 @@ public class GlobalHUD : MonoBehaviour
 
 
         scoreObj.transform.position = cameraObject.GetComponent<Camera>().WorldToScreenPoint(location);
+
+    }
+
+    //Call whenever lives change
+    public void UpdateLifeHUD()
+    {
+        //Set em all to inactive
+        for (int i = 0; i < livesHolder.transform.childCount; i++)
+        {
+            livesHolder.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        //Set number of lives available to active
+        for (int i = 0; i <playerDeathCheck.GetLives(); i++)
+        {
+            //If it's null then it's time to add another life image
+            if (i == livesHolder.transform.childCount) Instantiate(livesHolder.transform.GetChild(i), livesHolder.transform);
+
+            //Show image
+            livesHolder.transform.GetChild(i).gameObject.SetActive(true);
+
+            Image lifeImage = livesHolder.transform.GetChild(i).GetComponent<Image>();
+
+            //Make lives end image or middle image (But not on image of snake head)
+            if (i != 0 && i == playerDeathCheck.GetLives()-1)
+            {
+                lifeImage.sprite = endOfLivesSprite;
+            }
+            else if (i != 0) //Middle life segment
+            {
+                lifeImage.sprite = middleOfLivesSprite;
+            }
+            else //Image is snake head. Change it if there's only 1 life left.
+            {
+
+                //Check if snake head image should be connected to another segment
+                if (playerDeathCheck.GetLives() == 1) lifeImage.sprite = snakeHeadOnlySprite;
+                else lifeImage.sprite = snakeHeadConnectedSprite;
+            }
+        }
 
     }
     

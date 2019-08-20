@@ -22,14 +22,14 @@ public class DeathHandler : MonoBehaviour
 
     int coinCostMultiplier;
 
-    int lives;
+    int continues;
 
     // Start is called before the first frame update
     void Start()
     {
         coinCostMultiplier = 1;
         watchedAds = 0;
-        lives = 3;
+        continues = 3;
         payedCoins = false;
 
         coinButtonText = coinButton.transform.GetChild(0).GetComponent<Text>();
@@ -49,24 +49,24 @@ public class DeathHandler : MonoBehaviour
         if (GlobalStats.hud)
         GlobalStats.hud.DisplayCoins(true);
 
-        if (!continueText) { continueText = continueTextObject.GetComponent<Text>(); lives = 3; }
+        if (!continueText) { continueText = continueTextObject.GetComponent<Text>(); continues = 3; }
 
         continueText.text = "Watch an ad or pay coins to continue!\n" +
-            "Revives Remaining: " + lives.ToString();
+            "Revives Remaining: " + continues.ToString();
         
         //Give player a button to watch an ad to continue here.
-        if (watchedAds > 2 || lives == 0)
+        if (watchedAds > 2 || continues == 0)
         {
             adButton.SetActive(false);
         }
 
         //Also let them pay coins.
-        if(payedCoins || lives == 0)
+        if(payedCoins || continues == 0)
         {
             coinButton.SetActive(false);
         }
 
-        if (lives == 0)
+        if (continues == 0)
         {
             continueTextObject.SetActive(false);
         }
@@ -74,14 +74,17 @@ public class DeathHandler : MonoBehaviour
      //Continue game and exit menu.
     void Revive()
     {
-        lives--;
+
+        continues--;
 
         //Hide the coins gradually.
         GlobalStats.hud.DisplayCoins(false);
         GlobalStats.hud.UpdateHUD();
 
         gameObject.SetActive(false);
-        player.GetComponent<DeathCheck>().Respawn();
+        DeathCheck deathCheck = player.GetComponent<DeathCheck>();
+        deathCheck.AddLife();
+        deathCheck.Respawn();
     }
 
     //End the game here along with highscores, rewards, etc.
