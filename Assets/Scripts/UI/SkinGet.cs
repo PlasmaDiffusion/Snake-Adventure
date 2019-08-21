@@ -11,6 +11,7 @@ public class SkinGet : MonoBehaviour
     public Image newSkinIcon; //This gets set as the object is created with SetSkinIcon();
     public Image presentTop;
     public Image presentBottom;
+    public Image presentBack;
     public Button tryItButton;
 
     [Header ("Set all icons here.")]
@@ -57,6 +58,7 @@ public class SkinGet : MonoBehaviour
         //Open the box!
         presentTop.rectTransform.position = Vector2.Lerp(topStart, topStart + new Vector2(0.0f, 100.0f), topPresentT);
         presentBottom.rectTransform.position = Vector2.Lerp(bottomStart, bottomStart + new Vector2(0.0f, -200.0f), bottomPresentT);
+        presentBack.rectTransform.position = presentBottom.rectTransform.position;
 
         topPresentT += Time.deltaTime;
         bottomPresentT += Time.deltaTime;

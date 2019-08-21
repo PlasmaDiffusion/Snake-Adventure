@@ -126,7 +126,7 @@ public class SpikeTrap : MonoBehaviour
         hideWarningText = true;
 
         //Destroy this object if the player died to it. Don't if invincible.
-        if (died)
+        if (died || deathCheck.gameObject.GetComponent<Snake>().GetBoosting())
         {
             Explode();
         }

@@ -76,6 +76,9 @@ public class Snake : SnakeMovement
         rend = GetComponent<Renderer>();
         //ChangeSnakeSkin(); //Skins will call this instead.
 
+        //Reset food collecting variables
+        BonusFood.foodCollected = 0;
+        BonusFood.currentFoodIndex = 0;
     }
 
     //Update the snake skin and colour variable. Called whenever the player swaps skins beforet the game starts.
@@ -189,10 +192,12 @@ public class Snake : SnakeMovement
         }
         else rigidbody.useGravity = true;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) currentDirection = DraggedDirection.Left;
-        if (Input.GetKeyDown(KeyCode.RightArrow)) currentDirection = DraggedDirection.Right;
-        if (Input.GetKeyDown(KeyCode.UpArrow)) currentDirection = DraggedDirection.Up;
-        if (Input.GetKeyDown(KeyCode.DownArrow)) currentDirection = DraggedDirection.Down;
+        float randomMovePitch = Random.Range(1.0f, 2.5f);
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) { currentDirection = DraggedDirection.Left; SoundManager.PlaySound(SoundManager.Sounds.SWITCH_OFF, randomMovePitch); }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) { currentDirection = DraggedDirection.Right; SoundManager.PlaySound(SoundManager.Sounds.SWITCH_OFF, randomMovePitch); }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {currentDirection = DraggedDirection.Up;  SoundManager.PlaySound(SoundManager.Sounds.SWITCH_OFF, randomMovePitch); }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {currentDirection = DraggedDirection.Down;  SoundManager.PlaySound(SoundManager.Sounds.SWITCH_OFF, randomMovePitch); }
 
 
 
@@ -370,7 +375,11 @@ public class Snake : SnakeMovement
         Debug.Log(oldDirection);
         currentDirection = GetDragDirection(dragVectorDirection);
 
-        //SoundManager.PlaySound(SoundManager.Sounds.TRAP_COLLIDE, 0.5f);
+        if (currentDirection != oldDirection)
+        {
+        float randomMovePitch = Random.Range(1.0f, 2.5f);
+        SoundManager.PlaySound(SoundManager.Sounds.SWITCH_OFF, randomMovePitch);
+        }
         //if (currentDirection != oldDirection) transform.position = AlignToGrid(transform.position);
     }
 

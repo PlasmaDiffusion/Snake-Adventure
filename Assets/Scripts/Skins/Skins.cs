@@ -113,12 +113,12 @@ public class Skins : MonoBehaviour
 
     void CalculateCosts()
     {
-        skinCost = 35;
-        themeCost = 45;
+        skinCost = 40;
+        themeCost = 40;
 
-        for (int i = 0; i < (int)Themes.RANDOM; i++) if (unlockedLevelThemes[i]) themeCost += 5;
+        for (int i = 0; i < (int)Themes.RANDOM; i++) if (unlockedLevelThemes[i]) themeCost += (int)(themeCost * 0.5);
 
-        for (int i = 0; i < (int)SnakeSkins.RANDOM; i++) if (unlockedSnakeSkins[i]) skinCost += 5;
+        for (int i = 0; i < (int)SnakeSkins.RANDOM; i++) if (unlockedSnakeSkins[i]) skinCost += (int)(skinCost * 0.5);
     }
 
     void UpdatePlayerSkin()

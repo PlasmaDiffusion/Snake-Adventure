@@ -58,7 +58,7 @@ public class CoinObjective : MonoBehaviour
         tMultiplier = 0.0f;
         panelObject.transform.position = startingPos;
 
-        if (GlobalStats.disabledAds) claimRewardButton.transform.GetChild(0).GetComponent<Text>().text = "+40 Coins";
+        if (GlobalStats.disabledAds) claimRewardButton.transform.GetChild(0).GetComponent<Text>().text = "+80 Coins";
 
     }
 
@@ -167,8 +167,8 @@ public class CoinObjective : MonoBehaviour
         PickRandomObjective();
         UpdateUI();
 
-        if (GlobalStats.disabledAds) GlobalStats.coins += 40;
-        else GlobalStats.coins += 20;
+        if (GlobalStats.disabledAds) GlobalStats.coins += 80;
+        else GlobalStats.coins += 40;
 
         GlobalStats.hud.DisplayCoins(false);
 

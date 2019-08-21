@@ -11,10 +11,14 @@ public class FoodSpawner : MonoBehaviour
     //Make a list of child objects. Whenever something is spawned in, take it from this list.
     List<GameObject> foodLeftToSpawn;
 
+    LookAtCube pointer;
+
+    LevelSpawner levelSpawner;
 
     // Start is called before the first frame update
     void Start()
     {
+
         GetComponent<Renderer>().enabled = false;
 
         foodEaten = 0;
@@ -38,6 +42,9 @@ public class FoodSpawner : MonoBehaviour
             foodLeftToSpawn[i].SetActive(false);
         }
 
+        pointer = GameObject.Find("CubeArrow").GetComponent<LookAtCube>();
+        levelSpawner = GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>();
+
         ActivateFood();
     }
 
@@ -52,6 +59,10 @@ public class FoodSpawner : MonoBehaviour
 
             //Spawn food in by making it active.
             foodLeftToSpawn[objIndex].SetActive(true);
+
+            //Make arrow point to the new piece of food
+            if (levelSpawner.GetLevel() > 0 && levelSpawner.GetLevelObject().name != "EasyLevel3(Clone)")
+                pointer.cubeRef = foodLeftToSpawn[objIndex];
 
             //Set it to the gate parent
             foodLeftToSpawn[objIndex].transform.parent = transform.parent;

@@ -236,6 +236,19 @@ public class EnemySnake : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+
+            //Destroy when boosting
+            if (collision.gameObject.GetComponent<Snake>().GetBoosting())
+            {
+                //Spawn death particles
+                GameObject emitter = GameObject.Find("DeathParticleEmitter");
+
+                if (emitter) Instantiate(emitter, transform.position, emitter.transform.rotation);
+                
+
+                Destroy(gameObject);
+            }
+
             collision.gameObject.GetComponent<DeathCheck>().Die();
 
 

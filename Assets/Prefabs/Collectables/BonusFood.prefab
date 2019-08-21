@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2695952397227361642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08810753, y: -63.197975, z: 82.324905}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,11 +106,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherFoodBonuses:
   - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
+  - {fileID: 6957755695254756896, guid: e252455df7a40bf439a3a5847ad1a258, type: 3}
   - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
   - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
   - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
   - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
   - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
   - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
-  - {fileID: 4918126953516703604, guid: 94c29b9d472296f4da16ca3a5007d080, type: 3}
-  scoreBonuses: 1e0000001e0000003c0000002d0000001e0000001e0000001e0000001e000000
+  scoreBonuses: 1e000000320000005000000078000000c8000000900100005802000020030000
+  requiredFood: 010000000200000003000000040000000500000006000000080000000a000000

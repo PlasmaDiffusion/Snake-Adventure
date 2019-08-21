@@ -21,7 +21,7 @@ public class SwitchBlock : MonoBehaviour
 
         material = GetComponent<Renderer>().material;
         offColour = material.color;
-        onColour = new Color(0.55f, 0.231f, 0.404f, 1.0f);
+        onColour = new Color(1.0f, 0.231f, 0.404f, 1.0f);
 
 
         if (solid) MakeSolid();

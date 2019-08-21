@@ -95,6 +95,10 @@ public class SnakeGate : MonoBehaviour
                 CoinObjective.CheckForObjective((int)CoinObjective.Objective.BEAT_THEMED_LEVELS, (int)Skins.levelTheme);
             }
 
+            //Remove the arrow cube reference if it exists
+            GameObject arrowObject = GameObject.Find("CubeArrow");
+            if (arrowObject) arrowObject.GetComponent<LookAtCube>().RemoveRefernce();
+
             SoundManager.PlaySound(SoundManager.Sounds.ENTER_GATE);
 
 

@@ -59,12 +59,16 @@ public class DeathCheck : MonoBehaviour
     //If you're touching nothing you'll gain your time back
     void Update()
     {
+
         DeathLerpAnimation();
 
         if (GlobalStats.paused) return;
 
-        //Change colour and record when colliding
-        if (!colliding && collisionTimeInSegment > 0.0f)
+
+        if (snake.GetBoosting()) { BoostColourLerp(); return; }
+
+            //Change colour and record when colliding
+            if (!colliding && collisionTimeInSegment > 0.0f)
         {
             collisionTimeInSegment -= Time.deltaTime;
             UpdateColour();
@@ -93,7 +97,7 @@ public class DeathCheck : MonoBehaviour
     //Pop up the game over screen and make the snake stop moving. Return true if died for other objects to know.
     public bool Die()
     {
-        if (died || invincibility > 0.0f) return false;
+        if (died || invincibility > 0.0f || snake.GetBoosting()) return false;
         gameObject.GetComponent<Snake>().alive = false;
         GlobalStats.hud.DisplayCoins(true);
         GlobalStats.paused = true;
@@ -150,7 +154,7 @@ public class DeathCheck : MonoBehaviour
     //You can only collide for so long until ya die.
     public void CheckForDeath()
     {
-        if (invincibility > 0.0f) return;
+        if (invincibility > 0.0f || snake.GetBoosting()) return;
 
         collisionTimeInSegment += Time.deltaTime;
         if (collisionTimeInSegment > collisionTimeLimit * 0.25f) SoundManager.PlaySound(SoundManager.Sounds.HURT, 1.0f - collisionTimeInSegment);
@@ -174,6 +178,7 @@ public class DeathCheck : MonoBehaviour
         if (Skins.snakeSkin == Skins.SnakeSkins.DOTTED) rend.material.color = new Color(rend.material.color.r,regColor.g + (1.0f - regColor.g) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else if(Skins.snakeSkin == Skins.SnakeSkins.DICE) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else if (Skins.snakeSkin == Skins.SnakeSkins.CHECKERED) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
+        else if (Skins.snakeSkin == Skins.SnakeSkins.SPOTS) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else rend.material.color = new Color(regColor.r + (1.0f - regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
     }
 
@@ -201,5 +206,21 @@ public class DeathCheck : MonoBehaviour
 
         //Resize the snake segments too
         snake.RescaleSegments();
+    }
+
+    //Snake glows colours when boosting
+    void BoostColourLerp()
+    {
+        Color colorToLerpTo = Color.blue;
+        float boostAmount = snake.GetBoostGuage();
+
+        //Blue snake needs a different colour
+        if (Skins.snakeSkin == Skins.SnakeSkins.BLUE) colorToLerpTo = Color.yellow;
+
+
+        if (boostAmount > 0.5f)
+        rend.material.color = Color.Lerp(colorToLerpTo, regColor, boostAmount);
+        else
+        rend.material.color = Color.Lerp(regColor, colorToLerpTo, boostAmount);
     }
 }

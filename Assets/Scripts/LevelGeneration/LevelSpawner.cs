@@ -69,6 +69,7 @@ public class LevelSpawner : MonoBehaviour
     }
 
     public int GetLevel() { return level; }
+    public GameObject GetLevelObject() { return currentLevel; }
 
     public void EndLevel(Vector3 pos)
     {
