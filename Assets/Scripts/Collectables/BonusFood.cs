@@ -78,7 +78,7 @@ public class BonusFood : MonoBehaviour
         if (currentFoodIndex < 6)
         {
             currentFoodIndex++;
-            //foodCollected = 0;
+            foodCollected = 0;
         }
     }
 }
