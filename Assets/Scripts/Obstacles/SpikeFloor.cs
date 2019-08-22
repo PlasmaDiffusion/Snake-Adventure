@@ -23,6 +23,10 @@ public class SpikeFloor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Axe ignores this update
+        if (name[0] == 'A' || GlobalStats.paused) return;
+
+
         //Spikes are popped out for a brief time. If done popping out lerp back in our lerp out.
         if (outTime <= 0.0f)
         {

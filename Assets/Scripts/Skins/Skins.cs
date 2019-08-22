@@ -27,6 +27,10 @@ public class Skins : MonoBehaviour
         DESERT,
         TOYBOX,
         MOON,
+        CITY,
+        CAVE,
+        DUNGEON,
+        WATER,
         RANDOM
     };
 
@@ -113,6 +117,8 @@ public class Skins : MonoBehaviour
 
     void CalculateCosts()
     {
+        //int[] costs = { 40, 50, 60, 80, 100, 150, 200, 300, 500};
+
         skinCost = 40;
         themeCost = 40;
 

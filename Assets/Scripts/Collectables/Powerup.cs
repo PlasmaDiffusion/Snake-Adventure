@@ -29,6 +29,9 @@ public class Powerup : MonoBehaviour
             case 3:
                 functionToCall = new collectFunction(PickupFire);
                 break;
+            case -1:
+                functionToCall = new collectFunction(EatFish);
+                break;
         }
     }
 
@@ -67,6 +70,12 @@ public class Powerup : MonoBehaviour
         other.gameObject.transform.Find("Tongue").GetComponent<FireBreathe>().ActivateFire();
         CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 2);
         SoundManager.PlaySound(SoundManager.Sounds.POWERUP, 0.5f);
+    }
+
+    void EatFish(Collider other)
+    {
+        GlobalStats.AddScore(10, transform.position);
+        SoundManager.PlaySound(SoundManager.Sounds.FOOD_PICKUP);
     }
 
     //Player collects powerup and a function is called.

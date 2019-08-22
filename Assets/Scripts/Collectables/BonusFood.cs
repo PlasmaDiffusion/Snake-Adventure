@@ -25,10 +25,20 @@ public class BonusFood : MonoBehaviour
     {
         //Make invisible in game but visible in the editor.
         GetComponent<MeshRenderer>().enabled = false;
-        Instantiate(otherFoodBonuses[currentFoodIndex], transform);
+        GameObject newFruit = Instantiate(otherFoodBonuses[currentFoodIndex], transform);
+
+        //Angle the fruit a little
+        newFruit.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -45.0f);
 
         //Determine what current fruit is and points are
         pointWorth = scoreBonuses[currentFoodIndex];
+
+        //Some foods have specific angles
+        if (currentFoodIndex == 0) newFruit.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        else if (currentFoodIndex == 1) newFruit.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 90.0f);
+        else if (currentFoodIndex == 3) newFruit.transform.rotation = Quaternion.Euler(45.0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        else if (currentFoodIndex == 6) newFruit.transform.rotation = Quaternion.Euler(90.0f, transform.rotation.eulerAngles.y, 90.0f);
+
     }
 
     private void Update()
@@ -65,10 +75,10 @@ public class BonusFood : MonoBehaviour
 
     void LevelUpFood()
     {
-        if (currentFoodIndex < 7)
+        if (currentFoodIndex < 6)
         {
             currentFoodIndex++;
-            foodCollected = 0;
+            //foodCollected = 0;
         }
     }
 }
