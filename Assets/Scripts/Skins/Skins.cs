@@ -8,12 +8,17 @@ public class Skins : MonoBehaviour
     {
         DEFAULT,
         BLUE,
-        MECHANICAL,
+        GREENER,
         SCALES,
         SPOTS,
         DICE,
         DOTTED,
         CHECKERED,
+        BRICK,
+        SKIN10,
+        SKIN11,
+        SKIN12,
+        SKIN13,
         RANDOM
     };
 
@@ -30,7 +35,7 @@ public class Skins : MonoBehaviour
         CITY,
         CAVE,
         DUNGEON,
-        WATER,
+        OCEAN,
         RANDOM
     };
 
@@ -81,7 +86,7 @@ public class Skins : MonoBehaviour
 
             //Default level skins
             snakeSkin = SnakeSkins.DEFAULT;
-            levelTheme = Themes.DEFAULT;
+            levelTheme = Themes.RANDOM;
 
             //Initialize unlock skin arrays
             unlockedSnakeSkins = new bool[(int)SnakeSkins.RANDOM + 1];
@@ -92,6 +97,8 @@ public class Skins : MonoBehaviour
 
             unlockedLevelThemes[(int)Themes.RANDOM] = true;
             unlockedLevelThemes[(int)Themes.DEFAULT] = true;
+            unlockedLevelThemes[(int)Themes.SNOW] = true;
+            unlockedLevelThemes[(int)Themes.DESERT] = true;
 
 
             //Load in all unlocked skins here (And everything else)
@@ -117,14 +124,22 @@ public class Skins : MonoBehaviour
 
     void CalculateCosts()
     {
-        //int[] costs = { 40, 50, 60, 80, 100, 150, 200, 300, 500};
+        //Different costs right here! First 3 themes are unlocked already
+        int[] skinCosts = {50, 50, 50, 50, 55, 60, 70, 80, 100, 150, 300, 500};
+        int[] themeCosts = {50, 50, 50, 65, 75, 90, 110, 150, 200, 300, 500, 800};
 
-        skinCost = 40;
-        themeCost = 40;
+        int skinsUnlocked = 0;
+        int themesUnlocked = 0;
 
-        for (int i = 0; i < (int)Themes.RANDOM; i++) if (unlockedLevelThemes[i]) themeCost += (int)(themeCost * 0.5);
+        for (int i = 0; i < (int)Themes.RANDOM; i++) if (unlockedLevelThemes[i]) themesUnlocked++;
 
-        for (int i = 0; i < (int)SnakeSkins.RANDOM; i++) if (unlockedSnakeSkins[i]) skinCost += (int)(skinCost * 0.5);
+        if (skinsUnlocked < 12)
+        themeCost = themeCosts[themesUnlocked];
+
+        for (int i = 0; i < (int)SnakeSkins.RANDOM; i++) if (unlockedSnakeSkins[i]) skinsUnlocked++;
+
+        if (themesUnlocked < 12)
+        skinCost = skinCosts[skinsUnlocked];
     }
 
     void UpdatePlayerSkin()

@@ -5,6 +5,8 @@ using UnityEngine;
 //The main player class.
 public class Snake : SnakeMovement
 {
+    //Input list for cheat codes. REMOVE BEFORE RELEASE.
+    List<DraggedDirection> inputs;
 
     //Movement vars
     
@@ -70,7 +72,7 @@ public class Snake : SnakeMovement
 
         lastSpawnPosition = transform.position;
 
-        camOffset = new Vector3(0.0f, 20.0f, 0.0f);
+        camOffset = new Vector3(0.0f, 25.0f, 0.0f);
 
         //Change skins to whatever is set.
         rend = GetComponent<Renderer>();
@@ -243,6 +245,31 @@ public class Snake : SnakeMovement
     public void ChangeSnakeDirection(int directionID)
     {
         currentDirection = (DraggedDirection)directionID;
+        CheatCode();
+    }
+
+    //REMOVE THIS UPON RELEASE PLEASE
+    private void CheatCode()
+    {
+        inputs.Add(currentDirection);
+
+        if (inputs.Count >= 8)
+        {
+            if (inputs[0] == DraggedDirection.Up &&
+                inputs[1] == DraggedDirection.Up &&
+                inputs[2] == DraggedDirection.Down &&
+                inputs[3] == DraggedDirection.Down &&
+                inputs[4] == DraggedDirection.Left &&
+                inputs[5] == DraggedDirection.Right &&
+                inputs[6] == DraggedDirection.Left &&
+                inputs[7] == DraggedDirection.Right)
+            {
+                GlobalStats.coins = 99999;
+                SoundManager.PlaySound(SoundManager.Sounds.COIN);
+            }
+
+            inputs.Clear();
+        }
     }
 
     //Movement updating

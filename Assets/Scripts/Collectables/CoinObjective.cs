@@ -230,6 +230,7 @@ public class CoinObjective : MonoBehaviour
         if (achieved)
         {
             claimRewardButton.gameObject.SetActive(true);
+            ToggleView();
         }
         else
         {
