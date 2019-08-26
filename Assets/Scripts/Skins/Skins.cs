@@ -15,10 +15,9 @@ public class Skins : MonoBehaviour
         DOTTED,
         CHECKERED,
         BRICK,
-        SKIN10,
-        SKIN11,
-        SKIN12,
-        SKIN13,
+        GLAMOUR,
+        GOLD,
+        RAINBOW,
         RANDOM
     };
 

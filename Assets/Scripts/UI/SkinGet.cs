@@ -15,8 +15,8 @@ public class SkinGet : MonoBehaviour
     public Button tryItButton;
 
     [Header ("Set all icons here.")]
-    public Image[] snakeIcons;
-    public Image[] themeIcons;
+    public Color[] snakeIconColours;
+    public Sprite[] themeIcons;
 
     //Lerp values for opening the present
     float topPresentT;
@@ -69,7 +69,7 @@ public class SkinGet : MonoBehaviour
             skinIconT += Time.deltaTime;
 
             //Stuff shall grow here
-            newSkinIcon.rectTransform.sizeDelta = Vector2.Lerp(new Vector2(0.0f,0.0f), new Vector2(1.0f, 1.0f), skinIconT);
+            //newSkinIcon.rectTransform.sizeDelta = Vector2.Lerp(new Vector2(0.0f,0.0f), new Vector2(1.0f, 1.0f), skinIconT);
             newSkinName.rectTransform.localScale = Vector2.Lerp(new Vector2(0.0f, 0.0f), new Vector2(1.0f, 1.0f), skinIconT);
             tryItButton.transform.localScale = Vector2.Lerp(new Vector2(0.0f, 0.0f), new Vector2(1.0f, 1.0f), skinIconT);
         
@@ -88,16 +88,16 @@ public class SkinGet : MonoBehaviour
     //Call one of these upon opening the menu
     public void SetThemeIcon(string name, Skins.Themes theme)
     {
-        newSkinIcon = themeIcons[(int)theme];
+        newSkinIcon.sprite = themeIcons[(int)theme];
         newSkinName.text = name;
         isLevelTheme = true;
         Skins.levelTheme = theme;
-        Debug.Log("Theme icon set");
     }
     public void SetSnakeIcon(string name, Skins.SnakeSkins skin)
     {
-        newSkinIcon = snakeIcons[(int)skin];
+        newSkinIcon.color = snakeIconColours[(int)skin];
         newSkinName.text = name;
+        isLevelTheme = false;
         Skins.snakeSkin = skin;
     }
 

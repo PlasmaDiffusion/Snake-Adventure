@@ -81,6 +81,8 @@ public class Snake : SnakeMovement
         //Reset food collecting variables
         BonusFood.foodCollected = 0;
         BonusFood.currentFoodIndex = 0;
+
+        transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f));
     }
 
     //Update the snake skin and colour variable. Called whenever the player swaps skins beforet the game starts.
@@ -229,6 +231,36 @@ public class Snake : SnakeMovement
 
     }
 
+    //Collision function that detects if you're about to glitch under a wall and forces you back up
+    //private void OnTriggerEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Wall")
+    //    {
+    //        //Must be under the wall
+    //            if(rigidbody.velocity.y < 0.0f)
+    //            {
+    //            Debug.Log("Forced up");
+    //             transform.position = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
+    //            }
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name[0] == 'U')
+        {
+            //Must be under the wall
+            //if (transform.position.y < other.transform.position.y)
+            //{
+                transform.position = new Vector3(transform.position.x, other.transform.position.y + 2.0f, transform.position.z);
+                Debug.Log(other.name);
+                //other.transform.position += new Vector3(1.0f, 1.0f, 1.0f);
+
+            //}
+        }
+    }
+
+
     private Touch ForceEndSwipe(Touch touch)
     {
         if (timeSwipeHeld > 0.15f)
@@ -271,40 +303,6 @@ public class Snake : SnakeMovement
             inputs.Clear();
         }
     }
-
-    //Movement updating
-    //void FixedUpdate()
-    //{
-
-    //    if (CheckIfPaused()) return;
-
-    //    //Every update check the direction and update the velocity. Also rotate to that direction.
-    //    switch (currentDirection)
-    //    {
-
-    //        case DraggedDirection.Up:
-    //            rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, speed * Time.deltaTime));
-    //            targetRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-    //            timeRotating = 0.0f;
-    //            break;
-    //        case DraggedDirection.Down:
-    //            rigidbody.velocity = (new Vector3(0.0f, rigidbody.velocity.y, -speed * Time.deltaTime));
-    //            targetRotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
-    //            timeRotating = 0.0f;
-    //            break;
-    //        case DraggedDirection.Left:
-    //            rigidbody.velocity = (new Vector3(-speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-    //            targetRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-    //            timeRotating = 0.0f;
-    //            break;
-    //        case DraggedDirection.Right:
-    //            rigidbody.velocity = (new Vector3(speed * Time.deltaTime, rigidbody.velocity.y, 0.0f));
-    //            targetRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-    //            timeRotating = 0.0f;
-    //            break;
-    //    }
-
-    //}
 
     //Set vel to 0 if the game is paused. Also check for unpause.
     bool CheckIfPaused()

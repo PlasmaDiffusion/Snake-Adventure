@@ -119,11 +119,11 @@ public class BuySkin : MonoBehaviour
 
         if (isSnake)
         {
-           skinGetScript.SetSnakeIcon(text.text, ((Skins.SnakeSkins)randomIndex));
+           skinGetScript.SetSnakeIcon(text.text, (Skins.SnakeSkins)randomIndex);
         }
         else
         {
-            skinGetScript.SetThemeIcon(text.text, ((Skins.Themes)randomIndex));
+            skinGetScript.SetThemeIcon(text.text, (Skins.Themes)randomIndex);
         }
 
         skinGetMenu.SetActive(true);

@@ -16,6 +16,7 @@ public class LevelSpawner : MonoBehaviour
     public List<GameObject> easyLevels;
     public List<GameObject> mediumLevels;
     public List<GameObject> hardLevels;
+    bool ranOutOfHard;
 
     public bool testing;
     public List<GameObject> testLevels;
@@ -60,6 +61,8 @@ public class LevelSpawner : MonoBehaviour
         colorT = 1.0f;
         currentColor = bgColors[0];
         currentLightColor = lightColors[0];
+
+        ranOutOfHard = false;
     }
 
     private void Update()
@@ -130,11 +133,28 @@ public class LevelSpawner : MonoBehaviour
         else return easyLevelPool;
     }
 
+    //Call this function when the player runs out of levels to play. Easy and Medium pools get reset, but the Hard pool adds in the other sets of levels.
     void CheckIfPoolIsEmpty()
     {
         if (easyLevelPool.Count == 0) easyLevelPool.AddRange(easyLevels);
         if (mediumLevelPool.Count == 0) mediumLevelPool.AddRange(mediumLevels);
-        if (hardLevelPool.Count == 0) hardLevelPool.AddRange(hardLevels);
+
+        //Hard levels you will eventually run out of, so add in the levels you are yet to play
+        if (hardLevelPool.Count == 0 && !ranOutOfHard)
+        {
+            Debug.Log("Ran out of hard levels. Playing other easy and normal ones.");
+            hardLevelPool.AddRange(easyLevelPool);
+            hardLevelPool.AddRange(mediumLevelPool);
+            ranOutOfHard = true;
+        }
+        //Then if you've played them all, play them all again!
+        else if (hardLevelPool.Count == 0 && ranOutOfHard)
+        {
+            Debug.Log("Played every level. Now replaying all of them.");
+            hardLevelPool.AddRange(easyLevels);
+            hardLevelPool.AddRange(mediumLevels);
+            hardLevelPool.AddRange(hardLevels);
+        }
     }
 
     void SpawnInLevel(ref List<GameObject> levelList)

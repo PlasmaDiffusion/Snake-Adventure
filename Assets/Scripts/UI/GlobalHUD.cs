@@ -80,7 +80,7 @@ public class GlobalHUD : MonoBehaviour
     {
         //Hide coins after a second
         if (coinsVisibleTime > 0 && coinsVisibleTime != 10.0f) coinsVisibleTime -= Time.deltaTime;
-        else if (coinsVisibleTime != 10.0f) coinText.rectTransform.Translate(0.0f, 32.0f * Time.deltaTime, 0.0f);
+        else if (coinsVisibleTime != 10.0f) coinText.rectTransform.Translate(0.0f, 64.0f * Time.deltaTime, 0.0f);
 
         float scoreTime = SnakeFood.GetMultiplierTime();
 

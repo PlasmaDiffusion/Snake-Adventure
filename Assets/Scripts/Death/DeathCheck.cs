@@ -33,6 +33,9 @@ public class DeathCheck : MonoBehaviour
 
     int lives;
 
+    //Var for rainbow skin
+    Color rainbowColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,8 @@ public class DeathCheck : MonoBehaviour
         maxScale = transform.localScale;
 
         lives = 3;
+
+        rainbowColor = rend.material.color;
     }
 
     //If you're touching nothing you'll gain your time back
@@ -68,7 +73,7 @@ public class DeathCheck : MonoBehaviour
         if (snake.GetBoosting()) { BoostColourLerp(); return; }
 
             //Change colour and record when colliding
-            if (!colliding && collisionTimeInSegment > 0.0f)
+        if (!colliding && collisionTimeInSegment > 0.0f)
         {
             collisionTimeInSegment -= Time.deltaTime;
             UpdateColour();
@@ -80,6 +85,10 @@ public class DeathCheck : MonoBehaviour
 
             //Make transparent
             UpdateColour();
+        }
+        if (Skins.snakeSkin == Skins.SnakeSkins.RAINBOW && collisionTimeInSegment < 0.1f)
+        {
+            RainbowLerp();
         }
 
         if (gameObject.transform.position.y < deathY)
@@ -179,6 +188,7 @@ public class DeathCheck : MonoBehaviour
         else if(Skins.snakeSkin == Skins.SnakeSkins.DICE) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else if (Skins.snakeSkin == Skins.SnakeSkins.CHECKERED) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
         else if (Skins.snakeSkin == Skins.SnakeSkins.SPOTS) rend.material.color = new Color(regColor.r - (regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
+        else if (Skins.snakeSkin == Skins.SnakeSkins.RAINBOW) rend.material.color = new Color(rainbowColor.r - (rainbowColor.r) * (collisionTimeInSegment / collisionTimeLimit), rainbowColor.g + (rainbowColor.g) * (collisionTimeInSegment / collisionTimeLimit), rainbowColor.b + (rainbowColor.b) * (collisionTimeInSegment / collisionTimeLimit));
         else rend.material.color = new Color(regColor.r + (1.0f - regColor.r) * (collisionTimeInSegment / collisionTimeLimit), rend.material.color.g, rend.material.color.b, 1.0f - (invincibility / maxInvincibility));
     }
 
@@ -222,5 +232,22 @@ public class DeathCheck : MonoBehaviour
         rend.material.color = Color.Lerp(colorToLerpTo, regColor, boostAmount);
         else
         rend.material.color = Color.Lerp(regColor, colorToLerpTo, boostAmount);
+    }
+
+    void RainbowLerp()
+    {
+        float hue;
+        float sat;
+        float value;
+
+        
+
+        Color.RGBToHSV(rainbowColor, out hue, out sat, out value);
+
+        hue += Time.deltaTime * 0.5f;
+
+        rainbowColor = Color.HSVToRGB(hue, sat, value);
+
+        rend.material.color = rainbowColor;
     }
 }

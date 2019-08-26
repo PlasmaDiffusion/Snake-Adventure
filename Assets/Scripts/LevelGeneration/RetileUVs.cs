@@ -28,5 +28,7 @@ public class RetileUVs : MonoBehaviour
     void SkrinkUVScale()
     {
         if (Skins.levelTheme == Skins.Themes.DESERT) newUVScale *= 0.5f;
+        if (Skins.levelTheme == Skins.Themes.CITY) newUVScale *= 0.5f;
+        if (Skins.levelTheme == Skins.Themes.TOYBOX) newUVScale *= 0.25f;
     }
 }
