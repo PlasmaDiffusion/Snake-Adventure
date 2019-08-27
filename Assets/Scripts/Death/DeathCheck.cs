@@ -65,11 +65,21 @@ public class DeathCheck : MonoBehaviour
     void Update()
     {
 
+
         DeathLerpAnimation();
 
         if (GlobalStats.paused) return;
 
-
+        //Dye if you fall down too far
+        if (gameObject.transform.position.y < deathY)
+        {
+            //Debug.Log("Dying because under y level " + deathY.ToString());
+            invincibility = 0.0f;
+            UpdateColour();
+            Die(true);
+        }
+        
+        //Can't run over self while boosting
         if (snake.GetBoosting()) { BoostColourLerp(); return; }
 
             //Change colour and record when colliding
@@ -91,22 +101,17 @@ public class DeathCheck : MonoBehaviour
             RainbowLerp();
         }
 
-        if (gameObject.transform.position.y < deathY)
-        {
-            //Debug.Log("Dying because under y level " + deathY.ToString());
-            invincibility = 0.0f;
-            UpdateColour();
-            Die();
-        }
 
 
 
         }
 
     //Pop up the game over screen and make the snake stop moving. Return true if died for other objects to know.
-    public bool Die()
+    public bool Die(bool forceDeath = false)
     {
-        if (died || invincibility > 0.0f || snake.GetBoosting()) return false;
+        if (forceDeath) { } //Skip the check below
+        else if (died || invincibility > 0.0f || snake.GetBoosting()) return false;
+
         gameObject.GetComponent<Snake>().alive = false;
         GlobalStats.hud.DisplayCoins(true);
         GlobalStats.paused = true;

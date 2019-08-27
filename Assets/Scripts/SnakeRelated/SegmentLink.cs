@@ -33,5 +33,9 @@ public class SegmentLink : MonoBehaviour
             //Debug.Log(difference);
 
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

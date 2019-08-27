@@ -3984,15 +3984,15 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7848658424563855937, guid: 6ca447a4438a4194782bd790dd09544e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7848658424563855948, guid: 6ca447a4438a4194782bd790dd09544e,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.37386
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848658424563855937, guid: 6ca447a4438a4194782bd790dd09544e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca447a4438a4194782bd790dd09544e, type: 3}
@@ -13044,7 +13044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &601194622
 Transform:
   m_ObjectHideFlags: 0
@@ -22348,7 +22348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pay 5 Coins
+  m_Text: Pay 15 Coins
 --- !u!222 &1048043289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34466,15 +34466,15 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7848658424563855937, guid: 6ca447a4438a4194782bd790dd09544e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7848658424563855948, guid: 6ca447a4438a4194782bd790dd09544e,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.37386
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848658424563855937, guid: 6ca447a4438a4194782bd790dd09544e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca447a4438a4194782bd790dd09544e, type: 3}
@@ -35914,15 +35914,15 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7848658424563855937, guid: 6ca447a4438a4194782bd790dd09544e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7848658424563855948, guid: 6ca447a4438a4194782bd790dd09544e,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.37386
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848658424563855937, guid: 6ca447a4438a4194782bd790dd09544e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca447a4438a4194782bd790dd09544e, type: 3}
@@ -53796,7 +53796,7 @@ PrefabInstance:
     - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
         type: 3}
       propertyPath: testing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3667566875800118631, guid: 5ea96ff81f675034fac6504407ff302e,
         type: 3}

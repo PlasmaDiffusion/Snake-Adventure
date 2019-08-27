@@ -49,7 +49,6 @@ public class CoinObjective : MonoBehaviour
 
         //Debug.Log(((Objective)objectiveID).ToString());
 
-        UpdateUI();
 
         //Lerp stuff
         targetPos = panelObject.transform.position;
@@ -60,6 +59,7 @@ public class CoinObjective : MonoBehaviour
 
         if (GlobalStats.disabledAds) claimRewardButton.transform.GetChild(0).GetComponent<Text>().text = "+80 Coins";
 
+        UpdateUI();
     }
 
     /*

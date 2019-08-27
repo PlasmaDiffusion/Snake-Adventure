@@ -9,5 +9,10 @@ public class HideIfNewGame : MonoBehaviour
     void Start()
     {
         if (GlobalStats.GetFarthestLevel() < 2) gameObject.SetActive(false);
+
+#if UNITY_STANDALONE_WIN
+        
+        if (gameObject.name == "ShopButton") gameObject.SetActive(false);
+#endif
     }
 }

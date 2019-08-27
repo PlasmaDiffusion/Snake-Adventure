@@ -39,8 +39,13 @@ public class DeathHandler : MonoBehaviour
         {
             adButton.transform.GetChild(0).GetComponent<Text>().text = "Free Revive";
         }
+
+        #if UNITY_STANDALONE_WIN
+              adButton.gameObject.SetActive(false);
+        #endif
+
     }
-    
+
     //Call Die() to prompt a game over menu. 
     void OnEnable()
     {
@@ -53,7 +58,12 @@ public class DeathHandler : MonoBehaviour
 
         continueText.text = "Watch an ad or pay coins to continue!\n" +
             "Revives Remaining: " + continues.ToString();
-        
+
+        #if UNITY_STANDALONE_WIN
+              continueText.text = "Pay coins to continue!\n" +
+            "Revives Remaining: " + continues.ToString();
+        #endif
+
         //Give player a button to watch an ad to continue here.
         if (watchedAds > 2 || continues == 0)
         {
@@ -127,6 +137,10 @@ public class DeathHandler : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+
+#if !UNITY_STANDALONE_WIN
+
+
     public void ShowRewardedAd()
     {
         //If the player supported the game, they skip the ad
@@ -141,6 +155,7 @@ public class DeathHandler : MonoBehaviour
             Advertisement.Show("rewardedVideo", options);
         }
     }
+
 
     //Show a single ad to revive the player
     private void HandleShowResult(ShowResult result)
@@ -167,9 +182,13 @@ public class DeathHandler : MonoBehaviour
         }
     }
 
+
+#endif
+
     public void PayCoins()
     {
-        int cost = 5 * coinCostMultiplier;
+        int cost = 10 + (5 * coinCostMultiplier);
+        int maxCost = 10 + (5 * 3);
 
         //Pay up and increase the cost next time.
         if (GlobalStats.coins >= cost)
@@ -180,10 +199,10 @@ public class DeathHandler : MonoBehaviour
 
 
             //Cap this off at 3 revives? We don't want unlimited lives after all..
-            if ((cost >= 15)) payedCoins = true;
+            if ((cost >= maxCost)) payedCoins = true;
 
             //Update the button
-            cost = 5 * coinCostMultiplier;
+            cost = 10 + (5 * coinCostMultiplier);
             coinButtonText.text = "Pay " + cost.ToString() + " Coins";
             
             //Actually revive the player too.
