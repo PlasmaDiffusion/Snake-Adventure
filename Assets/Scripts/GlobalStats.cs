@@ -51,6 +51,9 @@ public class GlobalStats : MonoBehaviour
         {
         hud.SpawnScoreText(amount, sourcePosition);
         hud.UpdateHUD();
+        
+        //Rare 1up
+         GameObject.Find("Player").GetComponent<DeathCheck>().AddLifeFromScore();
         }
     }
 

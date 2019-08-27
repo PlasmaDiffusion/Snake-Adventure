@@ -33,6 +33,9 @@ public class DeathCheck : MonoBehaviour
 
     int lives;
 
+    //Extra lives gained
+    int oneUps;
+
     //Var for rainbow skin
     Color rainbowColor;
 
@@ -57,6 +60,7 @@ public class DeathCheck : MonoBehaviour
         maxScale = transform.localScale;
 
         lives = 3;
+        oneUps = 0;
 
         rainbowColor = rend.material.color;
     }
@@ -139,7 +143,17 @@ public class DeathCheck : MonoBehaviour
     }
 
     //Life management. Can only increment or decrement.
-    public void AddLife() {lives++; GlobalStats.hud.UpdateLifeHUD(); }
+    public void AddLifeFromScore()
+    {
+        //This only happens at 5000, 10000, 25000. (3 extra lives total)
+        if (oneUps < 2 && GlobalStats.score > ((oneUps*oneUps)+1) * 5000)
+        {
+        oneUps++;
+        lives++;
+        GlobalStats.hud.UpdateLifeHUD();
+        SoundManager.PlaySound(SoundManager.Sounds.FOOD_PICKUP, 2.0f);
+        }
+    }
     void RemoveLife() { lives--; GlobalStats.hud.UpdateLifeHUD(); }
     public int GetLives() { return lives; }
 

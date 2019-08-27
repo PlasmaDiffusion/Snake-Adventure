@@ -93,7 +93,7 @@ public class DeathHandler : MonoBehaviour
 
         gameObject.SetActive(false);
         DeathCheck deathCheck = player.GetComponent<DeathCheck>();
-        deathCheck.AddLife();
+        deathCheck.AddLifeFromScore();
         deathCheck.Respawn();
     }
 
