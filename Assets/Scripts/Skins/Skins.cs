@@ -124,8 +124,8 @@ public class Skins : MonoBehaviour
     void CalculateCosts()
     {
         //Different costs right here! First 3 themes are unlocked already
-        int[] skinCosts = {50, 50, 50, 50, 55, 60, 70, 80, 100, 150, 300, 500};
-        int[] themeCosts = {50, 50, 50, 65, 75, 90, 110, 150, 200, 300, 500, 800};
+        int[] skinCosts = {50, 50, 50, 50, 55, 60, 70, 80, 100, 150, 250, 400};
+        int[] themeCosts = {50, 50, 50, 65, 75, 90, 110, 150, 200, 250, 300, 500};
 
         int skinsUnlocked = 0;
         int themesUnlocked = 0;

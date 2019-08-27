@@ -245,20 +245,20 @@ public class Snake : SnakeMovement
     //    }
     //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name[0] == 'U')
-        {
-            //Must be under the wall
-            //if (transform.position.y < other.transform.position.y)
-            //{
-                transform.position = new Vector3(transform.position.x, other.transform.position.y + 2.0f, transform.position.z);
-                Debug.Log(other.name);
-                //other.transform.position += new Vector3(1.0f, 1.0f, 1.0f);
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.name[0] == 'U')
+    //    {
+    //        //Must be under the wall
+    //        //if (transform.position.y < other.transform.position.y)
+    //        //{
+    //            transform.position = new Vector3(transform.position.x, other.transform.position.y + 2.0f, transform.position.z);
+    //            Debug.Log(other.name);
+    //            //other.transform.position += new Vector3(1.0f, 1.0f, 1.0f);
 
-            //}
-        }
-    }
+    //        //}
+    //    }
+    //}
 
 
     private Touch ForceEndSwipe(Touch touch)

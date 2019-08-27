@@ -70,7 +70,7 @@ public class SnakeGate : MonoBehaviour
             Destroy(transform.GetChild(6).gameObject);
 
             //Play open sound!
-            SoundManager.PlaySound(SoundManager.Sounds.OPEN_GATE);
+            SoundManager.PlaySound(SoundManager.Sounds.OPEN_GATE, 1.0f, -1);
         }
 
         GlobalStats.hud.UpdateHUD();

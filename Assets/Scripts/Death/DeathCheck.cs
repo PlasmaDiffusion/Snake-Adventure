@@ -41,7 +41,7 @@ public class DeathCheck : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         regColor = rend.material.color;
-        collisionTimeLimit = 0.75f;
+        collisionTimeLimit = 1.0f;
         collisionTimeInSegment = 0.0f;
 
         colliding = false;
@@ -244,7 +244,7 @@ public class DeathCheck : MonoBehaviour
 
         Color.RGBToHSV(rainbowColor, out hue, out sat, out value);
 
-        hue += Time.deltaTime * 0.5f;
+        hue += Time.deltaTime * 0.25f;
 
         rainbowColor = Color.HSVToRGB(hue, sat, value);
 

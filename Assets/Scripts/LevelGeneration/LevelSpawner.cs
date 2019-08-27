@@ -58,9 +58,14 @@ public class LevelSpawner : MonoBehaviour
         currentLevel = GameObject.Find("StartingLevel");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         light = GameObject.Find("Directional Light").GetComponent<Light>();
-        colorT = 1.0f;
-        currentColor = bgColors[0];
-        currentLightColor = lightColors[0];
+        colorT = 0.0f;
+
+        cam.backgroundColor = bgColors[(int)Skins.levelTheme];
+        light.color = lightColors[(int)Skins.levelTheme];
+        prevColor = lightColors[0];
+        prevLightColor = lightColors[0];
+        currentColor = bgColors[(int)Skins.levelTheme];
+        currentLightColor = lightColors[(int)Skins.levelTheme];
 
         ranOutOfHard = false;
     }
