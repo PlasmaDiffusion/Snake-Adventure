@@ -5,9 +5,6 @@ using UnityEngine;
 //The main player class.
 public class Snake : SnakeMovement
 {
-    //Input list for cheat codes. REMOVE BEFORE RELEASE.
-    List<DraggedDirection> inputs;
-
     //Movement vars
     
     public bool alive; //When not alive, the game is forced to be paused
@@ -276,32 +273,13 @@ public class Snake : SnakeMovement
 
     public void ChangeSnakeDirection(int directionID)
     {
-        currentDirection = (DraggedDirection)directionID;
-        CheatCode();
-    }
-
-    //REMOVE THIS UPON RELEASE PLEASE
-    private void CheatCode()
-    {
-        inputs.Add(currentDirection);
-
-        if (inputs.Count >= 8)
+        if (currentDirection != (DraggedDirection)directionID)
         {
-            if (inputs[0] == DraggedDirection.Up &&
-                inputs[1] == DraggedDirection.Up &&
-                inputs[2] == DraggedDirection.Down &&
-                inputs[3] == DraggedDirection.Down &&
-                inputs[4] == DraggedDirection.Left &&
-                inputs[5] == DraggedDirection.Right &&
-                inputs[6] == DraggedDirection.Left &&
-                inputs[7] == DraggedDirection.Right)
-            {
-                GlobalStats.coins = 99999;
-                SoundManager.PlaySound(SoundManager.Sounds.COIN);
-            }
-
-            inputs.Clear();
+            float randomMovePitch = Random.Range(1.0f, 2.5f);
+            SoundManager.PlaySound(SoundManager.Sounds.SWITCH_OFF, randomMovePitch);
         }
+
+        currentDirection = (DraggedDirection)directionID;
     }
 
     //Set vel to 0 if the game is paused. Also check for unpause.

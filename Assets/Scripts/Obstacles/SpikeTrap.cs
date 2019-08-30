@@ -152,7 +152,8 @@ public class SpikeTrap : MonoBehaviour
 
     void BounceOffWall()
     {
-        if (collisionDebounce > 0.0f) return;
+        //Can't collide with walls constantly and child spikes can't collide off walls either
+        if (collisionDebounce > 0.0f || hideWarningText) return;
 
         //Reverse the velocity, also store the new velocity for pausing purposes
         if (!opposite) { rigidbody.velocity = oppositeVel; currentVel = oppositeVel; }

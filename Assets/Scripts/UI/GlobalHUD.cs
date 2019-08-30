@@ -72,6 +72,8 @@ public class GlobalHUD : MonoBehaviour
         playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
         fireBreathe = GameObject.Find("Tongue").GetComponent<FireBreathe>();
 
+
+
         HideChildren();
     }
 
@@ -242,7 +244,7 @@ public class GlobalHUD : MonoBehaviour
         for (int i = 0; i <playerDeathCheck.GetLives(); i++)
         {
             //If it's null then it's time to add another life image
-            if (i == livesHolder.transform.childCount) Instantiate(livesHolder.transform.GetChild(i), livesHolder.transform);
+            //if (i >= livesHolder.transform.childCount) Instantiate(livesHolder.transform.GetChild(i), livesHolder.transform);
 
             //Show image
             livesHolder.transform.GetChild(i).gameObject.SetActive(true);

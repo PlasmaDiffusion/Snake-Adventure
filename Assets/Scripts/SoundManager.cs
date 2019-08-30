@@ -35,7 +35,9 @@ public class SoundManager : MonoBehaviour
         OBJECTIVE_ACHIEVED,
         HISCORE,
         FIRE,
-        BOOST
+        BOOST,
+        PAUSE,
+        ONEUP
     }
 
     // Start is called before the first frame update
@@ -47,6 +49,13 @@ public class SoundManager : MonoBehaviour
         soundList = soundAssets;
     }
 
+
+    public void PlayPauseSoundOnClick()
+    {
+        if (GlobalStats.paused)
+        PlaySound(Sounds.PAUSE, 1.0f, 0);
+        else PlaySound(Sounds.PAUSE, 0.5f, 0);
+    }
 
     //Call this whenever a sound needs to be played, and provide the right enum. This uses two audio sources to mimic limited sound channels.
     public static void PlaySound(Sounds soundToPlay, float pitch = 1.0f, int sourceIndex = 0)
