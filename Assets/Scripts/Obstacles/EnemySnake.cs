@@ -261,8 +261,11 @@ public class EnemySnake : MonoBehaviour
         for (int i = otherSegments.Count-1; i >= 0; i--)
         {
             //Insert death particle here
+            if(otherSegments[i])
+            {
             Destroy(otherSegments[i]);
             otherSegments.RemoveAt(i);
+            }
         }
     }
 

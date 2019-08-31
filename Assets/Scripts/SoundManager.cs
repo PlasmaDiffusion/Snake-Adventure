@@ -54,7 +54,7 @@ public class SoundManager : MonoBehaviour
     {
         if (GlobalStats.paused)
         PlaySound(Sounds.PAUSE, 1.0f, 0);
-        else PlaySound(Sounds.PAUSE, 0.5f, 0);
+        else PlaySound(Sounds.PAUSE, 1.5f, 0);
     }
 
     //Call this whenever a sound needs to be played, and provide the right enum. This uses two audio sources to mimic limited sound channels.

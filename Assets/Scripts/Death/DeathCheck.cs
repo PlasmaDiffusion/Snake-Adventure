@@ -147,7 +147,7 @@ public class DeathCheck : MonoBehaviour
     public void AddLifeFromScore()
     {
         //This only happens at 5000, 10000, 25000. (3 extra lives total)
-        if (oneUps < 2 && GlobalStats.score > ((oneUps*oneUps)+1) * 5000)
+        if (oneUps < 3 && GlobalStats.score > ((oneUps*oneUps)+1) * 5000)
         {
         oneUps++;
         lives++;
