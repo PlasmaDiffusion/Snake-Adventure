@@ -121,7 +121,7 @@ public class LevelSpawner : MonoBehaviour
         if (difficultyBias == 0 && Random.Range(0, 3) > 0) difficultyBias = 1; //Early game has a smaller chance (about 22%) for medium levels
 
         //33% for difficulty to be 1 level higher
-        if (Random.Range(0, 3) == 0)
+        if (Random.Range(0, 3) == 0 && !ranOutOfHard)
         {
             difficultyBias++;
 
@@ -209,4 +209,19 @@ public class LevelSpawner : MonoBehaviour
     {
         Destroy(prevLevel);
     }
+
+    //private void OnGUI()
+    //{
+    //    GUI.color = Color.green;
+    //    for (int i = 0; i < easyLevelPool.Count; i++)
+    //    GUI.Label(new Rect(new Vector2(0.0f, 32.0f * i), new Vector2(128.0f, 32.0f)), easyLevelPool[i].name);
+
+    //    GUI.color = Color.blue;
+    //    for (int i = 0; i < mediumLevelPool.Count; i++)
+    //        GUI.Label(new Rect(new Vector2(128.0f, 32.0f * i), new Vector2(128.0f, 32.0f)), mediumLevelPool[i].name);
+
+    //    GUI.color = Color.red;
+    //    for (int i = 0; i < hardLevelPool.Count; i++)
+    //        GUI.Label(new Rect(new Vector2(256.0f, 32.0f * i), new Vector2(128.0f, 32.0f)), hardLevelPool[i].name);
+    //}
 }
