@@ -70,7 +70,7 @@ public class SnakeMovement : MonoBehaviour
     //Add a snake segment. Capped at 100.
     public void AddSegment()
     {
-        if (segments >= 100) return;
+        if (segments >= 120) return;
 
         //Make the new segment have the same material!
         segmentReference.GetComponent<Renderer>().material = GetComponent<Renderer>().material;

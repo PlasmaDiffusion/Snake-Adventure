@@ -12,7 +12,7 @@ public class PulseImage : MonoBehaviour
 
     Vector3 targetPosition;
 
-    bool transitioning;
+    public bool transitioning;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,6 @@ public class PulseImage : MonoBehaviour
         maxScale = transform.localScale * 1.0f;
 
         targetPosition = transform.position;
-        transitioning = true;
         SoundManager.PlaySound(SoundManager.Sounds.BOOST, 1.0f);
     }
 

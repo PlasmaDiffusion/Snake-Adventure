@@ -72,10 +72,11 @@ public class SnakeFood : MonoBehaviour
 
 
     //Call this to add a multiplier for a certain number of seconds. Can stack.
-    public static void AddMultiplier()
+    public static int AddMultiplier()
     {
         scoreMultiplier++;
-        multiplierTime = 8.0f;
+        multiplierTime = 16.0f;
+        return scoreMultiplier;
     }
 
     public static int GetScoreMultiplier() { return scoreMultiplier; }

@@ -15,30 +15,41 @@ public class BoostUI : MonoBehaviour
     float t;
     float currentGuageFill;
 
+    //Colour the bar!
+    Color defaultBarColour;
+    Color glowyBarColour;
+    float colourT;
+    float colourT_Delta;
+
     // Start is called before the first frame update
     void Start()
     {
         snake = player.GetComponent<Snake>();
         t = 0.0f;
         currentGuageFill = 0.0f;
+        defaultBarColour = boostGuageImage.color;
+        glowyBarColour = Color.white;
+
+        colourT = 0.0f;
+        colourT_Delta = 1.0f;
     }
 
     private void OnEnable()
     {
         //Move boost ui to the right if arrow buttons exist
-        if (!GlobalStats.swipeControls)
-        {
-            RectTransform rectTransform = GetComponent<RectTransform>();
-            rectTransform.anchorMin = new Vector2(1.0f, 0.0f);
-            rectTransform.anchorMax = new Vector2(1.0f, 0.0f);
-            rectTransform.pivot = new Vector2(1.0f, 0.0f);
-           transform.position = new Vector2(transform.position.x, 0.0f);
+        //if (!GlobalStats.swipeControls)
+        //{
+        //    RectTransform rectTransform = GetComponent<RectTransform>();
+        //    rectTransform.anchorMin = new Vector2(1.0f, 0.0f);
+        //    rectTransform.anchorMax = new Vector2(1.0f, 0.0f);
+        //    rectTransform.pivot = new Vector2(1.0f, 0.0f);
+        //   transform.position = new Vector2(transform.position.x, 0.0f);
 
-            RectTransform boostRect = boostButton.GetComponent<RectTransform>();
-            boostRect.anchorMin = new Vector3(1.0f, 0.5f);
-            boostRect.anchorMax = new Vector3(1.0f, 0.5f);
-            boostRect.pivot = new Vector3(1.0f, 0.5f);
-        }
+        //    RectTransform boostRect = boostButton.GetComponent<RectTransform>();
+        //    boostRect.anchorMin = new Vector3(1.0f, 0.5f);
+        //    boostRect.anchorMax = new Vector3(1.0f, 0.5f);
+        //    boostRect.pivot = new Vector3(1.0f, 0.5f);
+        //}
     }
 
     // Update is called once per frame
@@ -60,5 +71,16 @@ public class BoostUI : MonoBehaviour
 
         //Button is only available when guage is full.
         boostButton.gameObject.SetActive(targetGuageAmount >= 1.0f && !Snake.boosting);
+
+        if (targetGuageAmount >= 1.0f)
+        {
+            boostGuageImage.color = Color.Lerp(defaultBarColour, glowyBarColour, colourT);
+            colourT += Time.deltaTime * colourT_Delta;
+
+            if (colourT > 1.0f) colourT_Delta = -1.0f;
+            else if (colourT < 0.0f) colourT_Delta = 1.0f;
+        }
+        else
+            boostGuageImage.color = defaultBarColour;
     }
 }

@@ -44,8 +44,10 @@ public class GlobalStats : MonoBehaviour
     }
 
     //Call this whenever points are added to the score. It'll display the text from world to screen space and update the HUD.
-    public static void AddScore(int amount, Vector3 sourcePosition)
+    public static void AddScore(int amount, Vector3 sourcePosition, int textType = 0)
     {
+        
+
         score += amount;
         if (hud)
         {

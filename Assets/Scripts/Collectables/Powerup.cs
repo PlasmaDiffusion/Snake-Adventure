@@ -53,16 +53,20 @@ public class Powerup : MonoBehaviour
     void PickupGhost(Collider other)
     {
         DeathCheck snake = other.GetComponent<DeathCheck>();
-        snake.MakeInvincible(8.0f);
+        snake.MakeInvincible(12.0f);
         CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 0);
         SoundManager.PlaySound(SoundManager.Sounds.POWERUP);
+        GlobalStats.hud.SpawnText("INVINCIBILITY!", transform.position);
+
     }
 
     void PickupPointMultiplier(Collider other)
     {
-        SnakeFood.AddMultiplier();
+        int multiplier = SnakeFood.AddMultiplier();
         CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 1);
         SoundManager.PlaySound(SoundManager.Sounds.POWERUP, 1.5f);
+        GlobalStats.hud.SpawnText("CUBE \nPOINTS X" + multiplier.ToString(), transform.position);
+
     }
 
     void PickupFire(Collider other)
@@ -70,6 +74,7 @@ public class Powerup : MonoBehaviour
         other.gameObject.transform.Find("Tongue").GetComponent<FireBreathe>().ActivateFire();
         CoinObjective.CheckForObjective((int)CoinObjective.Objective.FIND_POWERUP, 2);
         SoundManager.PlaySound(SoundManager.Sounds.POWERUP, 0.5f);
+        GlobalStats.hud.SpawnText("FIRE!", transform.position);
     }
 
     void EatFish(Collider other)

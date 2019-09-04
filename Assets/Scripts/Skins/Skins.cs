@@ -132,12 +132,12 @@ public class Skins : MonoBehaviour
 
         for (int i = 0; i < (int)Themes.RANDOM; i++) if (unlockedLevelThemes[i]) themesUnlocked++;
 
-        if (skinsUnlocked < 12)
+        if (themesUnlocked < 12)
         themeCost = themeCosts[themesUnlocked];
 
         for (int i = 0; i < (int)SnakeSkins.RANDOM; i++) if (unlockedSnakeSkins[i]) skinsUnlocked++;
-
-        if (themesUnlocked < 12)
+        
+        if (skinsUnlocked < 12)
         skinCost = skinCosts[skinsUnlocked];
     }
 

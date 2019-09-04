@@ -72,7 +72,7 @@ public class GlobalHUD : MonoBehaviour
         playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
         fireBreathe = GameObject.Find("Tongue").GetComponent<FireBreathe>();
 
-
+        DisplayCoins(false);
 
         HideChildren();
     }
@@ -82,14 +82,14 @@ public class GlobalHUD : MonoBehaviour
     {
         //Hide coins after a second
         if (coinsVisibleTime > 0 && coinsVisibleTime != 10.0f) coinsVisibleTime -= Time.deltaTime;
-        else if (coinsVisibleTime != 10.0f) coinText.rectTransform.Translate(0.0f, 64.0f * Time.deltaTime, 0.0f);
+        else if (coinsVisibleTime != 10.0f) coinText.rectTransform.Translate(-64.0f * Time.deltaTime, 0.0f, 0.0f);
 
         float scoreTime = SnakeFood.GetMultiplierTime();
 
         //Update score multiplier circle
         if (scoreTime > 0.0f)
         {
-            bonusMultiplierTime.fillAmount = scoreTime / 8.0f;
+            bonusMultiplierTime.fillAmount = scoreTime / 16.0f;
             bonusMultiplierTime.gameObject.SetActive(true);
         }
         else
@@ -126,8 +126,8 @@ public class GlobalHUD : MonoBehaviour
         { 
         scoreText.text = " " + GlobalStats.score.ToString();
         requiredFoodText.text = GlobalStats.requiredFood.ToString();
-            if (requiredFoodText.text == "0") { requiredFoodText.text = "GATE OPEN"; requiredFoodText.fontSize = 14; }
-            else requiredFoodText.fontSize = 24;
+            if (requiredFoodText.text == "0") { requiredFoodText.text = "GATE OPEN"; requiredFoodText.fontSize = 18; }
+            else requiredFoodText.fontSize = 28;
         coinText.text = GlobalStats.coins.ToString();
         }
     }
@@ -228,6 +228,21 @@ public class GlobalHUD : MonoBehaviour
 
 
         scoreObj.transform.position = cameraObject.GetComponent<Camera>().WorldToScreenPoint(location);
+
+    }
+
+    //Call to spawn other messages
+    public void SpawnText(string message, Vector3 location)
+    {
+        GameObject textObj = Instantiate(scoreTextReference, gameObject.transform);
+        Text msgText = textObj.GetComponent<Text>();
+        msgText.text = message;
+
+        //Shrink text and make transparent
+        msgText.fontSize = 18;
+        msgText.color = new Color(1.0f, 1.0f, 1.0f, 0.7f);
+
+        textObj.transform.position = cameraObject.GetComponent<Camera>().WorldToScreenPoint(location);
 
     }
 

@@ -141,15 +141,12 @@ public class Snake : SnakeMovement
         if (Input.touchCount > 0 && GlobalStats.swipeControls)
         {
             Touch touch = Input.GetTouch(0);
+            
 
-            bool disableBottomScreenInput = false;
-
-            //Can't move from where boost button is
-            if (boostGuage >= 1.0f && touch.position.y < 300.0f
-            && touch.position.x > 400.0f && touch.position.x < 800.0f) disableBottomScreenInput = true;
-
-            if (!disableBottomScreenInput)
-            { 
+            //Can't move from where HUD is
+            if (touch.position.y < 500.0f)
+            {
+                
                 // Handle finger movements based on TouchPhase
                 switch (touch.phase)
                 {
