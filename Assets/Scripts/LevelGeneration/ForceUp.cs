@@ -13,9 +13,10 @@ public class ForceUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player")
+        if (other.gameObject.name == "Player")
         {
-            other.transform.position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+            Debug.Log("Forced up");
+            other.transform.position = transform.position + new Vector3(0.0f, 3.0f, 0.0f);
         }
     }
 }

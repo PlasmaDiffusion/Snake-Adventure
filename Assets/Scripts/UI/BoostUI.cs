@@ -27,8 +27,8 @@ public class BoostUI : MonoBehaviour
         snake = player.GetComponent<Snake>();
         t = 0.0f;
         currentGuageFill = 0.0f;
-        defaultBarColour = boostGuageImage.color;
-        glowyBarColour = Color.white;
+        defaultBarColour = boostButton.image.color;
+        glowyBarColour = Color.blue;
 
         colourT = 0.0f;
         colourT_Delta = 1.0f;
@@ -74,13 +74,13 @@ public class BoostUI : MonoBehaviour
 
         if (targetGuageAmount >= 1.0f)
         {
-            boostGuageImage.color = Color.Lerp(defaultBarColour, glowyBarColour, colourT);
+            boostButton.image.color = Color.Lerp(defaultBarColour, glowyBarColour, colourT);
             colourT += Time.deltaTime * colourT_Delta;
 
             if (colourT > 1.0f) colourT_Delta = -1.0f;
             else if (colourT < 0.0f) colourT_Delta = 1.0f;
         }
         else
-            boostGuageImage.color = defaultBarColour;
+            boostButton.image.color = defaultBarColour;
     }
 }

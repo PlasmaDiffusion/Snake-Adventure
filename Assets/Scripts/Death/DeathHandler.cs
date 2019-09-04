@@ -133,6 +133,7 @@ public class DeathHandler : MonoBehaviour
     {
         //Save the game whenver the game ends
         GlobalStats.Save();
+        EndOfGameAdd.gamesPlayed++;
 
         SceneManager.LoadScene(0);
     }

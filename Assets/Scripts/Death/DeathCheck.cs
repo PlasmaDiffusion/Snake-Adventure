@@ -152,6 +152,7 @@ public class DeathCheck : MonoBehaviour
         oneUps++;
         lives++;
         GlobalStats.hud.UpdateLifeHUD();
+        GlobalStats.hud.SpawnText("1UP", transform.position + new Vector3(0.0f, -1.0f, 0.0f));
         SoundManager.PlaySound(SoundManager.Sounds.ONEUP, 1.0f, -1);
         }
     }
