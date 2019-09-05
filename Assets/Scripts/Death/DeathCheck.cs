@@ -117,7 +117,6 @@ public class DeathCheck : MonoBehaviour
         else if (died || invincibility > 0.0f || snake.GetBoosting()) return false;
 
         gameObject.GetComponent<Snake>().alive = false;
-        GlobalStats.hud.DisplayCoins(true);
         GlobalStats.paused = true;
 
         SoundManager.PlaySound(SoundManager.Sounds.DIE);

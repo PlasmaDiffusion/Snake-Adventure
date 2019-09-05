@@ -28,10 +28,10 @@ public class BoostUI : MonoBehaviour
         t = 0.0f;
         currentGuageFill = 0.0f;
         defaultBarColour = boostButton.image.color;
-        glowyBarColour = Color.blue;
+        glowyBarColour = Color.cyan;
 
         colourT = 0.0f;
-        colourT_Delta = 1.0f;
+        colourT_Delta = 1.2f;
     }
 
     private void OnEnable()
@@ -77,7 +77,7 @@ public class BoostUI : MonoBehaviour
             boostButton.image.color = Color.Lerp(defaultBarColour, glowyBarColour, colourT);
             colourT += Time.deltaTime * colourT_Delta;
 
-            if (colourT > 1.0f) colourT_Delta = -1.0f;
+            if (colourT > 1.0f) colourT_Delta = -1.2f;
             else if (colourT < 0.0f) colourT_Delta = 1.0f;
         }
         else

@@ -8,13 +8,6 @@ public class EndOfGameAdd : MonoBehaviour
 {
     public static int gamesPlayed = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        ShowAd();
-    }
-    
-
     public void ShowAd()
     {
         //If the player supported the game, they skip the ad

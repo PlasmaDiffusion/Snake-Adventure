@@ -144,8 +144,8 @@ public class Snake : SnakeMovement
             bool disableBottomScreenInput = false;
 
             //Can't move from where boost button is
-            if (boostGuage >= 1.0f && touch.position.y < 300.0f
-            && touch.position.x > 400.0f && touch.position.x < 800.0f) disableBottomScreenInput = true;
+            if (boostGuage >= 1.0f && touch.position.y < 250.0f
+            && touch.position.x > Screen.width - 200.0f) disableBottomScreenInput = true;
 
             if (!disableBottomScreenInput)
             {
@@ -497,13 +497,14 @@ public class Snake : SnakeMovement
     //    {
     //        Touch touch = Input.GetTouch(0);
     //        GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), touch.position.x.ToString(), style);
+    //        GUI.Label(new Rect(new Vector2(32.0f, 300.0f), new Vector2(100.0f, 32.0f)), touch.position.y.ToString(), style);
     //    }
 
-    //    //GUI.color = Color.red;
-    //    //GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
-    //    //GUI.color = Color.blue;
-    //    //GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + ((1.0f / Time.deltaTime)).ToString(), style);
-    //    //GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
+    //    //    //GUI.color = Color.red;
+    //    //    //GUI.Label(new Rect(new Vector2(32.0f, 128.0f), new Vector2(100.0f, 32.0f)), "Swipe Length: " + touch.deltaPosition.magnitude.ToString(), style);
+    //    //    //GUI.color = Color.blue;
+    //    //    //GUI.Label(new Rect(new Vector2(32.0f, 160.0f), new Vector2(100.0f, 32.0f)), "FPS: " + ((1.0f / Time.deltaTime)).ToString(), style);
+    //    //    //GUI.Label(new Rect(new Vector2(32.0f, 192.0f), new Vector2(100.0f, 32.0f)), "DT : " + Time.deltaTime.ToString(), style);
 
     //}
 }

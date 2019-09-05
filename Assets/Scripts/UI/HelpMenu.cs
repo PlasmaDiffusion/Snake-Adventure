@@ -24,7 +24,7 @@ public class HelpMenu : MonoBehaviour
     public string[] titles;
     public string[] descs;
     public Sprite[] images;
-
+    public Vector2[] imageSizes;
 
 
     int currentIndex;
@@ -57,7 +57,24 @@ public class HelpMenu : MonoBehaviour
         desc2.text = descs[currentIndex + 1];
 
         image1.sprite = images[currentIndex];
+        ResizeImage(image1, currentIndex);
         image2.sprite = images[currentIndex + 1];
+        ResizeImage(image2, currentIndex+1);
+
+    }
+
+    //Set any hard code image sizes here
+    void ResizeImage(Image image, int index)
+    {
+        //Default size
+        if (imageSizes[index].x == 0.0f)
+        {
+            image.transform.localScale = new Vector2(1.0f, 1.0f);
+        }
+        else
+        {
+            image.transform.localScale = imageSizes[index];
+        }
     }
 
     void Next()
