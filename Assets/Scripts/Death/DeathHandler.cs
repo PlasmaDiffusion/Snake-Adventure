@@ -134,10 +134,9 @@ public class DeathHandler : MonoBehaviour
         //Save the game whenver the game ends
         GlobalStats.Save();
         EndOfGameAdd.gamesPlayed++;
-        EndOfGameAdd ad = GetComponent<EndOfGameAdd>();
+        GetComponent<EndOfGameAdd>().ShowAd();
 
-        if (ad.TimeToShowAd()) ad.ShowAd();
-        else SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
 
