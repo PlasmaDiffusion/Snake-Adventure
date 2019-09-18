@@ -93,8 +93,8 @@ public class SnakeGate : MonoBehaviour
             {
                 //Add score depending on what the theme difficulty is
                 if (Skins.levelTheme == Skins.Themes.RUINS) GlobalStats.AddScore(150, other.transform.position);
-                else if (Skins.levelTheme == Skins.Themes.FACTORY) GlobalStats.AddScore(200, other.transform.position);
-                else if (Skins.levelTheme == Skins.Themes.DUNGEON) GlobalStats.AddScore(250, other.transform.position);
+                else if (Skins.levelTheme == Skins.Themes.FACTORY) GlobalStats.AddScore(250, other.transform.position);
+                else if (Skins.levelTheme == Skins.Themes.DUNGEON) GlobalStats.AddScore(150, other.transform.position);
                 else GlobalStats.AddScore(100, other.transform.position);
 
                 CoinObjective.CheckForObjective((int)CoinObjective.Objective.BEAT_THEMED_LEVELS, (int)Skins.levelTheme);
