@@ -81,6 +81,7 @@ public class SnakeFood : MonoBehaviour
 
     public static int GetScoreMultiplier() { return scoreMultiplier; }
     public static float GetMultiplierTime() { return multiplierTime; }
+    public static void ResetScoreMultiplier() {multiplierTime = 0.0f; scoreMultiplier = 1; }
 
     //Snake class calls this every update.
     public static void CheckScoreMultiplier()

@@ -31,7 +31,9 @@ public class GlobalHUD : MonoBehaviour
     Image bonusMultiplierTime;
     Image fireTime;
     Image ghostTime;
-    
+
+    Text multiplierText;
+
     Vector3 defaultCoinPosition;
 
     public float coinsVisibleTime; //If 10.0f, coins will be constantly visible
@@ -67,6 +69,8 @@ public class GlobalHUD : MonoBehaviour
         ghostTime = ghostObject.GetComponent<Image>();
         fireTime = fireObject.GetComponent<Image>();
 
+        multiplierText = bonusMultiplierObject.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+
         defaultCoinPosition = coinText.rectTransform.position;
 
         playerDeathCheck = GameObject.Find("Player").GetComponent<DeathCheck>();
@@ -91,6 +95,7 @@ public class GlobalHUD : MonoBehaviour
         {
             bonusMultiplierTime.fillAmount = scoreTime / 16.0f;
             bonusMultiplierTime.gameObject.SetActive(true);
+            multiplierText.text = "X" + SnakeFood.GetScoreMultiplier().ToString();
         }
         else
         {

@@ -78,6 +78,8 @@ public class Snake : SnakeMovement
         //Reset food collecting variables
         BonusFood.foodCollected = 0;
         BonusFood.currentFoodIndex = 0;
+        //Reset score multiplier
+        SnakeFood.ResetScoreMultiplier();
 
         transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f));
     }
