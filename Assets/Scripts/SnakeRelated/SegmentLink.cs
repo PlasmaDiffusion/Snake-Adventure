@@ -29,9 +29,10 @@ public class SegmentLink : MonoBehaviour
 
         difference.y = 0.0f;
         transform.localScale = new Vector3(0.25f, 0.25f, 0.25f) + difference;
-
-            //Debug.Log(difference);
-
+            
+        //Make sure the size doesn't glitch out and become huge after dying
+        if (transform.localScale.x > 3.0f || transform.localScale.x < -3.0f || transform.localScale.z > 3.0f || transform.localScale.z < -3.0f)
+                transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         }
         else
         {
