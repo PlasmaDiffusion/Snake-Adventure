@@ -102,7 +102,7 @@ public class OptionsMenu : MonoBehaviour
         Skins.unlockedLevelThemes[0] = true;
         Skins.unlockedLevelThemes[(int)Skins.Themes.SNOW] = true;
         Skins.unlockedLevelThemes[(int)Skins.Themes.DESERT] = true;
-        Skins.levelTheme = Skins.Themes.DEFAULT;
+        Skins.levelTheme = Skins.Themes.TROPICAL;
         Skins.randomTheme = true;
 
         GlobalStats.Save();

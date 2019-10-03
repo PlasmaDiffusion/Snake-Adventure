@@ -29,7 +29,7 @@ public class LightUpMaterial : MonoBehaviour
 
         switch (Skins.levelTheme)
         {
-            case Skins.Themes.DEFAULT:
+            case Skins.Themes.TROPICAL:
                 bModifier = 0.2f;
                 break;
 

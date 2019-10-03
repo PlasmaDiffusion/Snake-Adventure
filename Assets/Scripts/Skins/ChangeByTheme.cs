@@ -48,7 +48,7 @@ public class ChangeByTheme : MonoBehaviour
             }
         }
 
-        if(themeAffectsMesh && Skins.levelTheme != Skins.Themes.DEFAULT)
+        if(themeAffectsMesh && Skins.levelTheme != Skins.Themes.TROPICAL)
         {
 
             //Debug.Log((int)Skins.levelTheme);

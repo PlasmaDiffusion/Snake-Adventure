@@ -23,7 +23,7 @@ public class Skins : MonoBehaviour
 
     public enum Themes
     {
-        DEFAULT,
+        TROPICAL,
         SNOW,
         FACTORY,
         RUINS,
@@ -95,7 +95,7 @@ public class Skins : MonoBehaviour
             unlockedSnakeSkins[(int)SnakeSkins.DEFAULT] = true;
 
             unlockedLevelThemes[(int)Themes.RANDOM] = true;
-            unlockedLevelThemes[(int)Themes.DEFAULT] = true;
+            unlockedLevelThemes[(int)Themes.TROPICAL] = true;
             unlockedLevelThemes[(int)Themes.SNOW] = true;
             unlockedLevelThemes[(int)Themes.DESERT] = true;
 
